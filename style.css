@@ -17,6 +17,11 @@
   letter-spacing: 0;
 }
 
+.slidev-layout:not(.cover):not(.section):not(.end) h1 + p {
+  color: inherit;
+  opacity: 1;
+}
+
 .slidev-layout.cover,
 .slidev-layout.section,
 .slidev-layout.end {
