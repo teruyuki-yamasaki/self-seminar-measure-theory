@@ -41,6 +41,17 @@ dist/probability-seminar.pdf
 
 Slidev / LaTeX の使い分けや、40-60分想定の構成方針は `docs/slidev_plan.md` にまとめています。
 
+## Format / Check
+
+Biome を使います。
+
+```bash
+npm run format
+npm run check
+```
+
+Vue ファイルの formatter も Biome に寄せています。構文ハイライトと言語機能は Volar が担当するため、色が付かない場合は Dev Container を rebuild するか、VS Code の拡張機能を reload してください。
+
 ## スライド記法
 
 本文はできるだけ Markdown と Slidev の slot 記法で書きます。共通の見た目が必要な箇所は、MDC/Comark のブロックコンポーネントを使います。

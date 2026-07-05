@@ -6,12 +6,17 @@
   "scripts": {
     "dev": "slidev slides.md --remote",
     "build": "slidev build slides.md",
-    "export": "slidev export slides.md --output dist/probability-seminar.pdf"
+    "export": "slidev export slides.md --output dist/probability-seminar.pdf",
+    "format": "biome format --write .",
+    "check": "biome check ."
   },
   "dependencies": {
     "@slidev/cli": "^52.1.0",
     "@slidev/theme-default": "^0.25.0",
     "katex": "^0.16.22",
     "playwright-chromium": "^1.54.1"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.2"
   }
 }
