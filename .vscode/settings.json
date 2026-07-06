@@ -27,5 +27,31 @@
   },
   "[vue]": {
     "editor.defaultFormatter": "biomejs.biome"
-  }
+  },
+  "cSpell.words": [
+    "Borel",
+    "Cantelli",
+    "comark",
+    "filtration",
+    "filtrations",
+    "Fira",
+    "kakuritsubibun",
+    "KaTeX",
+    "katex",
+    "Lebesgue",
+    "Markov",
+    "mdc",
+    "Noto",
+    "Ornstein",
+    "PDE",
+    "PDF",
+    "Poisson",
+    "pushforward",
+    "routerMode",
+    "SDE",
+    "Slidev",
+    "Stieltjes",
+    "Uhlenbeck",
+    "Wiener"
+  ]
 }
