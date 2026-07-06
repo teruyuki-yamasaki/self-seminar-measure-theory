@@ -1,24 +1,6 @@
-type RouteLocation = {
-  path: string;
-  query: Record<string, unknown>;
-  hash: string;
-  params: Record<string, string | string[]>;
-};
+import { defineRoutesSetup } from "@slidev/types";
 
-type RouteRedirect = {
-  path: string;
-  query: RouteLocation["query"];
-  hash: string;
-};
-
-type RouteRecord = {
-  name?: string;
-  path: string;
-  redirect?: (to: RouteLocation) => RouteRedirect;
-  [key: string]: unknown;
-};
-
-export default (routes: RouteRecord[]): RouteRecord[] => [
+export default defineRoutesSetup((routes) => [
   {
     path: "/presenter/presenter/:no",
     redirect: (to) => ({
@@ -28,4 +10,4 @@ export default (routes: RouteRecord[]): RouteRecord[] => [
     }),
   },
   ...routes,
-];
+]);
