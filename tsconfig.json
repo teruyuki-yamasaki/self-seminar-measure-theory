@@ -10,5 +10,5 @@
     "resolveJsonModule": true,
     "skipLibCheck": true
   },
-  "include": ["components/**/*.vue", "setup/**/*.ts", "slides.md", "types/**/*.d.ts"]
+  "include": ["components/**/*.vue", "setup/**/*.ts", "slides.md"]
 }
