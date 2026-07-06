@@ -14,11 +14,11 @@
   "dependencies": {
     "@slidev/cli": "^52.1.0",
     "@slidev/theme-default": "^0.25.0",
-    "katex": "^0.16.22",
-    "playwright-chromium": "^1.54.1"
+    "katex": "^0.16.22"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.5.2",
-    "@slidev/types": "52.16.0"
+    "@slidev/types": "52.16.0",
+    "playwright-chromium": "^1.54.1"
   }
 }
