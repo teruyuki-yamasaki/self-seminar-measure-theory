@@ -1,15 +1,15 @@
-# 確率論勉強会資料
+# 測度論・ルベーグ積分勉強会資料
 
-測度論・Lebesgue積分の概論講義の後に実施する、確率論勉強会用の Slidev 資料です。
+`lambda-b/self_seminar` の Slidev 構成を踏襲して作る, 測度論・ルベーグ積分勉強会用の資料です.
 
-メイン資料は `slides.md` にまとめています。PDF出力を前提に、アニメーション依存を避けて1ページごとに読める構成にしています。
+メイン資料は `slides.md` にまとめます.PDF 出力を前提に, 1 ページごとに読める構成を基本にします.
 
 ## 前提条件
 
 - Node.js
 - pnpm
 
-Dev Container を使う場合は、このリポジトリを VS Code で開いて `Dev Containers: Reopen in Container` を実行してください。
+Dev Container を使う場合は, このディレクトリを VS Code で開いて `Dev Containers: Reopen in Container` を実行してください.
 
 ## セットアップ
 
@@ -23,9 +23,7 @@ pnpm install
 pnpm dev
 ```
 
-既定では Slidev のローカルサーバーが起動します。
-
-## PDF出力
+## PDF 出力
 
 ```bash
 pnpm export
@@ -34,56 +32,45 @@ pnpm export
 出力先:
 
 ```text
-dist/probability-seminar.pdf
-```
-
-`main` に push すると GitHub Actions でもPDFを生成し、最新版を以下にコミットします。
-
-```text
-export/probability-seminar.pdf
+dist/measure-theory-seminar.pdf
 ```
 
 ## GitHub Pages
 
-`main` に push されると GitHub Actions で Slidev をビルドし、GitHub Pages に公開します。
+`main` に push されると GitHub Actions で Slidev をビルドし, GitHub Pages に公開する想定です.
 
-公開 URL:
+公開ページ:
 
-```text
-https://lambda-b.github.io/self_seminar/
-```
+https://teruyuki-yamasaki.github.io/self_seminar_measure/
 
-初回の Pages 設定手順は `docs/github_pages.md` を参照してください。
-
-## 方針メモ
-
-Slidev / LaTeX の使い分けや、40-60分想定の構成方針は `docs/slidev_plan.md` にまとめています。
+初回の Pages 設定手順は `docs/github_pages.md` を参照してください.
 
 ## Format / Check
-
-Biome を使います。
 
 ```bash
 pnpm format
 pnpm check
 ```
 
-Vue ファイルの formatter も Biome に寄せています。構文ハイライトと言語機能は Volar が担当するため、色が付かない場合は Dev Container を rebuild するか、VS Code の拡張機能を reload してください。
+## 章別原稿
 
-## スライド記法
+`docs/chapters/` には, スライド化の前段階として各章の本文原稿を置いています.
 
-本文はできるだけ Markdown と Slidev の slot 記法で書きます。共通の見た目が必要な箇所は、MDC/Comark のブロックコンポーネントを使います。
+### [第0章 導入：測度論は何を拡張するのか](./docs/chapters/00_introduction.md)
+### [第1章 古典的面積概念と Jordan 測度](./docs/chapters/01_classical_area_jordan_measure.md)
+### [第2章 可算操作への移行：Lebesgue 外測度](./docs/chapters/02_lebesgue_outer_measure.md)
+### [第3章 Carathéodory 可測性と Lebesgue 測度](./docs/chapters/03_caratheodory_lebesgue_measure.md)
+### [第4章 抽象的測度空間](./docs/chapters/04_measure_space.md)
+### [第5章 Riemann 積分から Lebesgue 積分へ](./docs/chapters/05_riemann_to_lebesgue.md)
+### [第6章 可測函数と単函数](./docs/chapters/06_measurable_simple_functions.md)
+### [第7章 Lebesgue 積分](./docs/chapters/07_lebesgue_integral.md)
+### [第8章 極限と積分の交換](./docs/chapters/08_limits_and_integrals.md)
+### [Appendix Radon-Nikodym の定理](./docs/chapters/appendix_radon_nikodym.md)
 
-```md
-::note
-ここに補足を書く。inline 数式 $X_n \to X$ も Markdown として処理されます。
-::
+## 構成メモ
 
-::diagram
-$(\Omega,\mathcal{F},P)$
-$\xrightarrow{\quad X\quad}$
-$(S,\mathcal{S},P_X)$
-::
-```
-
-スタイルは `style.css` と `components/` 配下に寄せています。Slidev は UnoCSS を内蔵しているため、コンポーネント内では Tailwind 互換の utility class を使えます。
+- `slides.md`: 本文
+- `components/`: MDC / Comark から呼ぶ小コンポーネント
+- `setup/main.ts`: GitHub Pages 配信用の hash 補正
+- `style.css`: 全体スタイル
+- `docs/`: 方針メモ

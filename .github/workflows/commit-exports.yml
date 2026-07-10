@@ -57,7 +57,7 @@ jobs:
             pnpm export
 
             mkdir -p export
-            cp dist/probability-seminar.pdf export/probability-seminar.pdf
+            cp dist/measure-theory-seminar.pdf export/measure-theory-seminar.pdf
 
             git add -A export
 

@@ -1,5 +1,5 @@
 {
-  "name": "self-seminar-probability",
+  "name": "self-seminar-measure",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -7,17 +7,17 @@
   "scripts": {
     "dev": "slidev slides.md --remote",
     "build": "slidev build slides.md --base ./",
-    "export": "slidev export slides.md --output dist/probability-seminar.pdf",
+    "export": "slidev export slides.md --output dist/measure-theory-seminar.pdf",
     "format": "biome format --write .",
     "check": "biome check ."
   },
   "dependencies": {
     "@slidev/cli": "^52.1.0",
     "@slidev/theme-default": "^0.25.0",
-    "katex": "^0.16.22"
+    "katex": "^0.16.22",
+    "playwright-chromium": "^1.54.1"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.5.2",
-    "@slidev/types": "52.16.0"
+    "@biomejs/biome": "^2.5.2"
   }
 }

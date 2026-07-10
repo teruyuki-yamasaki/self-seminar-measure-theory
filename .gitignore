@@ -26,7 +26,6 @@ target/
 
 # ===== Java / Kotlin =====
 .gradle/
-build/
 *.log
 
 # ===== Python =====
@@ -45,3 +44,6 @@ coverage/
 
 # custom
 work
+
+# generated animation intermediates
+figures/measure/animations/**/frames/*.png
