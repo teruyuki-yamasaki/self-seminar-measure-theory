@@ -5,7 +5,7 @@
 公開 URL は通常、次の形式になります。
 
 ```text
-https://teruyuki-yamasaki.github.io/self_seminar_measure/
+https://teruyuki-yamasaki.github.io/self-seminar-measure-theory/
 ```
 
 ## 初回の Pages 設定
@@ -15,7 +15,7 @@ GitHub Pages の公開元を GitHub Actions に設定します。これは初回
 ```bash
 gh api \
   --method POST \
-  repos/teruyuki-yamasaki/self_seminar_measure/pages \
+  repos/teruyuki-yamasaki/self-seminar-measure-theory/pages \
   -f build_type=workflow
 ```
 
@@ -24,14 +24,14 @@ gh api \
 ```bash
 gh api \
   --method PUT \
-  repos/teruyuki-yamasaki/self_seminar_measure/pages \
+  repos/teruyuki-yamasaki/self-seminar-measure-theory/pages \
   -f build_type=workflow
 ```
 
 設定確認:
 
 ```bash
-gh api repos/teruyuki-yamasaki/self_seminar_measure/pages
+gh api repos/teruyuki-yamasaki/self-seminar-measure-theory/pages
 ```
 
 ## 補足

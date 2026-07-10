@@ -41,7 +41,7 @@ dist/measure-theory-seminar.pdf
 
 公開ページ:
 
-https://teruyuki-yamasaki.github.io/self_seminar_measure/
+https://teruyuki-yamasaki.github.io/self-seminar-measure-theory/
 
 初回の Pages 設定手順は `docs/github_pages.md` を参照してください.
 

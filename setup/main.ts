@@ -1,6 +1,6 @@
 const normalizeSlidevHash = () => {
   const normalized = window.location.hash
-    .replace(/^#\/self_seminar_measure(?=\/|$)/, "#")
+    .replace(/^#\/self-seminar-measure-theory(?=\/|$)/, "#")
     .replace(/^#\/presenter\/presenter\//, "#/presenter/");
 
   if (normalized !== window.location.hash) {
