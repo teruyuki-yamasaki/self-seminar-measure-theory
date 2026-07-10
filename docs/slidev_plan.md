@@ -1,97 +1,22 @@
-# 確率論勉強会 Slidev 方針
+# Slidev 構成メモ
 
-## 結論
+## 方針
 
-最終資料は Slidev で作成する。PDF出力を前提に、アニメーションやクリック依存の説明は避け、1枚ごとに読めるスライドとして構成する。
+- 共通の装飾は `components/` に寄せる`
+- ６０−８０分程度で測度論からルベーグ積分の優秀則定理・ラドン・ニコディムの定理までを扱う
+- 大きくは２部構成
+    - 第１部：測度論の基礎
+        - 古典的面積概念から測度論の導入まで
+        - 外測度・可測集合・測度の定義まで
+    - 第２部：ルベーグ積分
+        - 可測函数から優収束定理まで
+        - ラドン・ニコディムの定理まで
 
-LaTeX は補助ノート向きとする。定理の証明や細かな測度論的補足は、必要に応じて別途 `.tex` に退避する。
+## 章立て案
 
-## 想定聴衆
 
-- 理学部出身の4名
-- 物理・生物など背景はさまざま
-- 前段で測度論・Lebesgue積分の概論講義を受けている
-- 確率論の厳密な定式化と応用先の両方を見たい
+## 運用メモ
 
-## 資料設計
-
-40-60分で全テーマを深く証明するのは難しいため、今回は「測度論から確率論への地図」を主目的にする。
-
-厚く扱う箇所:
-
-- 確率空間、確率変数、分布
-- 収束概念の違い
-- 大数の法則と中心極限定理の位置づけ
-- 確率過程、条件付き期待値、Brown運動、Markov性、Martingale
-
-応用として紹介する箇所:
-
-- 伊藤の公式
-- Black-Scholes方程式
-- 最適停止、秘書問題
-
-## スライド内容の編集方針
-
-厳密性は「測度論の言葉で何を定義しているかが追える」水準を保ちつつ、証明の完備性よりも概念間の対応関係を優先する。各トピックでは、できるだけ「測度論での定式化」「直感」「確率論で何に効くか」を1セットで示す。
-
-1スライド1論点を基本にし、1枚の中で定義・定理・例を重ねすぎない。新しい定義を出した直後は、抽象記号だけで進めず、サイコロ・分布・標本路などの小さな例を置いて読み替えを助ける。
-
-用語と記号は一貫させる。確率空間は `(\Omega, \mathcal{F}, P)`、確率変数は可測写像、分布は push-forward measure `P_X` として説明する。収束は「概収束」「確率収束」「分布収束」「L^p 収束」を混ぜず、関係図と代表例で比較する。
-
-大数の法則・中心極限定理・確率過程・条件付き期待値・Brown運動・Markov性・Martingaleは本編の柱として扱う。伊藤積分の構成は紹介程度に留め、伊藤の公式で2階微分項が残る意味と、Black-Scholesや最適停止への接続を見せる。Black-Scholes、秘書問題は応用先の見取り図として紹介し、導出や証明を厚くする場合は補助ノートに分ける。
-
-人名由来の用語は英語表記を基本にする。ただし日本人名は日本語表記にする。例: `Poisson過程`、`Wiener過程`、`Brown運動`、`Markov性`、`Martingale`、`伊藤の公式`、`Black-Scholes方程式`。Wiener過程は、債券価格などで使う $B_t$ と衝突しないよう、記号を $W_t$ とする。
-
-PDF出力でも読める資料にするため、クリックで初めて意味が出る構成は避ける。図式や補足枠は `::diagram`、`::flow`、`::note` など既存のカスタム構文を使い、スライド本文に個別スタイルを増やしすぎない。
-
-## 推奨構成
-
-1. 測度論から確率論へ
-2. 収束概念
-3. 大数の法則と中心極限定理
-4. 確率過程
-5. 応用
-6. まとめ
-
-## PDF出力前提の注意
-
-- `transition: none` とし、PDFで意味が欠けないようにする
-- 1スライド1論点を基本にする
-- 数式は KaTeX で表現する
-- 証明を詰め込みすぎず、証明が必要な箇所は補助ノートに回す
-- シミュレータは本体には埋め込まず、別途URLやスクリーンショットで扱う
-
-## Markdown とスタイルの方針
-
-- スライド本文では生の `<div>` や `<style>` をできるだけ使わない
-- 2カラムは Slidev 標準の `two-cols-header` と `::left::` / `::right::` を使う
-- 補足枠や図式は `::note`、`::diagram`、`::flow` のようなカスタム構文にする
-- 共通スタイルは `style.css` と `components/` に分離する
-- Slidev は UnoCSS を内蔵しているため、コンポーネント内では Tailwind 互換の utility class を使う
-
-## Vite との相性
-
-Slidev が内部で Vite/Rolldown を管理しているため、このリポジトリ側で Vite を直接追加しない。現状は `pnpm build` と `pnpm export` が通っている。
-
-build 時に `node_modules/@vueuse/core` の pure annotation に関する Rolldown 警告が出ることがあるが、依存ライブラリ側の非致命的な警告で、PDF出力には影響していない。
-
-## GitHub Pages 公開時のルーティング
-
-GitHub Pages では `https://lambda-b.github.io/self_seminar/` 配下に公開する。Slidev の asset 参照は `pnpm build` で `--base ./` を指定し、Pages のサブディレクトリ配信でも CSS/JS が読めるようにする。
-
-Slidev の `routerMode` は `hash` とする。history mode は URL が見やすい一方、presenter などの deep link で `./assets/...` が深いパス相対になり、GitHub Pages 上で asset 解決が壊れやすい。hash mode なら entry point は常に `/self_seminar/` のままになる。
-
-ただし、Slidev v52 系では Pages の base path と hash routing の組み合わせで、矢印キー遷移時に `#/presenter/presenter/7` のような重複 hash が発生することがある。`setup/routes.ts` で presenter の重複 route だけを `#/presenter/7` へ redirect している。その他の route は Slidev 標準の挙動に任せる。GitHub Pages まわりを触る場合は、通常表示と presenter 表示の両方で矢印キー遷移を確認する。
-
-確認観点:
-
-- `https://lambda-b.github.io/self_seminar/#/1` から右矢印で `#/2` に進む
-- `https://lambda-b.github.io/self_seminar/#/presenter/7` で `#/presenter/presenter/7` に増殖しない
-- build artifact の `dist/index.html` は asset を `./assets/...` として参照する
-
-## 今後の拡張候補
-
-- 秘書問題シミュレータを React で作る
-- Brown運動の標本路画像を追加する
-- Black-Scholesの導出を補助ノートにする
-- 複数回勉強会に分ける場合は、収束・確率過程・応用の3回構成にする
+- 本編は `slides.md`
+- 細かい証明は別ノートへ逃がしてよい
+- 詰め切っていない箇所は `TODO` として残す
