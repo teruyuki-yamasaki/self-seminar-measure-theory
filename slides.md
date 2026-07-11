@@ -26,6 +26,10 @@ layout: cover
 [60-80分想定 / 章別原稿ベース]{class="deck-meta"}
 
 ---
+src: ./slides/slides-00-introduction.md
+---
+
+---
 src: ./slides/slides-01-jordan.md
 ---
 
@@ -39,10 +43,6 @@ src: ./slides/slides-03-caratheodory-measurability.md
 
 ---
 src: ./slides/slides-04-measure-space.md
----
-
----
-src: ./slides/slides-05-riemann-to-lebesgue.md
 ---
 
 ---
