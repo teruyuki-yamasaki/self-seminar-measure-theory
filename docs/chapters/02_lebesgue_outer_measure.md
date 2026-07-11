@@ -77,7 +77,7 @@ $$
 一般の集合 $X$ に対して, 冪集合 $2^X$ 上の集合函数
 
 $$
-\Gamma:2^X\to[0, \infty]
+\Gamma:2^X\to\mathbb{R}\cup\{\infty\}
 $$
 
 が, 空集合で $0$ をとり, 単調性と可算劣加法性を満たすとき, $\Gamma$ を $X$ 上の (Carathéodoryの) **外測度**という.
@@ -120,7 +120,7 @@ $$
 これに対して, この章の Lebesgue 外測度は
 
 $$
-\mu^*:2^{\mathbb{R}^N}\to[0, \infty]
+\mu^*:2^{\mathbb{R}^N}\to\mathbb{R}\cup\{\infty\}
 $$
  
 であり, $\mathbb{R}^N$ の任意の部分集合に対して定義される.

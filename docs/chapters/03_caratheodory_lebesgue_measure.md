@@ -138,7 +138,7 @@ $$
 さらに, 外測度 $\Gamma$ を可測集合族 $\mathfrak{M}_\Gamma$ 上に制限すると,
 
 $$
-\Gamma:\mathfrak{M}_\Gamma\to[0, \infty]
+\Gamma:\mathfrak{M}_\Gamma\to\mathbb{R}\cup\{\infty\}
 $$
 
 は可算加法的になる.
@@ -176,7 +176,7 @@ $$
 $\mu^*$ を $\mathfrak{M}_{\mu^*}$ に制限したもの
 
 $$
-\mu^*|_{\mathfrak{M}_{\mu^*}}:\mathfrak{M}_{\mu^*}\to[0, \infty]
+\mu^*|_{\mathfrak{M}_{\mu^*}}:\mathfrak{M}_{\mu^*}\to\mathbb{R}\cup\{\infty\}
 $$
 
 を **Lebesgue 測度** と呼び,
