@@ -219,7 +219,7 @@ $$
 $$
 m(P_n)=\sum_{k=1}^{n}m(T_{n,k})
 =\frac{n}{2}r^2\sin\frac{2\pi}{n}
-\longrightarrow \pi r^2
+\longrightarrow \pi r^2 = m(D_r)
 \qquad (n\to\infty)
 $$
 

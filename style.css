@@ -175,6 +175,8 @@ html.dark,
 .slidev-layout.two-cols,
 .slidev-layout.two-cols-header {
   column-gap: 2.4rem;
+  grid-template-columns: minmax(0, 1.2fr) minmax(15rem, 0.8fr);
+  align-items: stretch;
 }
 
 .slidev-layout.two-cols > div,
@@ -182,12 +184,21 @@ html.dark,
   min-width: 0;
 }
 
+.slidev-layout.two-cols > div:first-child,
+.slidev-layout.two-cols-header > div:first-child {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
 .slidev-layout.two-cols .col-right,
 .slidev-layout.two-cols-header .col-right {
   display: flex;
+  flex-direction: column;
   min-height: 0;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding-top: 1rem;
 }
 
 .slide-figure {
@@ -204,7 +215,9 @@ html.dark,
 
 .slidev-layout.two-cols .slide-figure,
 .slidev-layout.two-cols-header .slide-figure {
-  max-height: 64vh;
+  width: min(100%, 22rem);
+  max-height: 44vh;
+  margin-left: auto;
 }
 
 .slidev-layout blockquote {
@@ -235,6 +248,11 @@ html.dark,
   .slide-figure {
     max-height: 54vh;
     box-shadow: none;
+  }
+
+  .slidev-layout.two-cols .slide-figure,
+  .slidev-layout.two-cols-header .slide-figure {
+    max-height: 38vh;
   }
 
   .slidev-layout .katex-display {
