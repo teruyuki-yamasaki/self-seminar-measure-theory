@@ -142,9 +142,9 @@ $$
 前章で扱った区間塊の全体 $\mathfrak{F}_N$ は, 有限回の集合演算に対して閉じている.
 一般に, 空間 $X$ の部分集合族 $\mathfrak{F}$ が次の性質を満たすとき, $\mathfrak{F}$ を **有限加法族** という.
 
-1. $\emptyset\in\mathfrak{F}$.（空集合に対する閉性）
-2. $E\in\mathfrak{F}$ ならば $E^c\in\mathfrak{F}$.（補集合に対する閉性）
-3. $E,F\in\mathfrak{F}$ ならば $E\cup F\in\mathfrak{F}$.（有限和に対する閉性）
+1. （空集合に対する閉性）$\emptyset\in\mathfrak{F}$.
+2. （補集合に対する閉性）$E\in\mathfrak{F}$ ならば $E^c\in\mathfrak{F}$.
+3. （有限和に対する閉性）$E,F\in\mathfrak{F}$ ならば $E\cup F\in\mathfrak{F}$.
 
 この三つの性質から,
 
