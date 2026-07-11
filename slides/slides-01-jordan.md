@@ -7,20 +7,19 @@ layout: section
 古典的面積概念を測度論へつなぐ
 
 ---
-layout: default
+layout: two-cols
 ---
 
 # 古典的面積概念
 
-有限個の基本図形を増やしていくと, 近似面積は同じ極限値へ近づく.
-
-<img class="slide-figure" src="../figures/measure/static/concepts/classical_area_coverings.png" alt="円板を多角形と長方形で近似し, 面積が収束する様子" />
+図形が与えられたとき, その面積を定める古典的な方法は, 図形を有限個の長方形など何らかの基本図形の直和で近似することである. 
+すなわち, 図形の内部に含まれる有限個の基本図形の和を内側近似とし, 図形を覆う有限個の基本図形の和を外側近似として, 内側近似と外側近似の差が小さくなるように, 図形を細分していく.
+このとき, 内側近似および外側近似がある極限値に収束するならば, その極限値を図形の面積と定める.
+以下では, この古典的な面積概念を Jordan 測度の定義に基づいて定式化する.
 
 ---
-layout: two-cols
----
 
-# 基本図形: 半開区間
+# 基本図形としての半開区間
 
 Euclid 空間 $\mathbb{R}^N$ で半開区間
 
@@ -43,6 +42,16 @@ $$
 ::right::
 
 <img class="slide-figure" src="../figures/measure/static/concepts/half_open_interval_volume.png" alt="半開区間と体積の概念図" />
+
+---
+layout: default
+---
+
+# 区間塊
+
+同じ区間塊 $E$ でも, 長方形の取り方や細分の仕方には複数の表示がある.
+
+<img class="slide-figure" src="../figures/measure/static/concepts/interval_block_decomposition.png" alt="同じ区間塊を異なる長方形分割で表す図" />
 
 ---
 layout: two-cols
