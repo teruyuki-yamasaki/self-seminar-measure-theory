@@ -1,0 +1,178 @@
+---
+layout: section
+---
+
+# 1. Jordan 測度
+
+古典的面積概念を測度論へつなぐ
+
+---
+layout: default
+---
+
+# 古典的面積概念
+
+有限個の基本図形を増やしていくと, 近似面積は同じ極限値へ近づく.
+
+<img class="slide-figure" src="../figures/measure/static/concepts/classical_area_coverings.png" alt="円板を多角形と長方形で近似し, 面積が収束する様子" />
+
+---
+layout: two-cols
+---
+
+# 基本図形: 半開区間
+
+Euclid 空間 $\mathbb{R}^N$ で半開区間
+
+$$
+I=[a_1,b_1)\times\cdots\times[a_N,b_N)
+$$
+
+を基本図形とし, 有界な区間の体積を
+
+$$
+m(I)=\prod_{k=1}^{N}(b_k-a_k)
+$$
+
+と定める.
+
+::example-box{title="区間塊"}
+区間の有限個の直和 $E=I_1+\cdots+I_n$ として表される集合を区間塊と呼ぶ.
+::
+
+::right::
+
+<img class="slide-figure" src="../figures/measure/static/concepts/half_open_interval_volume.png" alt="半開区間と体積の概念図" />
+
+---
+layout: two-cols
+---
+
+# 有限加法性
+
+互いに素な区間塊 $E_1,\ldots,E_n$ に対して
+
+$$
+m\left(\bigcup_{k=1}^{n}E_k\right)
+=
+\sum_{k=1}^{n}m(E_k)
+$$
+
+が成り立つ.
+
+::note
+ここで扱っているのは有限加法性である. Lebesgue 測度では, この有限加法性を可算加法性へ拡張することが重要になる.
+::
+
+::right::
+
+<img class="slide-figure" src="../figures/measure/static/concepts/finite_additivity_blocks.png" alt="互いに素な区間塊の有限加法性" />
+
+---
+layout: two-cols
+---
+
+# Jordan 内測度と外測度
+
+有界集合 $A\subset\mathbb{R}^N$ を区間塊で内外から近似する.
+
+$$
+J_*(A)=
+\sup\{m(E)\mid E\subset A,\ E\in\mathfrak{F}_N\}
+$$
+
+$$
+J^*(A)=
+\inf\{m(F)\mid A\subset F,\ F\in\mathfrak{F}_N\}
+$$
+
+$J_*(A)=J^*(A)$ のとき, $A$ は Jordan 可測である.
+この共通値を $J(A)$ と書く.
+
+::right::
+
+<img class="slide-figure" src="../figures/measure/static/concepts/jordan_inner_outer_static.png" alt="Jordan 内測度と外測度の概念図" />
+
+---
+layout: two-cols
+---
+
+# Jordan 可測性の意味
+
+任意の $\varepsilon>0$ に対して区間塊 $E,F$ が存在し
+
+$$
+E\subset A\subset F,
+\qquad
+m(F)-m(E)<\varepsilon
+$$
+
+となるとき, $A$ は Jordan 可測である.
+
+::note
+曲がった境界そのものが問題なのではない. 有限長方形近似で内外の差を任意に小さくできるかが問題である.
+::
+
+::right::
+
+<img class="slide-figure" src="../figures/measure/animations/jordan_curve_area/gif/jordan_curve_area.gif" alt="Jordan 的面積近似" />
+
+---
+layout: two-cols
+---
+
+# 境界は問題ではない
+
+円板や穴を持つ有界集合は, 有限個の直方体で正確には表せない.
+
+それでも境界付近を細分すれば, 内側近似と外側近似の差を小さくできる.
+
+::example-box{title="見方"}
+Jordan 測度は「有限個の長方形で正確に表される集合だけ」の理論ではない.
+::
+
+::right::
+
+<img class="slide-figure" src="../figures/measure/animations/jordan_holes_adaptive/gif/jordan_holes_adaptive.gif" alt="穴を持つ集合の Jordan 的近似" />
+
+---
+layout: two-cols
+---
+
+# Jordan 可測でない例
+
+平面上の有理点集合
+
+$$
+A=\mathbb{Q}^2\cap[0,1]^2
+$$
+
+を考える.
+
+- $A$ も $A^c$ も正の面積を持つ長方形を含まない
+- 内側近似では $J_*(A)=0$
+- 外側近似では $J^*(A)=1$
+
+::right::
+
+<img class="slide-figure" src="../figures/measure/animations/rational_density_zoom_centered/gif/rational_density_zoom_centered.gif" alt="有理点集合の拡大図" />
+
+---
+layout: two-cols
+---
+
+# 第1章の結論
+
+::example-box{title="中心メッセージ"}
+Jordan 測度は, 有限個の基本図形による内外近似の極限として自然な面積概念である.
+
+しかし, 可算集合や稠密集合を安定に扱うには不十分である.
+::
+
+次に必要なのは, 有限近似から可算被覆へ移ることである.
+
+::right::
+
+<img class="slide-figure" src="../figures/measure/static/concepts/finite_to_countable_shift.png" alt="有限近似から可算被覆への移行" />
+
+---
