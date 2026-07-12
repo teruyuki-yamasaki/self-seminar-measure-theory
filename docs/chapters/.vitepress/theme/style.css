@@ -1,0 +1,58 @@
+:root {
+  --vp-c-brand-1: #25636f;
+  --vp-c-brand-2: #397f8b;
+  --vp-c-brand-3: #d9eef1;
+  --vp-c-text-1: #172326;
+  --vp-c-text-2: #4c5b60;
+  --vp-font-family-base:
+    "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", "Meiryo", sans-serif;
+}
+
+.VPDoc .content {
+  max-width: 920px;
+}
+
+.VPDoc .content-container {
+  max-width: 860px;
+}
+
+.vp-doc {
+  line-height: 1.9;
+}
+
+.vp-doc h1,
+.vp-doc h2,
+.vp-doc h3 {
+  letter-spacing: 0;
+}
+
+.vp-doc p {
+  margin: 18px 0;
+}
+
+.vp-doc img {
+  display: block;
+  max-width: min(100%, 760px);
+  margin: 24px auto;
+}
+
+.vp-doc table {
+  display: table;
+  width: 100%;
+}
+
+.vp-doc mjx-container {
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+}
+
+.vp-doc mjx-container[display="true"] {
+  padding: 0.5rem 0;
+}
+
+@media (max-width: 640px) {
+  .vp-doc table {
+    display: block;
+  }
+}

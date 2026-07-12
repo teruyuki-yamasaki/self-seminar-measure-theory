@@ -20,6 +20,8 @@ yarn-error.log*
 pnpm-debug.log*
 dist/
 build/
+docs/chapters/.vitepress/cache/
+docs/chapters/.vitepress/.temp/
 
 # ===== Rust =====
 target/

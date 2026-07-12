@@ -6,7 +6,11 @@
   "packageManager": "pnpm@10.25.0",
   "scripts": {
     "dev": "slidev slides.md --remote",
+    "docs:dev": "vitepress dev docs/chapters --host 0.0.0.0",
     "build": "slidev build slides.md --base ./",
+    "build:chapters": "vitepress build docs/chapters",
+    "build:all": "pnpm build && pnpm build:chapters",
+    "docs:preview": "vitepress preview docs/chapters --host 0.0.0.0",
     "export": "slidev export slides.md --output dist/measure-theory-seminar.pdf",
     "format": "biome format --write .",
     "check": "biome check ."
@@ -18,6 +22,8 @@
     "playwright-chromium": "^1.54.1"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.5.2"
+    "@biomejs/biome": "^2.5.2",
+    "markdown-it-mathjax3": "^4.3.2",
+    "vitepress": "^1.6.4"
   }
 }

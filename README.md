@@ -45,6 +45,12 @@ pnpm install
 pnpm dev
 ```
 
+章別 HTML のプレビュー:
+
+```bash
+pnpm docs:dev
+```
+
 ## PDF 出力
 
 ```bash
@@ -65,7 +71,13 @@ dist/measure-theory-seminar.pdf
 
 https://teruyuki-yamasaki.github.io/self-seminar-measure-theory/
 
+章別 HTML:
+
+https://teruyuki-yamasaki.github.io/self-seminar-measure-theory/chapters/
+
 初回の Pages 設定手順は `docs/github_pages.md` を参照してください.
+
+章別 HTML は `docs/chapters/` の Markdown を VitePress で変換します.数式は MathJax で描画されるため, GitHub 上の Markdown プレビューで崩れる式も HTML では安定して読めます.
 
 ## Format / Check
 
@@ -96,3 +108,4 @@ pnpm check
 - `setup/main.ts`: GitHub Pages 配信用の hash 補正
 - `style.css`: 全体スタイル
 - `docs/`: 方針メモ
+- `docs/chapters/.vitepress/`: 章別 HTML 生成設定

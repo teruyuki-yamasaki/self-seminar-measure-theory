@@ -1,11 +1,17 @@
 # GitHub Pages 公開手順
 
-このリポジトリでは `main` に push されたタイミングで GitHub Actions が Slidev をビルドし、`dist/` を GitHub Pages にデプロイします。
+このリポジトリでは `main` に push されたタイミングで GitHub Actions が Slidev と章別 HTML をビルドし、`dist/` を GitHub Pages にデプロイします。
 
 公開 URL は通常、次の形式になります。
 
 ```text
 https://teruyuki-yamasaki.github.io/self-seminar-measure-theory/
+```
+
+章別 HTML は次の URL で公開されます。
+
+```text
+https://teruyuki-yamasaki.github.io/self-seminar-measure-theory/chapters/
 ```
 
 ## 初回の Pages 設定
