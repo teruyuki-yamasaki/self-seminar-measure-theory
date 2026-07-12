@@ -137,8 +137,8 @@ $$
 互いに素でない集合列に対しては,
 
 $$
-B_1=A_1, \qquad
-B_n=A_n\setminus\bigcup_{k=1}^{n-1}A_k
+B_1:=A_1, \qquad
+B_n:=A_n\setminus\bigcup_{k=1}^{n-1}A_k
 $$
 
 とおくと, $B_n$ は互いに素であり
@@ -180,7 +180,7 @@ $$
 
 を満たすとき, $N$ を零集合という.
 
-集合 $E\in\mathfrak{B}$ 上の点 $x$ に関する命題 $P(x)$ が, ある零集合 $N\subset E$ を除いて成り立つとき, $P(x)$ は $E$ 上で $\mu$ に関して **ほとんど至る所** 成り立つという.
+集合 $E\in\mathfrak{B}$ 上の点 $x$ に関する命題 $P(x)$ が, ある零集合 $N\subset E$ を除いて成り立つとき, $P(x)$ は $E$ 上で $\mu$ に関して **ほとんど至る所 (almost everywhere, a.e.)** 成り立つという.
 
 記号では
 

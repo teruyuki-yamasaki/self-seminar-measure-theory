@@ -33,7 +33,7 @@ $$
 \mu(f^{-1}([\alpha,\beta)))
 $$
 
-が定義できる. Lebesgue 積分は, まず定義函数 $\mathbf{1}_E$ に対して $\int\mathbf{1}_E\,d\mu=\mu(E)$ と定め, そこから単函数へ拡張する. したがって, 函数の値によって現れる集合が可測であることが, 積分を定義するための前提になる.
+が定義できる. Lebesgue 積分は, まず定義函数 $\mathbf{1}_E$ に対して $\int\mathbf{1}_E\,d\mu:=\mu(E)$ と定め, そこから単函数へ拡張する. したがって, 函数の値によって現れる集合が可測であることが, 積分を定義するための前提になる.
 
 この定義は, 任意の Borel 集合 $A\in\mathfrak{B}(\mathbb{R})$ に対して
 
@@ -74,7 +74,7 @@ $$
 
 $$
 \mathbf{1}_E(x)
-=
+:=
 \begin{cases}
 1 & (x\in E), \\
 0 & (x\notin E)
@@ -119,7 +119,7 @@ $$
 実際, 単函数 $\varphi$ の異なる値を $a_1, \ldots, a_n \in \mathbb{R}$ とし,
 
 $$
-E_k=\{x\in X\mid \varphi(x)=a_k\}
+E_k:=\{x\in X\mid \varphi(x)=a_k\}
 $$
 
 とおけばよい. $\varphi$ が可測であれば, 各 $E_k$ は可測である.

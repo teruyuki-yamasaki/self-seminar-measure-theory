@@ -61,7 +61,7 @@ pnpm check
 ### [第2章 可算操作への移行：Lebesgue 外測度](./docs/chapters/02_lebesgue_outer_measure.md)
 ### [第3章 Carathéodory 可測性と Lebesgue 測度](./docs/chapters/03_caratheodory_lebesgue_measure.md)
 ### [第4章 抽象的測度空間](./docs/chapters/04_measure_space.md)
-### [第5章 Riemann 積分から Lebesgue 積分へ](./docs/chapters/05_riemann_to_lebesgue.md)
+### [第5章 Lebesgue 積分の見通し](./docs/chapters/05_lebesgue_integral_outlook.md)
 ### [第6章 可測函数と単函数](./docs/chapters/06_measurable_simple_functions.md)
 ### [第7章 Lebesgue 積分](./docs/chapters/07_lebesgue_integral.md)
 ### [第8章 極限と積分の交換](./docs/chapters/08_limits_and_integrals.md)
