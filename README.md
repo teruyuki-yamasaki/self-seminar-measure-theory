@@ -4,6 +4,28 @@
 
 メイン資料は `slides.md` にまとめます.PDF 出力を前提に, 1 ページごとに読める構成を基本にします.
 
+## 資料の見取り図
+
+本資料では, Riemann 積分の限界を出発点に, 集合に"大きさ"を与える測度論を整え, その上で Lebesgue 積分と収束定理へ進みます.
+
+$$
+\text{集合の"大きさ"}
+\quad\longrightarrow\quad
+\text{函数の積分}
+\quad\longrightarrow\quad
+\text{極限操作との整合性}
+$$
+
+Riemann 積分と Lebesgue 積分の基本的な視点の違いは次の通りです.
+
+| 観点 | Riemann 積分 | Lebesgue 積分 |
+| --- | --- | --- |
+| 分割するもの | 定義域の分割 $\Delta: a=x_0<\cdots<x_n=b$ | 値域の分割 $\Theta: \alpha=y_1<\cdots<y_{m+1}=\beta$ |
+| 各項 | $f(\xi_i)\lvert\Delta_i\rvert$ | $y_k\mu(E_k)$ |
+| 集める情報 | 各小区間 $\Delta_i$ での代表値 $f(\xi_i)$ | 各値域区間 $\Theta_k$ に入る点の集合 $E_k$ の"大きさ" $\mu(E_k)$ |
+| 極限 | $\lVert\Delta\rVert\to0$ | $\lVert\Theta\rVert\to0$ |
+| イメージ | <img src="figures/measure/animations/riemann_refinement/gif/riemann_refinement.gif" alt="Riemann 和と分割の細分" width="320"> | <img src="figures/measure/animations/lebesgue_layers/gif/lebesgue_layers.gif" alt="Lebesgue 積分の層による近似" width="320"> |
+
 ## 前提条件
 
 - Node.js
@@ -56,7 +78,7 @@ pnpm check
 
 `docs/chapters/` には, スライド化の前段階として各章の本文原稿を置いています.
 
-### [第0章 導入：測度論は何を拡張するのか](./docs/chapters/00_introduction.md)
+### [第0章 導入：Riemann 積分から Lebesgue 積分へ](./docs/chapters/00_introduction.md)
 ### [第1章 古典的面積概念と Jordan 測度](./docs/chapters/01_classical_area_jordan_measure.md)
 ### [第2章 可算操作への移行：Lebesgue 外測度](./docs/chapters/02_lebesgue_outer_measure.md)
 ### [第3章 Carathéodory 可測性と Lebesgue 測度](./docs/chapters/03_caratheodory_lebesgue_measure.md)
