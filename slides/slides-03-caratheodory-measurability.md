@@ -2,7 +2,7 @@
 layout: section
 ---
 
-# 3. Carathéodory 可測性
+# 第3章 Carathéodory 可測性と Lebesgue 測度
 
 外測度から測度を取り出す
 

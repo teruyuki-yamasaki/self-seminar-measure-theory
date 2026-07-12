@@ -4,7 +4,7 @@ const base = process.env.VITEPRESS_BASE ?? "/self-seminar-measure-theory/chapter
 
 const chapters = [
   {
-    text: "第0章 導入",
+    text: "第0章 導入：Riemann 積分から Lebesgue 積分へ",
     link: "/00_introduction",
   },
   {
@@ -12,11 +12,11 @@ const chapters = [
     link: "/01_classical_area_jordan_measure",
   },
   {
-    text: "第2章 可算操作への移行",
+    text: "第2章 可算操作への移行：Lebesgue 外測度",
     link: "/02_lebesgue_outer_measure",
   },
   {
-    text: "第3章 Carathéodory 可測性",
+    text: "第3章 Carathéodory 可測性と Lebesgue 測度",
     link: "/03_caratheodory_lebesgue_measure",
   },
   {
@@ -40,7 +40,7 @@ const chapters = [
     link: "/08_limits_and_integrals",
   },
   {
-    text: "Appendix Radon-Nikodym",
+    text: "Appendix Radon-Nikodym の定理",
     link: "/appendix_radon_nikodym",
   },
 ];

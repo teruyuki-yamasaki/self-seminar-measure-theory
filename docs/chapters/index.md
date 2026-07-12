@@ -6,7 +6,7 @@
 
 ## 章構成
 
-1. [第0章 導入：測度論は何を拡張するのか](./00_introduction.md)
+1. [第0章 導入：Riemann 積分から Lebesgue 積分へ](./00_introduction.md)
 2. [第1章 古典的面積概念と Jordan 測度](./01_classical_area_jordan_measure.md)
 3. [第2章 可算操作への移行：Lebesgue 外測度](./02_lebesgue_outer_measure.md)
 4. [第3章 Carathéodory 可測性と Lebesgue 測度](./03_caratheodory_lebesgue_measure.md)

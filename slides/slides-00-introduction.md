@@ -2,7 +2,7 @@
 layout: section
 ---
 
-# 0. 導入
+# 第0章 導入：Riemann 積分から Lebesgue 積分へ
 
 Riemann 積分から Lebesgue 積分への動機
 

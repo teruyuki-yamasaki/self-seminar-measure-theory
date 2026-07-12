@@ -2,7 +2,7 @@
 layout: section
 ---
 
-# 7. Lebesgue 積分
+# 第7章 Lebesgue 積分
 
 単函数から一般の可積分函数へ
 

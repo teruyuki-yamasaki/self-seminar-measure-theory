@@ -2,7 +2,7 @@
 layout: section
 ---
 
-# 4. 測度空間
+# 第4章 抽象的測度空間
 
 Lebesgue 測度から抽象的な定義へ
 

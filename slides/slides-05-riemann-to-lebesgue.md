@@ -2,7 +2,7 @@
 layout: section
 ---
 
-# 5. Riemann から Lebesgue へ
+# 第5章 Lebesgue 積分の見通し
 
 定義域を切る積分から, 値を取る集合を見る積分へ
 

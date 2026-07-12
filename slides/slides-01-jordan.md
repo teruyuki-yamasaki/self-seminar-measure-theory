@@ -2,7 +2,7 @@
 layout: section
 ---
 
-# 1. Jordan 測度
+# 第1章 古典的面積概念と Jordan 測度
 
 古典的面積概念を有限近似として定式化する
 

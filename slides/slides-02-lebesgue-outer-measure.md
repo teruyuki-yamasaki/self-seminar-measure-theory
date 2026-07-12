@@ -2,7 +2,7 @@
 layout: section
 ---
 
-# 2. Lebesgue 外測度
+# 第2章 可算操作への移行：Lebesgue 外測度
 
 有限操作から可算操作へ
 

@@ -2,9 +2,7 @@
 layout: section
 ---
 
-# Appendix
-
-Radon-Nikodym の定理
+# Appendix Radon-Nikodym の定理
 
 ---
 layout: two-cols
