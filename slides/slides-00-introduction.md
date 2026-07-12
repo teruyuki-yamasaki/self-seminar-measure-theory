@@ -52,30 +52,6 @@ Lebesgue 積分では, 小区間内の振動そのものよりも,
 layout: two-cols
 ---
 
-# 測度論はなぜ要るか
-
-Lebesgue 積分で基本になるのは
-
-$$
-E_k=f^{-1}(\Theta_k)
-$$
-
-のような逆像集合の大きさである.
-
-区間なら長さ, 平面図形なら面積, 立体なら体積として理解できるが,
-Lebesgue 積分ではもっと複雑な集合にも
-破綻なく大きさを与える必要がある.
-
-この「集合に大きさを割り当てる」理論が測度論である.
-
-::right::
-
-<img class="slide-figure" src="../figures/measure/static/concepts/measure_space_examples.png" alt="集合の大きさを扱う測度の概念図" />
-
----
-layout: two-cols
----
-
 # Riemann 積分可能性
 
 Riemann 積分可能性は上 Darboux 和と下 Darboux 和で記述される.
@@ -116,8 +92,7 @@ $$
 
 であり, どの分割でも上和と下和は一致しない.
 
-一方で, 値 1 を取るのは可算集合の上だけなので,
-「ほとんど至る所 0」と見たい函数でもある.
+したがって $D$ は Riemann 積分可能ではない.
 
 ::right::
 
@@ -127,34 +102,132 @@ $$
 layout: two-cols
 ---
 
-# 高周波化する函数列
+# 「ほとんど至る所」0
 
-高周波成分を多く含む函数列では,
-各小区間の中の振動はどれほど分割を細かくしても残りうる.
+一方で, 値 1 を取るのは
+可算集合 $\mathbb{Q}\cap[0,1]$ の上だけである.
 
-そのため Riemann 積分のように
-「小区間ごとの振る舞い」を見る見方は不安定になりうる.
+Lebesgue 的には
 
-Lebesgue 積分では,
-各値域に入る点全体の集合の大きさを見ることで,
-より安定に面積を捉える見通しが立つ.
+$$
+D(x)=0\quad(\text{ほとんど至る所で})
+$$
+
+と見たい.
+
+そのためには, 可算集合のような古典的な図形ではない集合にも
+"大きさ"を与える必要がある.
 
 ::right::
 
-<img class="slide-figure" src="../figures/measure/animations/dirichlet_function_limit_top/gif/dirichlet_function_limit_top.gif" alt="高周波化する函数列の例としての Dirichlet 近似" />
+<img class="slide-figure" src="../figures/measure/static/concepts/measure_space_examples.png" alt="集合の大きさを扱う測度の概念図" />
+
+---
+layout: two-cols
+---
+
+# 測度論はなぜ要るか
+
+Lebesgue 積分で基本になるのは
+
+$$
+E_k=f^{-1}(\Theta_k)
+$$
+
+のような逆像集合の大きさである.
+
+この「集合に大きさを割り当てる」理論が測度論であり,
+Lebesgue 積分はその上に構成される.
+
+::right::
+
+<img class="slide-figure" src="../figures/measure/animations/lebesgue_layers/gif/lebesgue_layers.gif" alt="Lebesgue 積分の層による近似" />
+
+---
+layout: two-cols
+---
+
+# 極限と積分の交換
+
+Lebesgue 積分を導入しても,
+極限と積分が自動に交換できるわけではない.
+
+$$
+\lim_{n\to\infty}\int f_n\,d\mu
+\overset{?}{=}
+\int \lim_{n\to\infty}f_n\,d\mu
+$$
+
+函数列の極限を安定に扱う枠組みが必要になる.
+
+::right::
+
+::example-box{title="次に見る問題"}
+Riemann 可積分函数列の単調増加極限が,
+Riemann 積分可能とは限らない.
+::
+
+---
+layout: two-cols
+---
+
+# 函数列の極限として見る
+
+$$
+G_n=\left\{\frac{j}{n!}\mid j=0,1,\ldots,n!\right\},
+\qquad
+g_n=\mathbf{1}_{G_n}
+$$
+
+各 $g_n$ は Riemann 積分可能で
+
+$$
+\int_0^1 g_n(x)\,dx=0
+$$
+
+だが, $g_n\nearrow D$ であり, 極限 $D$ は Riemann 積分可能ではない.
+
+::right::
+
+<img class="slide-figure" src="../figures/measure/animations/dirichlet_function_limit_top/gif/dirichlet_function_limit_top.gif" alt="Dirichlet 函数の極限近似" />
+
+---
+layout: two-cols
+---
+
+# Fourier 解析への接続
+
+$f\in L^1(\mathbb{R})$ の Fourier 変換は
+
+$$
+\widehat{f}(\xi)
+=
+\int_{\mathbb{R}} f(x)e^{-2\pi i x\xi}\,dx
+$$
+
+という Lebesgue 積分で定義される.
+
+さらに $L^1$ 函数の Fourier 変換が連続であることは,
+後で見る優収束定理から従う.
+
+::right::
+
+::example-box{title="共通する問題意識"}
+函数を点ごとに見るだけではなく,
+測度・積分・極限を組み合わせて扱う.
+::
 
 ---
 
 # この章の結論
 
 ::example-box{title="中心メッセージ"}
-Riemann 積分の限界は, 可算集合や零集合の上の振る舞い,
-そして極限操作との整合性を十分に扱えないところにある.
+Riemann 可積分性は, 零集合上の変更に対して安定ではない.
 
-Lebesgue 積分へ進むには, まず集合に大きさを与える測度論を整え,
-そのうえで函数の積分と収束定理を構成する必要がある.
+Riemann 可積分函数全体は, 各点収束や単調増加極限に対して閉じていない.
+
+Lebesgue 積分論は, 零集合を無視する枠組みと,
+極限と積分の関係を保証する収束定理を与える.
 ::
-
-本編の到達点は, 極限と積分の交換を保証する優収束定理である.
 
 ---

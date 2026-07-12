@@ -37,7 +37,7 @@ layout: two-cols
 可算加法族 $\mathfrak{B}$ 上の函数
 
 $$
-\mu:\mathfrak{B}\to[0,\infty]
+\mu:\mathfrak{B}\to\mathbb{R}\cup\{\infty\}
 $$
 
 が測度であるとは, 互いに素な集合列 $A_1,A_2,\ldots$ に対して
