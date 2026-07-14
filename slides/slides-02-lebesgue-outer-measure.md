@@ -112,21 +112,23 @@ layout: two-cols
 
 # 有限加法族から可算加法族へ
 
-有限加法族では, 有限回の和・積・差に閉じる.
+有限加法族 $\mathfrak{F}$ では, 有限回の和・積・差に閉じる.
 
 しかし集合列
 
 $$
-E_1,E_2,E_3,\ldots
+E_1,E_2,E_3,\ldots\in\mathfrak{F}
 $$
 
 に対して
 
 $$
 \bigcup_{k=1}^{\infty}E_k
+\overset{?}{\in}
+\mathfrak{F}
 $$
 
-が再び同じ集合族に属するとは限らない.
+が成り立つとは限らない.
 
 ::note
 可算集合や極限操作を扱うには, 有限加法族だけでは足りない.
@@ -179,6 +181,6 @@ Lebesgue 外測度 $\mu^*$ は任意集合に定義されるが, 一般には可
 
 ::right::
 
-<img class="slide-figure" src="../figures/measure/animations/lebesgue_outer_inner_measure/gif/lebesgue_outer_inner_measure.gif" alt="外測度と内外近似" />
+<img class="slide-figure" src="../figures/measure/animations/lebesgue_inner_outer_overlap/gif/lebesgue_inner_outer_overlap.gif" alt="外測度と内外近似" />
 
 ---

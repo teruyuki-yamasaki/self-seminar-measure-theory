@@ -128,7 +128,7 @@ $$
 
 $$
 \lim_{n\to\infty}\int f_n\,d\mu
-=
+\overset{?}{=}
 \int \lim_{n\to\infty}f_n\,d\mu
 $$
 

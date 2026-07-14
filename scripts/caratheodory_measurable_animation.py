@@ -24,11 +24,11 @@ COLORS = {
     "muted": "#5f6c7b",
     "s_edge": "#19486a",
     "e_edge": "#8d4f16",
-    "green": "#4c9f70",
-    "green_edge": "#2c6e49",
-    "orange": "#f0b45a",
-    "orange_edge": "#a85b00",
-    "overlap": "#d95f5f",
+    "green": "#5da970",
+    "green_edge": "#277348",
+    "orange": "#f1934a",
+    "orange_edge": "#b36316",
+    "overlap": "#c63d7f",
     "grid": "#c8d1dc",
 }
 
@@ -225,9 +225,33 @@ def initial_cell(e_mask: np.ndarray) -> Cell:
     return Cell(x0, x1, y0, y1)
 
 
+def initial_cover_cells(e_mask: np.ndarray, rng: np.random.Generator) -> list[Cell]:
+    base = initial_cell(e_mask)
+    cols = 4
+    rows = 3
+
+    x_edges = np.linspace(base.x0, base.x1, cols + 1)
+    y_edges = np.linspace(base.y0, base.y1, rows + 1)
+
+    for edges in (x_edges, y_edges):
+        widths = np.diff(edges)
+        for idx in range(1, len(edges) - 1):
+            local_width = min(widths[idx - 1], widths[idx])
+            edges[idx] += rng.uniform(-0.12, 0.12) * local_width
+        edges.sort()
+
+    cells: list[Cell] = []
+    for y0, y1 in zip(y_edges[:-1], y_edges[1:]):
+        for x0, x1 in zip(x_edges[:-1], x_edges[1:]):
+            cell = Cell(float(x0), float(x1), float(y0), float(y1))
+            if np.any(cell_mask_view(cell, e_mask)):
+                cells.append(cell)
+    return cells
+
+
 def build_steps(a_mask: np.ndarray, b_mask: np.ndarray, e_mask: np.ndarray, levels: int, seed: int) -> list[Step]:
     rng = np.random.default_rng(seed)
-    active_cells = [initial_cell(e_mask)]
+    active_cells = initial_cover_cells(e_mask, rng)
     steps: list[Step] = []
     e_area = float(np.mean(e_mask))
 
@@ -304,10 +328,10 @@ def patterned_rgba(mask: np.ndarray, color: str, mode: str, alpha: float) -> np.
 
 
 def draw_pattern_top(ax: plt.Axes, s_curve: np.ndarray, pattern: Pattern) -> None:
-    ax.imshow(patterned_rgba(pattern.display_b, COLORS["orange"], "dots", 0.72), origin="lower", extent=(0, 1, 0, 1), interpolation="nearest")
-    ax.imshow(patterned_rgba(pattern.display_a, COLORS["green"], "hatch", 0.6), origin="lower", extent=(0, 1, 0, 1), interpolation="nearest")
+    ax.imshow(patterned_rgba(pattern.display_b, COLORS["orange"], "dots", 0.45), origin="lower", extent=(0, 1, 0, 1), interpolation="nearest")
+    ax.imshow(patterned_rgba(pattern.display_a, COLORS["green"], "hatch", 0.44), origin="lower", extent=(0, 1, 0, 1), interpolation="nearest")
     ax.plot(s_curve[:, 0], s_curve[:, 1], color=COLORS["s_edge"], lw=2.0)
-    ax.plot(pattern.e_curve[:, 0], pattern.e_curve[:, 1], color=COLORS["e_edge"], lw=1.9, ls=(0, (5, 3)))
+    ax.plot(pattern.e_curve[:, 0], pattern.e_curve[:, 1], color=COLORS["e_edge"], lw=2.2, ls=(0, (5, 3)))
     ax.set_xlim(0, 1)
     ax.set_ylim(0, 1)
     ax.set_aspect("equal")
@@ -316,16 +340,39 @@ def draw_pattern_top(ax: plt.Axes, s_curve: np.ndarray, pattern: Pattern) -> Non
     ax.set_title(pattern.name, fontsize=14, pad=8)
 
 
-def draw_cells(ax: plt.Axes, cells: list[Cell], face: str, edge: str, alpha: float) -> None:
+def stable_unit(tag: str) -> float:
+    value = 0
+    for ch in tag:
+        value = (131 * value + ord(ch)) % 104729
+    return value / 104729.0
+
+
+def expanded_cell(cell: Cell, tag: str, scale: float = 0.16) -> Cell:
+    width = cell.x1 - cell.x0
+    height = cell.y1 - cell.y0
+    left = scale * width * (0.45 + 0.75 * stable_unit(tag + "L"))
+    right = scale * width * (0.45 + 0.75 * stable_unit(tag + "R"))
+    lower = scale * height * (0.45 + 0.75 * stable_unit(tag + "D"))
+    upper = scale * height * (0.45 + 0.75 * stable_unit(tag + "U"))
+    return Cell(
+        max(0.0, cell.x0 - left),
+        min(1.0, cell.x1 + right),
+        max(0.0, cell.y0 - lower),
+        min(1.0, cell.y1 + upper),
+    )
+
+
+def draw_cells(ax: plt.Axes, cells: list[Cell], face: str, edge: str, alpha: float, *, expanded: bool = False, tag: str = "") -> None:
     for cell in cells:
+        draw_cell = expanded_cell(cell, f"{tag}:{cell.x0:.5f}:{cell.y0:.5f}", 0.18) if expanded else cell
         ax.add_patch(
             Rectangle(
-                (cell.x0, cell.y0),
-                cell.x1 - cell.x0,
-                cell.y1 - cell.y0,
+                (draw_cell.x0, draw_cell.y0),
+                draw_cell.x1 - draw_cell.x0,
+                draw_cell.y1 - draw_cell.y0,
                 facecolor=face,
                 edgecolor=edge,
-                lw=0.7,
+                lw=0.75,
                 alpha=alpha,
             )
         )
@@ -355,20 +402,19 @@ def draw_mask_outline(ax: plt.Axes, mask: np.ndarray, color: str, lw: float) -> 
 
 
 def draw_pattern_middle(ax: plt.Axes, s_curve: np.ndarray, pattern: Pattern, step: Step) -> None:
-    ax.imshow(patterned_rgba(pattern.display_b, COLORS["orange"], "dots", 0.12), origin="lower", extent=(0, 1, 0, 1), interpolation="nearest")
-    ax.imshow(patterned_rgba(pattern.display_a, COLORS["green"], "hatch", 0.14), origin="lower", extent=(0, 1, 0, 1), interpolation="nearest")
+    ax.imshow(patterned_rgba(pattern.display_b, COLORS["orange"], "dots", 0.08), origin="lower", extent=(0, 1, 0, 1), interpolation="nearest")
+    ax.imshow(patterned_rgba(pattern.display_a, COLORS["green"], "hatch", 0.10), origin="lower", extent=(0, 1, 0, 1), interpolation="nearest")
 
-    draw_cells(ax, step.orange_cells, COLORS["orange"], COLORS["orange_edge"], 0.28)
-    draw_cells(ax, step.green_cells, COLORS["green"], COLORS["green_edge"], 0.34)
-    draw_cells(ax, step.overlap_cells, COLORS["orange"], COLORS["orange_edge"], 0.22)
-    draw_cells(ax, step.overlap_cells, COLORS["green"], COLORS["green_edge"], 0.26)
+    draw_cells(ax, step.orange_cells + step.overlap_cells, COLORS["orange"], COLORS["orange_edge"], 0.23, expanded=True, tag=pattern.name + ":orange")
+    draw_cells(ax, step.green_cells + step.overlap_cells, COLORS["green"], COLORS["green_edge"], 0.25, expanded=True, tag=pattern.name + ":green")
+    draw_cells(ax, step.overlap_cells, COLORS["overlap"], COLORS["overlap"], 0.26, expanded=True, tag=pattern.name + ":overlap")
     green_mask = cells_to_mask(step.green_cells + step.overlap_cells, DISPLAY_RESOLUTION)
     orange_mask = cells_to_mask(step.orange_cells + step.overlap_cells, DISPLAY_RESOLUTION)
     draw_mask_outline(ax, green_mask, COLORS["green_edge"], 2.8)
     draw_mask_outline(ax, orange_mask, COLORS["orange_edge"], 2.8)
 
     ax.plot(s_curve[:, 0], s_curve[:, 1], color=COLORS["s_edge"], lw=1.7)
-    ax.plot(pattern.e_curve[:, 0], pattern.e_curve[:, 1], color=COLORS["e_edge"], lw=1.6, ls=(0, (5, 3)))
+    ax.plot(pattern.e_curve[:, 0], pattern.e_curve[:, 1], color=COLORS["e_edge"], lw=1.9, ls=(0, (5, 3)))
     ax.set_xlim(0, 1)
     ax.set_ylim(0, 1)
     ax.set_aspect("equal")
@@ -466,15 +512,15 @@ def draw_intro_frame(save_path: Path, s_curve: np.ndarray, patterns: list[Patter
         ax.set_xlabel("段階")
         ax.set_ylabel("正規化面積")
         ax.grid(axis="y", color=COLORS["grid"], lw=0.8, alpha=0.7)
-        ax.set_title("正規化被覆の収束  |  導入", fontsize=12, pad=8)
+        ax.set_title("正規化被覆の収束", fontsize=12, pad=8)
 
     fig.suptitle(
         rf"Carathéodory の可測条件の直観  $\Gamma(E)=\Gamma(E\cap S)+\Gamma(E\cap S^c)$",
         fontsize=21,
         y=0.95,
     )
-    fig.text(0.5, 0.445, r"導入: ヒトデ型の $S$ と, それに交わる 3 つの楕円形 $E$ を考える", ha="center", fontsize=15)
-    fig.text(0.5, 0.03, r"斜線が $E\cap S$, 点々が $E\cap S^c$. 下段は緑を 0 から, 橙を 1 から描き, 重なり帯の縮小を見る.", ha="center", fontsize=14, color=COLORS["muted"])
+    fig.text(0.5, 0.445, r"まず任意の集合 $E$ を $S$ と $S^c$ で切り, $E\cap S$ と $E\cap S^c$ に分けて見る", ha="center", fontsize=15)
+    fig.text(0.5, 0.03, r"次の段階から, それぞれの外測度を長方形被覆で近似し, 余分な重なりが消えていく様子を見る.", ha="center", fontsize=14, color=COLORS["muted"])
     fig.savefig(save_path, dpi=150)
     plt.close(fig)
 
@@ -520,7 +566,7 @@ def build_animation() -> None:
         draw_frame(FRAMES_DIR / f"frame_{level + 1:03d}.png", s_curve, patterns, level)
 
     frame_paths = sorted(FRAMES_DIR.glob("frame_*.png"))
-    frames = [Image.open(path).convert("P", palette=Image.Palette.ADAPTIVE) for path in frame_paths]
+    frames = [Image.open(path).convert("P", palette=Image.ADAPTIVE) for path in frame_paths]
     frames[0].save(
         GIF_PATH,
         save_all=True,

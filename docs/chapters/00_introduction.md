@@ -20,30 +20,36 @@ $$
 
 Riemann 積分と Lebesgue 積分の違いは, 何を分割して足し合わせるかにある.
 
-**Riemann 積分**では, 定義域 $[a,b]$ を分割
+**Riemann 積分**では, **定義域** $[a,b]$ を分割
 
 $$
 \Delta : a=x_0<x_1<\cdots<x_n=b
 $$
 
-のように分割し, 各区間 $\Delta_i:=[x_{i-1},x_i]$ の幅
+によって分割し, 各区間 $\Delta_i:=[x_{i-1},x_i] \ (\ i=1,\ldots,n\ )$ の幅
 
 
 $$
 |\Delta_i|:=x_i-x_{i-1}
 $$
 
-に, その区間での函数値の代表値 $f(\xi_i)$ をかけて
+に, その区間での函数値の代表値 $f(\xi_i) \ (\xi_i \in \Delta_i)$ をかけて
 
 $$
-\sum_{i=1}^n f(\xi_i) |\Delta_i|
+R(f,\Delta) := \sum_{i=1}^n f(\xi_i) |\Delta_i|
 $$
 
 を作り, その極限として積分を考える.
 
+すなわち,
+
+$$
+\int_a^b f(x)\,dx = \lim_{\|\Delta\|\to0} R(f,\Delta)
+$$
+
 ここで $\|\Delta\|:=\max_i |\Delta_i|$ とすれば, 分割を細かくするとは $\|\Delta\|\to0$ とみなせる.
 
-これに対して **Lebesgue 積分**では, まず値域 $[\alpha,\beta]$ を分割
+これに対して **Lebesgue 積分**では, まず**値域** $[\alpha,\beta]$ を分割
 
 $$
 \Theta : \alpha=y_1<y_2<\cdots<y_m<y_{m+1}=\beta
@@ -65,19 +71,25 @@ $$
 
 とおく.
 
-各値域区間に対して, その逆像
+各値域区間に対して, その**逆像** ( $y_k \le f(x) < y_{k+1}$ なる点 $x \in [a,b]$ の集合) 
 
 $$
 E_k:=f^{-1}(\Theta_k)=\{x\in[a,b]\mid f(x)\in \Theta_k\}
 $$
 
-を考える. そして, 各値域区間の下限 $y_k$ と, その値を与える点全体の集合 $E_k$ の"大きさ" $\mu(E_k)$ を用いて
+を考える. そして, 各値域区間 $\Theta_k$ の下限 $y_k$ と, その区間の値を与える点全体の集合 $E_k$ の"大きさ" $\mu(E_k)$ を用いて
 
 $$
-\sum_k y_k\mu(E_k)
+L(f,\Theta) := \sum_k y_k\mu(E_k)
 $$
 
 のような和を作り, 値域分割を細かくした極限として積分を考える.
+
+すなわち,
+
+$$
+\int_a^b f(x)\,dx = \lim_{\|\Theta\|\to0} L(f,\Theta)
+$$
 
 ここで $\|\Theta\|:=\max_k |\Theta_k|$ とすれば, 値域分割を細かくするとは $\|\Theta\|\to0$ とみなせる.
 
@@ -239,7 +251,10 @@ $$
 とおき, 函数列 $g_n$ を集合 $G_n$ の定義函数として
 
 $$
-g_n:=\mathbf{1}_{G_n}
+g_n(x):=\mathbf{1}_{G_n}(x) = \begin{cases}
+1 & (x\in G_n), \\
+0 & (x\notin G_n)
+\end{cases}
 $$
 
 と定める. 各 $G_n$ は有限集合であるから, $g_n$ が値 1 を取る点は離散的な有限個の点だけである.
@@ -273,7 +288,7 @@ $$
 なお, 同じ函数は
 
 $$
-g_n(x)=\lim_{r\to\infty}\cos^{2r}(n!\pi x)
+g_n(x)=\lim_{k\to\infty}\cos^{2k}(n!\pi x)
 $$
 
 とも表せる.
@@ -283,9 +298,11 @@ $$
 この見方に立つと, 先ほどの単調増加列 $g_n\nearrow D$ も自然に扱える. 後で見る単調収束定理は, Lebesgue 積分のもとで
 
 $$
-\int_0^1 D\,d\mu
+\int_0^1 D(x)\,d\mu(x)
 =
-\lim_{n\to\infty}\int_0^1 g_n\,d\mu
+\int_0^1 \lim_{n\to\infty} g_n(x)\,d\mu(x)
+=
+\lim_{n\to\infty}\int_0^1 g_n(x)\,d\mu(x)
 =0
 $$
 

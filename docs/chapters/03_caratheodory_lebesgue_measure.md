@@ -30,6 +30,11 @@ $$
 
 Lebesgue 外測度 $\mu^*$ に関する Carathéodory 可測集合を **Lebesgue 可測集合**という.
 
+![Carathéodory 可測性による切断](../../figures/measure/animations/caratheodory_measurable/gif/caratheodory_measurable.gif)
+
+可測集合 $E \in \mathfrak{M}_\Gamma$ は, 任意の集合 $A$ を $A\cap E$ と $A\cap E^c$ に分けたとき, 外測度 $\Gamma$ を加法的に分解する集合である.
+
+
 ## 定義の意味
 
 外測度の可算劣加法性から, 任意の $A, E\subset X$ について
@@ -54,19 +59,6 @@ $$
 
 Carathéodory 可測性は, 逆向きの不等式も含めて等号が成り立つことを要求する.
 
-つまり, 可測集合 $E$ は, 任意の集合 $A$ を
-
-$$
-A\cap E, \quad A\cap E^c
-$$
-
-に切断したとき, 外測度を壊さずに加法的に分解できる集合である.
-
-この条件は, $E$ 自身の大きさだけを見る条件ではない. 任意の集合 $A$ に対して, $E$ が切断集合としてよく振る舞うことを要求している.
-
-![Carathéodory 可測性による切断](../../figures/measure/animations/caratheodory_measurable/gif/caratheodory_measurable.gif)
-
-可測集合 $E$ は, 任意の集合 $A$ を $A\cap E$ と $A\cap E^c$ に分けたとき, 外測度を加法的に分解する集合である.
 
 ## 零集合は可測である
 
@@ -74,27 +66,27 @@ $$
 一般の外測度 $\Gamma$ についても,
 
 $$
-\Gamma(E)=0
+\Gamma(N)=0
 $$
 
-である集合 $E$ を $\Gamma$ に関する零集合という.
+である集合 $N$ を $\Gamma$ に関する零集合という.
 
-零集合 $E$ は $\Gamma$-可測である. 実際, 任意の $A\subset X$ に対して
+零集合 $N$ は $\Gamma$-可測である. 実際, 任意の $A\subset X$ に対して
 
 $$
-\Gamma(A\cap E)\leq \Gamma(E)=0
+\Gamma(A\cap N)\leq \Gamma(N)=0
 $$
 
 であるから
 
 $$
-\Gamma(A\cap E)=0
+\Gamma(A\cap N)=0
 $$
 
-である. また $A\cap E^c\subset A$ より
+である. また $A\cap N^c\subset A$ より
 
 $$
-\Gamma(A\cap E^c)\leq \Gamma(A)
+\Gamma(A\cap N^c)\leq \Gamma(A)
 $$
 
 である. 一方, 可算劣加法性より
@@ -102,9 +94,9 @@ $$
 $$
 \Gamma(A)
 \leq
-\Gamma(A\cap E)+\Gamma(A\cap E^c)
+\Gamma(A\cap N)+\Gamma(A\cap N^c)
 =
-\Gamma(A\cap E^c)
+\Gamma(A\cap N^c)
 $$
 
 となる. したがって等号が成り立ち,
@@ -112,12 +104,12 @@ $$
 $$
 \Gamma(A)
 =
-\Gamma(A\cap E)+\Gamma(A\cap E^c)
+\Gamma(A\cap N)+\Gamma(A\cap N^c)
 $$
 
 である.
 
-よって $E\in\mathfrak{M}_\Gamma$ である.
+よって $N\in\mathfrak{M}_\Gamma$ である.
 
 ## Carathéodory の定理
 

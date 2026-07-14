@@ -18,7 +18,7 @@ $$
 
 Jordan 的外側近似では, 集合を有限個の区間塊で覆った. Lebesgue 外測度では, 最初から可算個の $N$ 次元区間による被覆を許す.
 
-この違いにより, Jordan 測度では扱いにくかった集合にも自然に大きさを割り当てられるようになる. とくに, 可算集合は全体積を任意に小さくした区間列で覆うことができる.
+この違いにより, Jordan 測度では扱いにくかった集合にも自然に大きさを割り当てられるようになる. とくに, 後に見るように, 可算集合は全体積を任意に小さくした区間列で覆うことができる.
 
 ![外側被覆の細分化と無駄の減少](../../figures/measure/animations/outer_measure_quadtree_late_stages/gif/outer_measure_quadtree_late_stages.gif)
 
@@ -89,10 +89,10 @@ $$
 また, 外測度 $\Gamma$ に対して
 
 $$
-\Gamma(E)=0
+\Gamma(N)=0
 $$
 
-を満たす集合 $E\subset X$ を, $\Gamma$ に関する **零集合** という.
+を満たす集合 $N\subset X$ を, $\Gamma$ に関する **零集合** という.
 
 とくに
 
@@ -200,13 +200,15 @@ $$
 E_1,E_2,E_3,\ldots\in\mathfrak{F}
 $$
 
-が与えられても, その可算和
+が与えられても, その可算和が成り立つとは限らない. 
 
 $$
 \bigcup_{k=1}^{\infty}E_k
+\overset{?}{\in}
+\mathfrak{F}
 $$
 
-が再び $\mathfrak{F}$ に属するとは限らない. したがって, 可算集合や極限操作を扱うには, 有限加法族だけでは足りない.
+したがって, 可算集合や極限操作を扱うには, 有限加法族だけでは足りない.
 
 第3章で現れる可算加法族は, この有限加法族の三つ目の条件を「有限和」から「可算和」へ強めたものである.
 Carathéodory 可測集合の定理は, 外測度から取り出した可測集合全体が, まさにこの可算加法族になることを主張する.
@@ -223,13 +225,15 @@ $$
 
 つまり, $\mathbb{Q}$ は有限和に関して閉じている.
 
-しかし, 有理数列 $q_1, q_2, q_3, \ldots$ の可算和
+しかし, 有理数列 $q_1, q_2, q_3, \ldots$ の可算和の所属は, 級数が収束したとしても成り立つとは限らない.
 
 $$
 \sum_{n=1}^{\infty} q_n
+\overset{?}{\in}
+\mathbb{Q}
 $$
 
-が収束したとしても, その和が有理数になるとは限らない.
+
 
 もちろん, 有理数の可算和の収束が有理数になる場合もある. 例えば, 
 $$
@@ -301,7 +305,7 @@ $$
 
 $$
 \mu^*\left(\bigcup_{n=1}^{\infty}A_n\right)
-=
+\overset{?}{=}
 \sum_{n=1}^{\infty}\mu^*(A_n)
 $$
 
@@ -439,17 +443,30 @@ $$
 
 が成り立つなら, $A$ は区間 $I$ による切断に関して外測度を壊さない集合であるとみなせる.
 
+ここで, 
+
+$$
+\mu^*(I) = m(I)
+$$
+
+であるから, 上の式は
+$$
+\mu^*(I) = \mu^*(I\cap A)+\mu^
+*(I\cap A^c)
+$$
+と書き換えられる. つまり, 区間 $I \in \mathfrak{I}_N$ で $A \subset I$ を満たすものに対して, 外測度が加法的に振る舞う集合を可測集合として選び出すことができる.
+
 次章では, この考えを区間 $I$ に限らず任意の集合 $B\subset \mathbb{R}^N$ に対して要求する. すなわち
 
 $$
 \mu^*(B)=\mu^*(B\cap A)+\mu^*(B\cap A^c)
 $$
 
-がすべての $B\subset \mathbb{R}^N$ について成り立つとき, $A$ を **Lebesgue 可測** と呼ぶ.
+がすべての $B\subset \mathbb{R}^N$ について成り立つとき, $A$ を **Lebesgue 可測** と呼び, そのような集合に対して定義された Lebesgue 外測度 $\mu^*$ を制限したものを **Lebesgue 測度** と呼ぶ.
 
 Lebesgue 外測度は外側からの被覆で定まり, Lebesgue 内測度は補集合の外測度を通して内側からの大きさを与える. 可測性は, これら二つの見方が整合する集合を取り出す条件として現れる.
 
-![外測度と内外近似](../../figures/measure/animations/lebesgue_outer_inner_measure/gif/lebesgue_outer_inner_measure.gif)
+![外測度と内外近似](../../figures/measure/animations/lebesgue_inner_outer_overlap/gif/lebesgue_inner_outer_overlap.gif)
 
 ### 有理点集合との対応
 

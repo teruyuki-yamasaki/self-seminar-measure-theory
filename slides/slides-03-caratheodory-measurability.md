@@ -59,18 +59,18 @@ layout: two-cols
 外測度 $\Gamma$ について
 
 $$
-\Gamma(E)=0
+\Gamma(N)=0
 $$
 
-である集合 $E$ は $\Gamma$-可測である.
+である集合 $N$ は $\Gamma$-可測である.
 
 実際, 任意の $A\subset X$ に対して
 
 $$
-\Gamma(A\cap E)\le \Gamma(E)=0
+\Gamma(A\cap N)\le \Gamma(N)=0
 $$
 
-なので, $E$ 側に切り出された部分は外測度 0 である.
+なので, $N$ 側に切り出された部分は外測度 0 である.
 
 ::note
 可算集合は Lebesgue 外測度に関する零集合なので, Lebesgue 可測である.
