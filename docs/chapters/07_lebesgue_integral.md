@@ -1,4 +1,4 @@
-# 第7章 Lebesgue 積分
+# 第6章 Lebesgue 積分
 
 ## 目的
 

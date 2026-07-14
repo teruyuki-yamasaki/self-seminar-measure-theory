@@ -2,7 +2,7 @@
 layout: section
 ---
 
-# 第7章 Lebesgue 積分
+# 第6章 Lebesgue 積分
 
 単函数から一般の可積分函数へ
 
@@ -208,7 +208,7 @@ $$
 layout: two-cols
 ---
 
-# 第7章の結論
+# 第6章の結論
 
 ::example-box{title="中心メッセージ"}
 Lebesgue 積分は, 非負単函数の積分を出発点とし, 非負可測函数を下から単函数で近似することで定義される.

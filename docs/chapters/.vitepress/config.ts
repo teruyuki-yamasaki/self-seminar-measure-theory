@@ -24,19 +24,15 @@ const chapters = [
     link: "/04_measure_space",
   },
   {
-    text: "第5章 Lebesgue 積分の見通し",
-    link: "/05_lebesgue_integral_outlook",
-  },
-  {
-    text: "第6章 可測函数と単函数",
+    text: "第5章 可測函数と単函数",
     link: "/06_measurable_simple_functions",
   },
   {
-    text: "第7章 Lebesgue 積分",
+    text: "第6章 Lebesgue 積分",
     link: "/07_lebesgue_integral",
   },
   {
-    text: "第8章 極限と積分の交換",
+    text: "第7章 極限と積分の交換",
     link: "/08_limits_and_integrals",
   },
   {
