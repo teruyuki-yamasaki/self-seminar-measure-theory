@@ -446,7 +446,7 @@ def draw_number_line(draw: ImageDraw.ImageDraw, x0: int, x1: int, y: int, values
 
     px = map_x(pi)
     dashed_line(draw, (px, y - 36), (px, y + 56), COLORS["red"], 3)
-    center_text(draw, ((x0 + x1) / 2, y + 126), "step ごとの近似面積が同じ極限へ集まる", bold, COLORS["muted"])
+    center_text(draw, ((x0 + x1) / 2, y + 126), "段階ごとの近似面積が同じ極限へ集まる", bold, COLORS["muted"])
 
 
 def draw_half_open_interval_volume() -> None:

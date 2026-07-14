@@ -16,24 +16,24 @@ const chapters = [
     link: "/02_lebesgue_outer_measure",
   },
   {
-    text: "第3章 Carathéodory 可測性と Lebesgue 測度",
-    link: "/03_caratheodory_lebesgue_measure",
+    text: "第3章 Lebesgue 可測性と Lebesgue 測度",
+    link: "/03_lebesgue_measurability_measure",
   },
   {
-    text: "第4章 抽象的測度空間",
-    link: "/04_measure_space",
+    text: "第4章 Carathéodory の定理と抽象的測度空間",
+    link: "/04_caratheodory_measure_space",
   },
   {
     text: "第5章 可測函数と単函数",
-    link: "/06_measurable_simple_functions",
+    link: "/05_measurable_simple_functions",
   },
   {
     text: "第6章 Lebesgue 積分",
-    link: "/07_lebesgue_integral",
+    link: "/06_lebesgue_integral",
   },
   {
     text: "第7章 極限と積分の交換",
-    link: "/08_limits_and_integrals",
+    link: "/07_limits_and_integrals",
   },
   {
     text: "Appendix Radon-Nikodym の定理",

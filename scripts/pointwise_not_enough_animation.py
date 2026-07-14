@@ -23,6 +23,12 @@ Y_MAX = 34.0
 
 def load_font(size: int, bold: bool = False):
     candidates = [
+        "/System/Library/Fonts/ヒラギノ角ゴシック W6.ttc"
+        if bold
+        else "/System/Library/Fonts/ヒラギノ角ゴシック W3.ttc",
+        "/System/Library/Fonts/ヒラギノ角ゴシック W5.ttc"
+        if bold
+        else "/System/Library/Fonts/ヒラギノ角ゴシック W3.ttc",
         "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc"
         if bold
         else "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
@@ -112,18 +118,18 @@ def draw_info(draw, n: int) -> None:
     centered_text(draw, ((x0 + x1) // 2, y0 + 28), f"n = {n}", FONT_SUBTITLE, (20, 20, 20))
 
     lines = [
-        "support",
+        "台",
         f"(0, 1/n) = (0, {1.0 / n:.5f})",
         "",
-        "height",
+        "高さ",
         f"n = {n}",
         "",
-        "area",
+        "面積",
         "n · (1/n) = 1",
         "",
-        "pointwise behavior",
-        "for each x > 0, eventually",
-        "x is outside (0, 1/n)",
+        "各点での挙動",
+        "各 x > 0 は十分大きい n で",
+        "(0, 1/n) の外に出る",
     ]
 
     y = y0 + 68
@@ -139,14 +145,14 @@ def render_frame(n: int) -> Image.Image:
     centered_text(
         draw,
         (CANVAS_W // 2, 30),
-        "Pointwise convergence alone does not control integrals",
+        "各点収束だけでは積分を制御できない",
         FONT_TITLE,
         (20, 20, 20),
     )
     centered_text(
         draw,
         (CANVAS_W // 2, 62),
-        "f_n(x) = n on (0, 1/n), and 0 elsewhere",
+        "f_n(x) = n  (0 < x < 1/n),  それ以外では 0",
         FONT_SUBTITLE,
         (30, 30, 30),
     )
@@ -158,14 +164,14 @@ def render_frame(n: int) -> Image.Image:
     centered_text(
         draw,
         (CANVAS_W // 2, 472),
-        "the spike becomes narrower and taller, but its area stays equal to 1",
+        "山は細く高くなるが, 面積は常に 1 のまま",
         FONT_BODY,
         (40, 40, 40),
     )
     centered_text(
         draw,
         (CANVAS_W // 2, 496),
-        "hence f_n(x) -> 0 pointwise while integral from 0 to 1 of f_n dμ = 1",
+        "したがって f_n(x) -> 0 各点収束でも, ∫_0^1 f_n dμ = 1",
         FONT_BODY,
         (40, 40, 40),
     )

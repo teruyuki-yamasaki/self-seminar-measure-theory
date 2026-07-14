@@ -4,6 +4,11 @@
 
 メイン資料は `slides.md` にまとめます.PDF 出力を前提に, 1 ページごとに読める構成を基本にします.
 
+## 公開資料
+
+- [スライド](https://teruyuki-yamasaki.github.io/self-seminar-measure-theory/)
+- [章別 HTML](https://teruyuki-yamasaki.github.io/self-seminar-measure-theory/chapters/)
+
 ## 資料の見取り図
 
 本資料では, Riemann 積分の限界を出発点に, 集合に"大きさ"を与える測度論を整え, その上で Lebesgue 積分と収束定理へ進みます.
@@ -67,14 +72,6 @@ dist/measure-theory-seminar.pdf
 
 `main` に push されると GitHub Actions で Slidev をビルドし, GitHub Pages に公開する想定です.
 
-公開ページ:
-
-https://teruyuki-yamasaki.github.io/self-seminar-measure-theory/
-
-章別 HTML:
-
-https://teruyuki-yamasaki.github.io/self-seminar-measure-theory/chapters/
-
 初回の Pages 設定手順は `docs/github_pages.md` を参照してください.
 
 章別 HTML は `docs/chapters/` の Markdown を VitePress で変換します.数式は MathJax で描画されるため, GitHub 上の Markdown プレビューで崩れる式も HTML では安定して読めます.
@@ -93,11 +90,11 @@ pnpm check
 ### [第0章 導入：Riemann 積分から Lebesgue 積分へ](./docs/chapters/00_introduction.md)
 ### [第1章 古典的面積概念と Jordan 測度](./docs/chapters/01_classical_area_jordan_measure.md)
 ### [第2章 可算操作への移行：Lebesgue 外測度](./docs/chapters/02_lebesgue_outer_measure.md)
-### [第3章 Carathéodory 可測性と Lebesgue 測度](./docs/chapters/03_caratheodory_lebesgue_measure.md)
-### [第4章 抽象的測度空間](./docs/chapters/04_measure_space.md)
-### [第5章 可測函数と単函数](./docs/chapters/06_measurable_simple_functions.md)
-### [第6章 Lebesgue 積分](./docs/chapters/07_lebesgue_integral.md)
-### [第7章 極限と積分の交換](./docs/chapters/08_limits_and_integrals.md)
+### [第3章 Lebesgue 可測性と Lebesgue 測度](./docs/chapters/03_lebesgue_measurability_measure.md)
+### [第4章 Carathéodory の定理と抽象的測度空間](./docs/chapters/04_caratheodory_measure_space.md)
+### [第5章 可測函数と単函数](./docs/chapters/05_measurable_simple_functions.md)
+### [第6章 Lebesgue 積分](./docs/chapters/06_lebesgue_integral.md)
+### [第7章 極限と積分の交換](./docs/chapters/07_limits_and_integrals.md)
 ### [Appendix Radon-Nikodym の定理](./docs/chapters/appendix_radon_nikodym.md)
 
 ## 構成メモ

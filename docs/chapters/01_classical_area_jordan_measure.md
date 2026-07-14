@@ -11,7 +11,7 @@
 このとき, 内側近似および外側近似がある極限値に収束するならば, その極限値を図形の面積と定める.
 以下では, この古典的な面積概念を Jordan 測度の定義に基づいて定式化する.
 
-![基本図形を増やしながら円板の面積を近似する図](../../figures/measure/static/concepts/classical_area_coverings.png)
+![基本図形を増やしながら円板の面積を近似する図](../../figures/measure/animations/classical_area_coverings/gif/classical_area_coverings.gif)
 
 ## 区間と区間塊
 

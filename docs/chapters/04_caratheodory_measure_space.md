@@ -1,8 +1,8 @@
-# 第4章 抽象的測度空間
+# 第4章 Carathéodory の定理と抽象的測度空間
 
 ## 目的
 
-この章の目的は, 前章で得た Lebesgue 測度の構成から, 抽象的な測度空間の定義を取り出すことである.
+この章の目的は, 前章で得た Lebesgue 測度の構成から, 抽象的な外測度, 可測性, 測度空間の定義を取り出すことである.
 
 前章では, Lebesgue 外測度 $\mu^*$ から Lebesgue 可測集合族 $\mathfrak{M}_{\mu^*}$ を取り出し, その上に Lebesgue 測度 $\mu$ を定めた.
 これにより
@@ -13,17 +13,92 @@ $$
 
 という三つ組が得られた.
 
-この章では, この形式だけを取り出して
+この章では, まずこの構成を一般の集合 $X$ 上の外測度に対して見直す. そのうえで, 測度空間
 
 $$
 (X, \mathfrak{B}, \mu)
 $$
 
-という一般の枠組みとして扱う.
+という一般の枠組みを定義する.
+
+## 外測度の抽象化
+
+集合 $X$ に対して, 冪集合 $2^X$ 上の集合函数
+
+$$
+\Gamma:2^X\to[0,\infty]
+$$
+
+が次を満たすとき, $\Gamma$ を $X$ 上の **外測度** という.
+
+1. （空集合の外測度）$\Gamma(\emptyset)=0$.
+2. （単調性）$A\subset B$ ならば
+
+$$
+\Gamma(A)\leq\Gamma(B).
+$$
+
+3. （可算劣加法性）$A_1,A_2,\ldots\subset X$ ならば
+
+$$
+\Gamma\left(\bigcup_{n=1}^{\infty}A_n\right)
+\leq
+\sum_{n=1}^{\infty}\Gamma(A_n).
+$$
+
+第2章で導入した Lebesgue 外測度 $\mu^*$ は, $X=\mathbb{R}^N$ の場合の外測度である.
+
+![Carathéodory の外測度の基本性質](../../figures/measure/animations/caratheodory_outer_measure_axioms/gif/caratheodory_outer_measure_axioms.gif)
+
+また,
+
+$$
+\Gamma(N)=0
+$$
+
+を満たす集合 $N\subset X$ を, $\Gamma$ に関する **零集合** という.
+
+## Carathéodory 可測性
+
+外測度 $\Gamma$ が $X$ 上に定義されているとする.
+
+集合 $E\subset X$ が, 任意の集合 $A\subset X$ に対して
+
+$$
+\Gamma(A)
+=
+\Gamma(A\cap E)+\Gamma(A\cap E^c)
+$$
+
+を満たすとき, $E$ は **Carathéodory 可測** である, または $\Gamma$-**可測**であるという.
+
+$\Gamma$-可測集合全体を
+
+$$
+\mathfrak{M}_\Gamma
+:=
+\{E\subset X \mid
+\forall A\subset X,\quad
+\Gamma(A)=\Gamma(A\cap E)+\Gamma(A\cap E^c)\}
+$$
+
+と書く.
+
+第3章で定義した Lebesgue 可測集合は, この定義で $X=\mathbb{R}^N$, $\Gamma=\mu^*$ とした場合である.
+
+外測度の可算劣加法性から, 任意の $A,E\subset X$ について
+
+$$
+\Gamma(A)
+\leq
+\Gamma(A\cap E)+\Gamma(A\cap E^c)
+$$
+
+は常に成り立つ. Carathéodory 可測性は, 逆向きの不等式も含めて等号が成り立つことを要求する.
 
 ## 可算加法族
 
-前章では, Carathéodory 可測集合全体 $\mathfrak{M}_\Gamma$ が可算加法族になることを見た.
+第3章では, Lebesgue 可測集合全体 $\mathfrak{M}_{\mu^*}$ が可算操作に対して閉じていることを述べた.
 ここでは, その性質を一般の集合族の定義として取り出す.
 
 空間 $X$ の部分集合族 $\mathfrak{B}$ が次を満たすとき, $\mathfrak{B}$ を**可算加法族**, **完全加法族**, または **$\sigma$-加法族** という. ここで $\sigma$ は可算を意味する.
@@ -56,6 +131,38 @@ $$
 となる.
 
 したがって, 可算加法族は可算回の和・差・積の演算に対して閉じている.
+
+## Carathéodory の定理
+
+Carathéodory の定理は, 外測度から取り出した可測集合全体が, 可算操作に対して安定な集合族になることを主張する.
+
+すなわち, 外測度 $\Gamma$ に対して, $\Gamma$-可測集合全体 $\mathfrak{M}_\Gamma$ は可算加法族である.
+
+さらに, 外測度 $\Gamma$ を可測集合族 $\mathfrak{M}_\Gamma$ 上に制限すると,
+
+$$
+\Gamma|_{\mathfrak{M}_\Gamma}:\mathfrak{M}_\Gamma\to[0,\infty]
+$$
+
+は可算加法的になる.
+
+つまり, 互いに素な可測集合列
+
+$$
+E_1,E_2,\ldots\in\mathfrak{M}_\Gamma
+$$
+
+に対して
+
+$$
+\Gamma\left(\bigcup_{n=1}^{\infty}E_n\right)
+=
+\sum_{n=1}^{\infty}\Gamma(E_n)
+$$
+
+が成り立つ.
+
+第3章の Lebesgue 測度の構成は, この定理を Lebesgue 外測度 $\mu^*$ に適用したものである.
 
 ## 測度
 
@@ -169,7 +276,7 @@ $$
 ## 零集合と a.e.
 
 第2章では, 可算集合が Lebesgue 外測度 $0$ の集合であることを見た.
-第3章では, 外測度 $0$ の集合が Carathéodory 可測であることを見た.
+第3章では, Lebesgue 外測度 $0$ の集合が Lebesgue 可測であることを見た.
 測度空間では, 同じ考えを一般の測度 $\mu$ に対して次のように表す.
 
 集合 $N\in\mathfrak{B}$ が

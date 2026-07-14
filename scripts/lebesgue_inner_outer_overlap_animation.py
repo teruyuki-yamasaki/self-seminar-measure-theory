@@ -447,7 +447,7 @@ def draw_graph(draw: ImageDraw.ImageDraw, stage_index: int) -> None:
 
     area_y = gy(AREA_A)
     draw.line((x0, area_y, x1, area_y), fill=AREA_LINE, width=2)
-    draw.text((x0 + 7, area_y - 20), "area(A)", font=FONT_SMALL, fill=AREA_LINE)
+    draw.text((x0 + 7, area_y - 20), "真の面積 A", font=FONT_SMALL, fill=AREA_LINE)
 
     visible = STAGES[: stage_index + 1]
     outer_points = [(gx(i), gy(stage.outer_area)) for i, stage in enumerate(visible)]
@@ -467,13 +467,13 @@ def draw_graph(draw: ImageDraw.ImageDraw, stage_index: int) -> None:
         draw.line((px, y1, px, y1 + 5), fill=INK, width=1)
         centered_text(draw, (px, y1 + 18), str(i + 1), FONT_SMALL, INK)
 
-    centered_text(draw, ((x0 + x1) // 2, y1 + 48), "refinement stage", FONT_BODY, INK)
-    centered_text(draw, ((x0 + x1) // 2, y0 - 28), "outer measure / inner measure close in", FONT_SUBTITLE, INK)
+    centered_text(draw, ((x0 + x1) // 2, y1 + 48), "細分段階", FONT_BODY, INK)
+    centered_text(draw, ((x0 + x1) // 2, y0 - 28), "外側の大きさと内側の大きさが近づく", FONT_SUBTITLE, INK)
 
     draw.rectangle((x0 + 18, y0 + 18, x0 + 38, y0 + 30), fill=(31, 105, 179, 255))
-    draw.text((x0 + 46, y0 + 13), "outer cover of A", font=FONT_SMALL, fill=INK)
+    draw.text((x0 + 46, y0 + 13), "A の外側被覆", font=FONT_SMALL, fill=INK)
     draw.rectangle((x0 + 18, y0 + 42, x0 + 38, y0 + 54), fill=(49, 137, 82, 255))
-    draw.text((x0 + 46, y0 + 37), "inner approximation", font=FONT_SMALL, fill=INK)
+    draw.text((x0 + 46, y0 + 37), "内側近似", font=FONT_SMALL, fill=INK)
 
 
 def draw_legend(draw: ImageDraw.ImageDraw) -> None:
@@ -496,11 +496,11 @@ def draw_frame(stage_index: int) -> Image.Image:
     image = Image.new("RGBA", (CANVAS_W, CANVAS_H), PAPER)
     draw = ImageDraw.Draw(image)
 
-    centered_text(draw, (CANVAS_W // 2, 32), "Lebesgue inner/outer approximations with visible overlap", FONT_TITLE, INK)
+    centered_text(draw, (CANVAS_W // 2, 32), "ルベーグ内測度と外測度の対応", FONT_TITLE, INK)
     centered_text(
         draw,
         ((LEFT_BOX[0] + LEFT_BOX[2]) // 2, 68),
-        f"stage {stage_index + 1}: depth {stage.depth}, boundary cells {len(stage.boundary_cells)}",
+        f"段階 {stage_index + 1}: 細分の深さ {stage.depth}, 境界セル {len(stage.boundary_cells)} 個",
         FONT_SUBTITLE,
         INK,
     )
@@ -533,11 +533,11 @@ def draw_frame(stage_index: int) -> Image.Image:
         draw,
         (CANVAS_W // 2, 610),
         (
-            f"inner m(I)-mu*(I∩A^c) = {stage.inner_area:.5f}   "
-            f"area(A) = {AREA_A:.5f}   "
-            f"outer mu*(A) approx = {stage.outer_area:.5f}   "
-            f"cover overlap = {stage.uncertainty_area:.5f}   "
-            f"gap = {gap:.5f}"
+            f"内側 m(I)-μ*(I∩A^c) = {stage.inner_area:.5f}   "
+            f"A の面積 = {AREA_A:.5f}   "
+            f"外側 μ*(A) の近似 = {stage.outer_area:.5f}   "
+            f"被覆の重なり = {stage.uncertainty_area:.5f}   "
+            f"差 = {gap:.5f}"
         ),
         FONT_BODY,
         MUTED,
