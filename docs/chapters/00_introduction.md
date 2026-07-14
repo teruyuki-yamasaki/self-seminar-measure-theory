@@ -170,6 +170,10 @@ $$
 
 つまり Riemann 積分では, **小区間ごとの振動が積分に影響しない程度に抑えられる**ことが必要になる.
 
+局所的には, 区間をその中心のまわりで拡大して見ると, 滑らかな函数のグラフは平坦に近づく. そのため, 同じ短冊の中で上 Darboux 和に対応する高さと下 Darboux 和に対応する高さの差が小さくなる.
+
+![Darboux 和の局所拡大](../../figures/measure/animations/darboux_local_zoom/gif/darboux_local_zoom.gif)
+
 ![Darboux 和の収束](../../figures/measure/animations/riemann_area_convergence/gif/riemann_area_convergence.gif)
 
 ## Dirichlet 函数が示す限界
@@ -194,6 +198,10 @@ $$
 $$
 
 である.
+
+滑らかな函数の場合とは異なり, 区間を拡大して見ても上端の有理点と下端の無理点が同時に残る. したがって, 短冊の高さの差は小さくならない.
+
+![Dirichlet 函数の Darboux 和](../../figures/measure/animations/dirichlet_darboux_local_zoom/gif/dirichlet_darboux_local_zoom.gif)
 
 したがって, どの分割を取っても
 
