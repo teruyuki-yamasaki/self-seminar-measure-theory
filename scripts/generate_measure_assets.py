@@ -61,23 +61,35 @@ def setup_style() -> None:
 
 
 def f(x: np.ndarray) -> np.ndarray:
-    return 0.35 + 0.55 * np.exp(-8 * (x - 0.28) ** 2) + 0.25 * np.exp(-22 * (x - 0.72) ** 2)
+    return lebesgue_demo_function(x)
 
 
-def lebesgue_demo_function(x: np.ndarray) -> np.ndarray:
-    raw = (
+def lebesgue_demo_raw(x: np.ndarray) -> np.ndarray:
+    return (
         0.20
         + 0.72 * np.exp(-70 * (x - 0.28) ** 2)
         + 0.58 * np.exp(-95 * (x - 0.73) ** 2)
         + 0.05 * np.sin(4 * np.pi * x + 0.2)
     )
-    raw_min = float(np.min(raw))
-    raw_max = float(np.max(raw))
-    return 0.05 + 0.92 * (raw - raw_min) / (raw_max - raw_min)
+
+
+DEMO_RAW_GRID = lebesgue_demo_raw(np.linspace(0.0, 1.0, 4096))
+DEMO_RAW_MIN = float(np.min(DEMO_RAW_GRID))
+DEMO_RAW_MAX = float(np.max(DEMO_RAW_GRID))
+
+
+def lebesgue_demo_function(x: np.ndarray) -> np.ndarray:
+    raw = lebesgue_demo_raw(x)
+    return 0.05 + 0.92 * (raw - DEMO_RAW_MIN) / (DEMO_RAW_MAX - DEMO_RAW_MIN)
 
 
 def hide_numeric_tick_labels(ax: plt.Axes) -> None:
     ax.tick_params(labelbottom=False, labelleft=False)
+
+
+def set_xy_axis_labels(ax: plt.Axes) -> None:
+    ax.set_xlabel("x", fontsize=14)
+    ax.set_ylabel("y", fontsize=14)
 
 
 def power_of_two_tex(power: int) -> str:
@@ -251,12 +263,11 @@ def draw_value_partition(
         approximating_values[mask] = lower
         color = cmap(lower / y_max)
         ax.fill_between(x, 0, lower, where=mask, color=color, alpha=0.42, zorder=2)
-        ax.fill_between(x, lower, upper, where=mask, color=color, alpha=0.22, zorder=1)
-        ax.axhline(lower, color=color, lw=0.7, alpha=0.5, zorder=0)
+        ax.axhline(lower, color=color, lw=0.85, alpha=0.45, zorder=0)
 
         if show_labels and len(edges) <= 9 and np.any(mask):
             center_x = float(np.mean(x[mask]))
-            ax.text(center_x, lower + 0.015, rf"$A_{k}$", ha="center", fontsize=10, color=COLORS["ink"])
+            ax.text(center_x, lower + 0.018, rf"$E_{{{k}}}$", ha="center", fontsize=10, color=COLORS["ink"])
 
     ax.axhline(edges[-1], color=COLORS["muted"], lw=0.7, alpha=0.35)
     ax.step(x, approximating_values, where="mid", color=COLORS["red"], lw=1.8, alpha=0.9, zorder=4)
@@ -440,64 +451,59 @@ def draw_fubini_grid(outdir: Path) -> None:
 
 
 def animate_riemann_refinement(outdir: Path, frames: int, *, write_gif: bool) -> None:
-    x = np.linspace(0, 1, 600)
+    x = np.linspace(0, 1, 900)
     y = f(x)
-    target_intervals = max(90, frames + 30)
-    partition_history = nested_partition_history(target_intervals, seed=3000)
-    interval_counts = np.unique(np.linspace(4, target_intervals, frames, dtype=int))
+    target_integral = integrate_on_unit_interval(y, x)
+    max_power = 6
+    powers = np.arange(1, max_power + 1)
+    interval_counts = 2**powers
     fig, ax = plt.subplots(figsize=(10, 5.8))
 
     def update(frame: int):
         ax.clear()
         n = int(interval_counts[min(frame, len(interval_counts) - 1)])
-        edges = partition_history[n - 1]
-        tags = stable_random_tags(edges, seed=3000)
+        power = int(np.log2(n))
+        edges = np.linspace(0.0, 1.0, n + 1)
+        tags = 0.5 * (edges[:-1] + edges[1:])
         widths = np.diff(edges)
-        mesh = float(np.max(widths))
         heights = f(tags)
-        infima, suprema = interval_inf_sup(edges)
-        lower_sum = float(np.sum(infima * widths))
-        upper_sum = float(np.sum(suprema * widths))
         tagged_sum = float(np.sum(heights * widths))
+        cmap = plt.get_cmap("viridis")
 
-        ax.plot(x, y, color=COLORS["ink"], lw=2.5)
-        for left, right, tag, height, low, high in zip(edges[:-1], edges[1:], tags, heights, infima, suprema):
+        ax.plot(x, y, color=COLORS["ink"], lw=2.5, zorder=5)
+        for left, right, height in zip(edges[:-1], edges[1:], heights):
             width = right - left
-            ax.add_patch(Rectangle((left, 0), width, low, facecolor=COLORS["blue"], alpha=0.28, edgecolor=COLORS["blue"], lw=0.55))
-            ax.add_patch(Rectangle((left, low), width, high - low, facecolor=COLORS["red"], alpha=0.18, edgecolor=COLORS["red"], lw=0.45))
-            ax.plot(tag, height, marker="o", ms=3.8, color=COLORS["red"], zorder=5)
-        ax.vlines(edges, 0, 1.03, color=COLORS["blue"], lw=0.55, alpha=0.45)
+            color = cmap(height)
+            ax.add_patch(Rectangle((left, 0), width, height, facecolor=color, alpha=0.42, edgecolor=color, lw=0.65, zorder=2))
+        ax.step(edges, np.r_[heights, heights[-1]], where="post", color=COLORS["red"], lw=1.8, alpha=0.95, zorder=4)
+        ax.vlines(edges, 0, 1.03, color=COLORS["blue"], lw=0.65, alpha=0.35, zorder=1)
         ax.set_xlim(0, 1)
         ax.set_ylim(0, 1.05)
-        ax.set_title(r"Riemann積分: 下和と上和  $n={}$,  $\|\Delta\|={:.3f}$".format(n, mesh), fontsize=15)
+        ax.set_title(
+            rf"Riemann積分: 定義域を $1/2^n$ ごとに分ける  $n={power}$,  $\Delta x={dyadic_mesh_tex(power)}$",
+            fontsize=15,
+        )
         ax.text(
             0.02,
             0.96,
-            r"$\mathcal{S}^{-}(f,\Delta)=\sum m_i(x_i-x_{i-1}), \quad \mathcal{S}^{+}(f,\Delta)=\sum M_i(x_i-x_{i-1})$",
+            r"$I_i=[x_i,x_{i+1}), \quad \xi_i=\frac{x_i+x_{i+1}}{2}, \quad R_n=\sum_i f(\xi_i)\mu(I_i)$",
             transform=ax.transAxes,
             va="top",
-            fontsize=11.2,
+            fontsize=12,
             color=COLORS["ink"],
             bbox={"boxstyle": "round, pad=0.25", "facecolor": COLORS["paper"], "edgecolor": COLORS["grid"], "alpha": 0.9},
         )
         ax.text(
             0.02,
             0.82,
-            rf"$\mathcal{{S}}^{{-}}(f,\Delta)={lower_sum:.12f}$"
-            + "\n"
-            + rf"$\mathcal{{S}}^{{+}}(f,\Delta)={upper_sum:.12f}$"
-            + "\n"
-            + rf"$\mathcal{{S}}^{{+}}-\mathcal{{S}}^{{-}}={upper_sum - lower_sum:.12f}$"
-            + "\n"
-            + rf"$\sum f(\xi_i)(x_i-x_{{i-1}})={tagged_sum:.12f}$",
+            rf"$R_n=\sum_i f(\xi_i)\mu(I_i)={tagged_sum:.12f}$" + "\n" + rf"$\int_0^1 f(x)\,dx\approx {target_integral:.12f}$",
             transform=ax.transAxes,
             va="top",
-            fontsize=10.5,
+            fontsize=12,
             color=COLORS["ink"],
             bbox={"boxstyle": "round, pad=0.25", "facecolor": COLORS["paper"], "edgecolor": COLORS["grid"], "alpha": 0.9},
         )
-        ax.set_xlabel("x")
-        ax.set_ylabel("f(x)")
+        set_xy_axis_labels(ax)
         hide_numeric_tick_labels(ax)
 
     if write_gif:
@@ -561,8 +567,7 @@ def animate_riemann_area_convergence(outdir: Path, frames: int, *, write_gif: bo
             color=COLORS["ink"],
             bbox={"boxstyle": "round, pad=0.25", "facecolor": COLORS["paper"], "edgecolor": COLORS["grid"], "alpha": 0.9},
         )
-        ax_area.set_xlabel("x")
-        ax_area.set_ylabel("f(x)")
+        set_xy_axis_labels(ax_area)
         hide_numeric_tick_labels(ax_area)
 
         shown_counts = interval_counts[: frame_index + 1]
@@ -605,28 +610,29 @@ def animate_lebesgue_layers(outdir: Path, frames: int, *, write_gif: bool) -> No
     x = np.linspace(0, 1, 900)
     y = lebesgue_demo_function(x)
     target_integral = integrate_on_unit_interval(y, x)
-    target_intervals = max(48, frames)
-    value_history = nested_value_partition_history(target_intervals)
-    interval_counts = np.unique(np.linspace(3, target_intervals, frames, dtype=int))
+    max_power = 6
+    powers = np.arange(1, max_power + 1)
+    interval_counts = 2**powers
+    value_history = nested_value_partition_history(int(interval_counts[-1]))
     fig, ax = plt.subplots(figsize=(10, 5.8))
 
     def update(frame: int):
         ax.clear()
         m = int(interval_counts[min(frame, len(interval_counts) - 1)])
         value_edges = value_history[m - 1]
-        mesh_power = int(np.floor(np.log2(m)))
-        simple_values = draw_value_partition(ax, x, y, value_edges, show_labels=False)
+        mesh_power = int(np.log2(m))
+        simple_values = draw_value_partition(ax, x, y, value_edges, show_labels=True)
         simple_integral = integrate_on_unit_interval(simple_values, x)
         ax.set_xlim(0, 1)
         ax.set_ylim(0, 1.05)
         ax.set_title(
-            rf"Lebesgue積分: 値域を細分化する  $m={m}$,  $\max\Delta y={dyadic_mesh_tex(mesh_power)}$",
+            rf"Lebesgue積分: 値域を $1/2^n$ ごとに分ける  $n={mesh_power}$,  $\Delta y={dyadic_mesh_tex(mesh_power)}$",
             fontsize=15,
         )
         ax.text(
             0.02,
             0.96,
-            r"$E_k=\{x\in X:\,a_k\leq f(x)<a_{k+1}\}, \quad \varphi_m=\sum a_k\mathbf{1}_{E_k}$",
+            r"$E_k=\{x\in X:\, y_k\leq f(x)<y_{k+1}\}, \quad \varphi_n=\sum_k y_k\mathbf{1}_{E_k}$",
             transform=ax.transAxes,
             va="top",
             fontsize=12,
@@ -636,15 +642,14 @@ def animate_lebesgue_layers(outdir: Path, frames: int, *, write_gif: bool) -> No
         ax.text(
             0.02,
             0.82,
-            rf"$\int_X \varphi_m(x)\, d\mu(x) = {simple_integral:.12f}$" + "\n" + rf"$\int_X f(x)\, d\mu(x) \approx {target_integral:.12f}$",
+            rf"$\int_X \varphi_n\, d\mu=\sum_k y_k\mu(E_k)={simple_integral:.12f}$" + "\n" + rf"$\int_X f\, d\mu\approx {target_integral:.12f}$",
             transform=ax.transAxes,
             va="top",
             fontsize=12,
             color=COLORS["ink"],
             bbox={"boxstyle": "round, pad=0.25", "facecolor": COLORS["paper"], "edgecolor": COLORS["grid"], "alpha": 0.9},
         )
-        ax.set_xlabel("x")
-        ax.set_ylabel("値")
+        set_xy_axis_labels(ax)
         hide_numeric_tick_labels(ax)
 
     if write_gif:
@@ -696,8 +701,7 @@ def animate_lebesgue_layers_powers_equal(outdir: Path, *, write_gif: bool, secon
             color=COLORS["ink"],
             bbox={"boxstyle": "round, pad=0.25", "facecolor": COLORS["paper"], "edgecolor": COLORS["grid"], "alpha": 0.9},
         )
-        ax.set_xlabel("x")
-        ax.set_ylabel("値")
+        set_xy_axis_labels(ax)
         hide_numeric_tick_labels(ax)
 
     if write_gif:
@@ -758,8 +762,7 @@ def animate_lebesgue_area_convergence(outdir: Path, frames: int, *, write_gif: b
             color=COLORS["ink"],
             bbox={"boxstyle": "round, pad=0.25", "facecolor": COLORS["paper"], "edgecolor": COLORS["grid"], "alpha": 0.9},
         )
-        ax_area.set_xlabel("x")
-        ax_area.set_ylabel("値")
+        set_xy_axis_labels(ax_area)
         hide_numeric_tick_labels(ax_area)
 
         shown_powers = powers[: frame_index + 1]
@@ -872,6 +875,12 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--outdir", type=Path, default=Path("figures/measure"))
     parser.add_argument("--frames", type=int, default=72)
+    parser.add_argument(
+        "--only",
+        choices=["all", "riemann_refinement", "riemann_area_convergence", "lebesgue_layers"],
+        default="all",
+        help="Generate only one asset group.",
+    )
     parser.add_argument("--with-gifs", action="store_true", help="Also generate local GIF files. GIFs are ignored by Git.")
     parser.add_argument("--skip-gifs", action="store_true", help=argparse.SUPPRESS)
     return parser.parse_args()
@@ -882,13 +891,28 @@ def main() -> None:
     setup_style()
     args.outdir.mkdir(parents=True, exist_ok=True)
 
+    write_gif = args.with_gifs and not args.skip_gifs
+    if args.only == "riemann_refinement":
+        animate_riemann_refinement(args.outdir, args.frames, write_gif=write_gif)
+        print(f"Generated riemann_refinement in {args.outdir}")
+        return
+
+    if args.only == "riemann_area_convergence":
+        animate_riemann_area_convergence(args.outdir, args.frames, write_gif=write_gif)
+        print(f"Generated riemann_area_convergence in {args.outdir}")
+        return
+
+    if args.only == "lebesgue_layers":
+        animate_lebesgue_layers(args.outdir, args.frames, write_gif=write_gif)
+        print(f"Generated lebesgue_layers in {args.outdir}")
+        return
+
     draw_measure_zero(args.outdir)
     draw_riemann_vs_lebesgue(args.outdir)
     draw_expectation_as_integral(args.outdir)
     draw_fubini_grid(args.outdir)
     draw_readme_preview_gif(args.outdir)
 
-    write_gif = args.with_gifs and not args.skip_gifs
     animate_riemann_refinement(args.outdir, args.frames, write_gif=write_gif)
     animate_riemann_area_convergence(args.outdir, args.frames, write_gif=write_gif)
     animate_lebesgue_layers(args.outdir, args.frames, write_gif=write_gif)
