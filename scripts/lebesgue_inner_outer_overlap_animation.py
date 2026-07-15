@@ -473,7 +473,7 @@ def draw_graph(draw: ImageDraw.ImageDraw, stage_index: int) -> None:
     draw.rectangle((x0 + 18, y0 + 18, x0 + 38, y0 + 30), fill=(31, 105, 179, 255))
     draw.text((x0 + 46, y0 + 13), "A の外側被覆", font=FONT_SMALL, fill=INK)
     draw.rectangle((x0 + 18, y0 + 42, x0 + 38, y0 + 54), fill=(49, 137, 82, 255))
-    draw.text((x0 + 46, y0 + 37), "内側近似", font=FONT_SMALL, fill=INK)
+    draw.text((x0 + 46, y0 + 37), "I から (I∩A^c) の被覆を除いた部分", font=FONT_SMALL, fill=INK)
 
 
 def draw_legend(draw: ImageDraw.ImageDraw) -> None:
@@ -488,7 +488,7 @@ def draw_legend(draw: ImageDraw.ImageDraw) -> None:
     draw.rectangle((x + 475, y, x + 497, y + 14), fill=OVERLAP_FILL)
     draw.text((x + 505, y - 3), "被覆の重なり", font=FONT_SMALL, fill=INK)
     draw.rectangle((x + 620, y, x + 642, y + 14), fill=INNER_FILL, outline=INNER_EDGE)
-    draw.text((x + 650, y - 3), r"I から補集合被覆を除いた部分", font=FONT_SMALL, fill=INK)
+    draw.text((x + 650, y - 3), r"I から (I∩A^c) の外側被覆を除いた部分", font=FONT_SMALL, fill=INK)
 
 
 def draw_frame(stage_index: int) -> Image.Image:
@@ -496,7 +496,7 @@ def draw_frame(stage_index: int) -> Image.Image:
     image = Image.new("RGBA", (CANVAS_W, CANVAS_H), PAPER)
     draw = ImageDraw.Draw(image)
 
-    centered_text(draw, (CANVAS_W // 2, 32), "ルベーグ内測度と外測度の対応", FONT_TITLE, INK)
+    centered_text(draw, (CANVAS_W // 2, 32), "Lebesgue 内測度と外測度の対応", FONT_TITLE, INK)
     centered_text(
         draw,
         ((LEFT_BOX[0] + LEFT_BOX[2]) // 2, 68),

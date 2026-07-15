@@ -20,13 +20,13 @@ FRAME_DURATION_MS = 950
 LOOP = 0
 FRAME_COUNT = 6
 
-MEASURE_SYMBOL = "μ*"
+MEASURE_SYMBOL = "μ∗"
 EMPTY_SYMBOL = "∅"
-SPACE_LABEL = "全体空間 R^N"
-MAIN_TITLE = "ルベーグ外測度 μ* の基本性質"
-NONNEG_FORMULA = "μ*(∅)=0,  0 <= μ*(A) <= ∞"
-MONOTONE_FORMULA = "A が B に含まれるなら μ*(A) <= μ*(B)"
-SUBADDITIVE_FORMULA = "合併の μ* <= 各集合の μ* の和"
+SPACE_LABEL = "全体空間 ℝⁿ"
+MAIN_TITLE = "Lebesgue 外測度 μ∗ の基本性質"
+NONNEG_FORMULA = "μ∗(∅)=0,  0 ≤ μ∗(A) ≤ ∞"
+MONOTONE_FORMULA = "A⊂B なら μ∗(A) ≤ μ∗(B)"
+SUBADDITIVE_FORMULA = "μ∗(A₁∪A₂∪...) ≤ μ∗(A₁)+μ∗(A₂)+..."
 
 COLORS = {
     "paper": "#fbfaf7",
@@ -50,6 +50,8 @@ COLORS = {
 
 def load_font(size: int, *, bold: bool = False) -> ImageFont.FreeTypeFont:
     candidates = [
+        "/System/Library/Fonts/Supplemental/Arial Unicode.ttf",
+        "/Library/Fonts/Arial Unicode.ttf",
         "/System/Library/Fonts/ヒラギノ角ゴシック W6.ttc" if bold else "/System/Library/Fonts/ヒラギノ角ゴシック W3.ttc",
         "/System/Library/Fonts/Helvetica.ttc",
         "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc" if bold else "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
@@ -67,6 +69,12 @@ FONT_FORMULA = load_font(20, bold=True)
 FONT_BODY = load_font(20)
 FONT_SMALL = load_font(15)
 FONT_LABEL = load_font(24, bold=True)
+
+SUBSCRIPT_DIGITS = str.maketrans("0123456789", "₀₁₂₃₄₅₆₇₈₉")
+
+
+def subscript_int(value: int) -> str:
+    return str(value).translate(SUBSCRIPT_DIGITS)
 
 
 def hex_rgba(value: str, alpha: int = 255) -> tuple[int, int, int, int]:
@@ -94,6 +102,46 @@ def blob(center: tuple[float, float], rx: float, ry: float, phase: float, n: int
         r = 1.0 + 0.12 * math.sin(3 * t + phase) + 0.08 * math.cos(5 * t - 0.7 * phase)
         points.append((center[0] + rx * r * math.cos(t), center[1] + ry * r * math.sin(t)))
     return points
+
+
+def domain_rect(panel: tuple[int, int, int, int], margin: float = 10.0) -> tuple[float, float, float, float]:
+    return (
+        panel[0] + 52 + margin,
+        panel[1] + 105 + margin,
+        panel[2] - 52 - margin,
+        panel[1] + 330 - margin,
+    )
+
+
+def point_in_ellipse(point: tuple[float, float], ellipse: tuple[float, float, float, float]) -> bool:
+    x0, y0, x1, y1 = ellipse
+    cx = (x0 + x1) / 2
+    cy = (y0 + y1) / 2
+    rx = (x1 - x0) / 2
+    ry = (y1 - y0) / 2
+    if rx <= 0 or ry <= 0:
+        return False
+    value = ((point[0] - cx) / rx) ** 2 + ((point[1] - cy) / ry) ** 2
+    return value <= 1.0
+
+
+def blob_in_domain(
+    panel: tuple[int, int, int, int],
+    center: tuple[float, float],
+    rx: float,
+    ry: float,
+    phase: float,
+    *,
+    n: int = 160,
+) -> list[tuple[float, float]]:
+    ellipse = domain_rect(panel)
+    scale = 1.0
+    for _ in range(80):
+        points = blob(center, rx * scale, ry * scale, phase, n)
+        if all(point_in_ellipse(point, ellipse) for point in points):
+            return points
+        scale *= 0.94
+    return blob(center, rx * scale, ry * scale, phase, n)
 
 
 def rect_for(panel: tuple[int, int, int, int], x: float, y: float, w: float, h: float) -> tuple[float, float, float, float]:
@@ -159,7 +207,7 @@ def draw_nonnegative(draw: ImageDraw.ImageDraw, panel: tuple[int, int, int, int]
     y_line = panel[3] - 105
     draw_number_line(draw, panel, y_line, 0.75)
     measures = [0.0, 0.02, 0.13, 0.24, 0.36, 0.52]
-    centers = [(0.20, 0.46), (0.32, 0.42), (0.47, 0.52), (0.64, 0.43), (0.77, 0.52), (0.58, 0.58)]
+    centers = [(0.20, 0.46), (0.32, 0.42), (0.47, 0.52), (0.64, 0.43), (0.77, 0.51), (0.58, 0.52)]
     for i, (cx, cy) in enumerate(centers):
         px = panel[0] + cx * (panel[2] - panel[0])
         py = panel[1] + cy * (panel[3] - panel[1])
@@ -170,12 +218,13 @@ def draw_nonnegative(draw: ImageDraw.ImageDraw, panel: tuple[int, int, int, int]
                 arrow_to_measure(draw, (px, py + 20), measure_x(panel, y_line, 0.0, 0.75), COLORS["blue"], f"{MEASURE_SYMBOL}({EMPTY_SYMBOL})")
             continue
         color = COLORS["blue"] if active else "#7da7df"
-        fill = hex_rgba(COLORS["blue_fill"], 210 if active else 72)
-        points = blob((px, py), 30 + i * 4, 20 + i * 3, phase=i * 0.8)
+        fill = hex_rgba(COLORS["blue_fill"], 126 if active else 46)
+        points = blob_in_domain(panel, (px, py), 30 + i * 4, 20 + i * 3, phase=i * 0.8)
         draw.polygon(points, fill=fill, outline=color)
         if active:
-            centered_text(draw, (px, py), f"A{i}", FONT_SMALL, COLORS["ink"])
-            arrow_to_measure(draw, (px, py + 42), measure_x(panel, y_line, measures[i], 0.75), COLORS["blue"], f"{MEASURE_SYMBOL}(A{i})")
+            label = f"A{subscript_int(i)}"
+            centered_text(draw, (px, py), label, FONT_SMALL, COLORS["ink"])
+            arrow_to_measure(draw, (px, py + 42), measure_x(panel, y_line, measures[i], 0.75), COLORS["blue"], f"{MEASURE_SYMBOL}({label})")
     centered_text(draw, ((panel[0] + panel[2]) / 2, panel[3] - 35), "空集合は 0, どの集合の外側コストも負にならない", FONT_SMALL, COLORS["muted"])
 
 
@@ -186,12 +235,12 @@ def draw_monotone(draw: ImageDraw.ImageDraw, panel: tuple[int, int, int, int], f
     scale = 1.0 + frame * 0.055
     cx = (panel[0] + panel[2]) / 2
     cy = panel[1] + 225
-    b_points = blob((cx, cy), 145 * scale, 78 * scale, phase=0.5 + frame)
-    a_points = blob((cx - 22, cy + 4), 70 * scale, 39 * scale, phase=2.0 + frame)
-    draw.polygon(b_points, fill=hex_rgba(COLORS["orange_fill"], 145), outline=COLORS["orange"])
-    draw.polygon(a_points, fill=hex_rgba(COLORS["green_fill"], 220), outline=COLORS["green"])
+    b_points = blob_in_domain(panel, (cx, cy), 145 * scale, 78 * scale, phase=0.5 + frame)
+    a_points = blob_in_domain(panel, (cx - 22, cy + 4), 70 * scale, 39 * scale, phase=2.0 + frame)
+    draw.polygon(b_points, fill=hex_rgba(COLORS["orange_fill"], 108), outline=COLORS["orange"])
+    draw.polygon(a_points, fill=hex_rgba(COLORS["green_fill"], 146), outline=COLORS["green"])
     centered_text(draw, (cx - 22, cy + 4), "A", FONT_LABEL, COLORS["green"])
-    centered_text(draw, (cx + 115 * scale, cy - 62 * scale), "B", FONT_LABEL, COLORS["orange"])
+    centered_text(draw, (cx + 105 * scale, cy - 54 * scale), "B", FONT_LABEL, COLORS["orange"])
     arrow_to_measure(draw, (cx - 45, cy + 78), measure_x(panel, y_line, 0.17 + frame * 0.014, 0.75), COLORS["green"], f"{MEASURE_SYMBOL}(A)")
     arrow_to_measure(draw, (cx + 42, cy + 92), measure_x(panel, y_line, 0.42 + frame * 0.025, 0.75), COLORS["orange"], f"{MEASURE_SYMBOL}(B)")
     centered_text(draw, ((panel[0] + panel[2]) / 2, panel[3] - 35), "大きい集合を覆うには, 小さい集合以上の余地が必要になる", FONT_SMALL, COLORS["muted"])
@@ -208,16 +257,16 @@ def draw_subadditive(draw: ImageDraw.ImageDraw, panel: tuple[int, int, int, int]
         px = panel[0] + cx * (panel[2] - panel[0])
         py = panel[1] + cy * (panel[3] - panel[1])
         active = i < active_count
-        points = blob((px, py), 54 - i * 3, 34 - i * 2, phase=i)
-        draw.polygon(points, fill=hex_rgba(COLORS["red_fill"], 170 if active else 45), outline=COLORS["red"] if active else "#d7b6b6")
+        points = blob_in_domain(panel, (px, py), 54 - i * 3, 34 - i * 2, phase=i)
+        draw.polygon(points, fill=hex_rgba(COLORS["red_fill"], 118 if active else 36), outline=COLORS["red"] if active else "#d7b6b6")
         if active:
-            centered_text(draw, (px, py), f"A{i + 1}", FONT_SMALL, "#ffffff")
+            centered_text(draw, (px, py), f"A{subscript_int(i + 1)}", FONT_SMALL, "#ffffff")
     union_est = [0.11, 0.18, 0.24, 0.29, 0.33, 0.36][frame]
     sum_est = sum(values[:active_count])
     centered_text(draw, (panel[0] + 182, panel[1] + 350), "合併の外測度", FONT_SMALL, COLORS["purple"])
     centered_text(draw, (panel[0] + 365, panel[1] + 350), "各外測度の和", FONT_SMALL, COLORS["red"])
-    arrow_to_measure(draw, (panel[0] + 182, panel[1] + 375), measure_x(panel, y_line, union_est, 0.95), COLORS["purple"], f"{MEASURE_SYMBOL}(合併)")
-    arrow_to_measure(draw, (panel[0] + 365, panel[1] + 375), measure_x(panel, y_line, sum_est, 0.95), COLORS["red"], f"{MEASURE_SYMBOL} の和")
+    arrow_to_measure(draw, (panel[0] + 182, panel[1] + 375), measure_x(panel, y_line, union_est, 0.95), COLORS["purple"], f"{MEASURE_SYMBOL}(A₁∪...)")
+    arrow_to_measure(draw, (panel[0] + 365, panel[1] + 375), measure_x(panel, y_line, sum_est, 0.95), COLORS["red"], f"{MEASURE_SYMBOL}(A₁)+...")
     centered_text(draw, ((panel[0] + panel[2]) / 2, panel[3] - 35), "別々の被覆を並べれば, 合併の被覆が作れる", FONT_SMALL, COLORS["muted"])
 
 

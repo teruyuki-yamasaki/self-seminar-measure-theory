@@ -218,7 +218,7 @@ def draw_frame(save_path: Path, n: int) -> None:
     ax_note.text(0.00, 0.40, rf"ここでは $Y_n$ 上で tail $\{{s_k\}}_{{k\geq n}}$ が band $|s_k-f|\leq 2^{{-{n}}}$ に入り, 残りの誤差は $m(E_n)\to0$ の側へ追いやられる.", fontsize=12.0, color=COLORS["muted"])
     ax_note.text(0.00, 0.08, rf"その結果, $\int_X s_n\, dm \to \int_X f\, dm$ が図として読める.", fontsize=12.5, color=COLORS["band_edge"])
 
-    fig.suptitle("Egorov's theorem と dyadic 単関数近似: ルベーグ積分は単関数積分の極限で与えられる", fontsize=20, y=0.972)
+    fig.suptitle("Egorov's theorem と dyadic 単関数近似: Lebesgue 積分は単関数積分の極限で与えられる", fontsize=20, y=0.972)
     fig.savefig(save_path, dpi=180)
     plt.close(fig)
 

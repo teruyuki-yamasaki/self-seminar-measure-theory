@@ -36,6 +36,12 @@ IRREGULARITY_SCALES = [1.10, 0.85, 0.55, 0.32, 0.14, 0.04]
 # ============================================================
 def load_font(size: int, bold: bool = False) -> ImageFont.FreeTypeFont:
     candidates = [
+        "/System/Library/Fonts/ヒラギノ角ゴシック W6.ttc"
+        if bold
+        else "/System/Library/Fonts/ヒラギノ角ゴシック W3.ttc",
+        "/System/Library/Fonts/ヒラギノ角ゴシック W5.ttc"
+        if bold
+        else "/System/Library/Fonts/ヒラギノ角ゴシック W3.ttc",
         "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc"
         if bold
         else "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
@@ -408,7 +414,7 @@ def draw_graph(
 
     draw.text(
         (x0 + 7, target_y - 19),
-        "area(A)",
+        "面積(A)",
         font=FONT_SMALL,
         fill=(75, 75, 75),
     )
@@ -451,7 +457,7 @@ def draw_graph(
     centered_text(
         draw,
         ((x0 + x1) // 2, y1 + 48),
-        "boundary-refinement stage",
+        "境界細分の段階",
         FONT_BODY,
         (40, 40, 40),
     )
@@ -459,7 +465,7 @@ def draw_graph(
     centered_text(
         draw,
         ((x0 + x1) // 2, y0 - 24),
-        "cover cost = sum of covering rectangle areas",
+        "被覆コスト = 被覆長方形の面積和",
         FONT_SUBTITLE,
         (25, 25, 25),
     )
@@ -482,7 +488,7 @@ for stage, rectangles in enumerate(COVERS):
     centered_text(
         draw,
         (CANVAS_W // 2, 29),
-        "Irregular outer covers with shrinking overlap and overshoot",
+        "可算被覆を細かくし, 重なりとはみ出しを減らす",
         FONT_TITLE,
         (20, 20, 20),
     )
@@ -491,8 +497,8 @@ for stage, rectangles in enumerate(COVERS):
         draw,
         ((LEFT_BOX[0] + LEFT_BOX[2]) // 2, 61),
         (
-            f"stage {stage + 1}: boundary depth {STAGE_BOUNDARY_DEPTHS[stage]}, "
-            f"{len(rectangles)} covering rectangles"
+            f"段階 {stage + 1}: 境界深さ {STAGE_BOUNDARY_DEPTHS[stage]}, "
+            f"被覆長方形 {len(rectangles)} 個"
         ),
         FONT_SUBTITLE,
         (30, 30, 30),
@@ -547,8 +553,8 @@ for stage, rectangles in enumerate(COVERS):
         draw,
         (CANVAS_W // 2, 494),
         (
-            f"cover cost = {RAW_AREAS[stage]:.6f}   "
-            f"overshoot beyond area(A) = {excess:.6f}"
+            f"被覆コスト = {RAW_AREAS[stage]:.6f}   "
+            f"面積(A) からの超過 = {excess:.6f}"
         ),
         FONT_BODY,
         (35, 35, 35),

@@ -26,6 +26,16 @@ Jordan 的外側近似では, 集合を有限個の区間塊で覆った. Lebesg
 
 ## Lebesgue 外測度 $\mu^*$ の定義
 
+前章で導入した記号に従い,
+
+$$
+2^{\mathbb{R}^N}
+=
+\{A\mid A\subset\mathbb{R}^N\}
+$$
+
+は $\mathbb{R}^N$ の任意の部分集合全体, すなわち $\mathbb{R}^N$ の冪集合を表す.
+
 集合 $A\subset\mathbb{R}^N$ に対して, 
 
 $$
@@ -166,13 +176,13 @@ $$
 E_1,\ldots,E_n\in\mathfrak{F}
 $$
 
-に対しては, その有限和
+に対しては, その有限和も再び有限加法族 $\mathfrak{F}$ に属する:
 
 $$
-\bigcup_{k=1}^{n}E_k
+\bigcup_{k=1}^{n}E_k \in \mathfrak{F}.
 $$
 
-も再び $\mathfrak{F}$ に属するので, $\nu\!\left(\bigcup_{k=1}^{n}E_k\right)$ を考えることができる.
+したがって, $\nu\!\left(\bigcup_{k=1}^{n}E_k\right)$ を考えることができる.
 
 前章で導入した体積 $m$ は, 区間塊の全体 $\mathfrak{F}_N$ 上で定義された集合函数であった. したがって, 互いに素な有限個の区間塊 $E_1,\ldots,E_n\in\mathfrak{F}_N$ に対して
 
