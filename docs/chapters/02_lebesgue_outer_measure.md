@@ -155,7 +155,7 @@ $$
 $$
 X\in\mathfrak{F},\qquad
 E\cap F\in\mathfrak{F},\qquad
-E\setminus F\in\mathfrak{F}
+E-F\in\mathfrak{F}
 $$
 
 が従う. さらに, 同じ操作を有限回くり返せば,
