@@ -20,7 +20,7 @@ Jordan 的外側近似では, 集合を有限個の区間塊で覆った. Lebesg
 
 この違いにより, Jordan 測度では扱いにくかった集合にも自然に大きさを割り当てられるようになる. とくに, 後に見るように, 可算集合は全体積を任意に小さくした区間列で覆うことができる.
 
-![外側被覆の細分化と無駄の減少](../../figures/measure/animations/outer_measure_quadtree_late_stages/gif/outer_measure_quadtree_late_stages.gif)
+![可算被覆の細分化](../../figures/measure/animations/outer_measure_quadtree_late_stages/gif/outer_measure_quadtree_late_stages_cover_only.gif)
 
 被覆を細かくしていくにつれて, 最初は大きかった外側へのはみ出しや長方形どうしの重なりが減り, 被覆の総コストも次第に小さくなる. Lebesgue 外測度は, このような可算被覆全体の中で実現される最小限の外側コストをとらえる考え方である.
 
@@ -57,6 +57,10 @@ $$
 を $\mathbb{R}^N$ 上の **Lebesgue 外測度** という.
 
 ここで $m(I_k)$ は区間 $I_k$ の体積である. 
+
+![被覆和と Lebesgue 外測度](../../figures/measure/animations/outer_measure_quadtree_late_stages/gif/outer_measure_quadtree_late_stages.gif)
+
+この図では, 左で集合 $A$ を覆う区間列を細かくし, 右で被覆和 $\sum_k m(I_k)$ が Lebesgue 外測度 $\mu^*(A)$ に近づく様子を描いている. 外測度 $\mu^*(A)$ は, ある一つの被覆の被覆和ではなく, すべての可算被覆にわたる下限として定まる.
 
 空集合 $\emptyset \subset \mathbb{R}^N$ に対しては
 
@@ -192,7 +196,7 @@ m\left(\bigcup_{k=1}^{n}E_k\right)
 \sum_{k=1}^{n}m(E_k)
 $$
 
-という有限加法性が成り立つ.
+という **有限加法性** が成り立つ.
 
 しかし, 有限加法族で保証されるのはあくまで有限回の演算である. 可算集合列
 

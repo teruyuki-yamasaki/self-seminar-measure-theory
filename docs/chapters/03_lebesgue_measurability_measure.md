@@ -36,6 +36,10 @@ $$
 \mu_*(A; I)=\mu^*(I)-\mu^*(I\cap A^c).
 $$
 
+![Lebesgue 内測度の図式](../../figures/measure/animations/lebesgue_inner_measure/gif/lebesgue_inner_measure.gif)
+
+ここでは, 閉曲線で表した集合 $A$ を長方形 $I$ が囲み, その中で補集合部分 $I\cap A^c$ だけを外側から覆っていく様子を描いている. 右のグラフでは, 段階 $n$ の $I\cap A^c$ の外側被覆コストを $C_n$ として, $m(I)-C_n$ が内測度 $\mu_*(A;I)$ に近づく様子を示している.
+
 
 ## 外測度との関係
 

@@ -11,18 +11,25 @@ from PIL import Image, ImageDraw, ImageFont
 # ============================================================
 # Output / animation settings
 # ============================================================
-OUTPUT_GIF = Path(
+GRAPH_GIF = Path(
     "figures/measure/animations/outer_measure_quadtree_late_stages/gif/"
     "outer_measure_quadtree_late_stages.gif"
 )
+COVER_ONLY_GIF = Path(
+    "figures/measure/animations/outer_measure_quadtree_late_stages/gif/"
+    "outer_measure_quadtree_late_stages_cover_only.gif"
+)
 
-CANVAS_W = 980
-CANVAS_H = 520
+GRAPH_CANVAS_W = 980
+GRAPH_CANVAS_H = 520
+COVER_CANVAS_W = 720
+COVER_CANVAS_H = 520
 FRAME_DURATION_MS = 950
 LOOP = 0
 
-LEFT_BOX = (35, 85, 525, 475)
-RIGHT_BOX = (585, 105, 940, 430)
+GRAPH_COVER_BOX = (35, 85, 525, 475)
+COVER_ONLY_BOX = (60, 85, 660, 475)
+GRAPH_BOX = (585, 105, 940, 430)
 
 # Interior tiles remain fairly coarse, while boundary tiles are refined.
 INTERIOR_DEPTH = 3
@@ -348,12 +355,6 @@ def map_rect(
     return p0[0], p0[1], p1[0], p1[1]
 
 
-A_PIXELS = [
-    map_point(float(x), float(y), LEFT_BOX)
-    for x, y in A_POINTS
-]
-
-
 def centered_text(
     draw: ImageDraw.ImageDraw,
     xy: Tuple[int, int],
@@ -376,11 +377,137 @@ def centered_text(
     )
 
 
+def draw_rich_text(
+    draw: ImageDraw.ImageDraw,
+    xy: Tuple[int, int],
+    runs: List[Tuple[str, ImageFont.FreeTypeFont, Tuple[int, int, int], int]],
+    centered: bool = False,
+) -> float:
+    boxes = []
+
+    for text, font, _fill, _dy in runs:
+        if hasattr(draw, "textbbox"):
+            boxes.append(draw.textbbox((0, 0), text, font=font))
+        else:
+            width, height = draw.textsize(text, font=font)
+            boxes.append((0, 0, width, height))
+
+    total_width = sum(box[2] - box[0] for box in boxes)
+    top = min(dy + box[1] for box, (_text, _font, _fill, dy) in zip(boxes, runs))
+    bottom = max(dy + box[3] for box, (_text, _font, _fill, dy) in zip(boxes, runs))
+
+    x = xy[0] - total_width / 2 if centered else xy[0]
+    y = xy[1] - (top + bottom) / 2 if centered else xy[1]
+
+    for (text, font, fill, dy), box in zip(runs, boxes):
+        draw.text((x, y + dy), text, font=font, fill=fill)
+        x += box[2] - box[0]
+
+    return x
+
+
+def mu_star_a_runs(
+    fill: Tuple[int, int, int],
+) -> List[Tuple[str, ImageFont.FreeTypeFont, Tuple[int, int, int], int]]:
+    return [
+        ("μ", FONT_BODY, fill, 0),
+        ("*", FONT_SMALL, fill, -7),
+        ("(A)", FONT_BODY, fill, 0),
+    ]
+
+
+def graph_title_runs(
+    fill: Tuple[int, int, int],
+) -> List[Tuple[str, ImageFont.FreeTypeFont, Tuple[int, int, int], int]]:
+    return [
+        ("被覆和 ", FONT_SUBTITLE, fill, 0),
+        ("Σ m(I", FONT_SUBTITLE, fill, 0),
+        ("k", FONT_SMALL, fill, 6),
+        (") が μ", FONT_SUBTITLE, fill, 0),
+        ("*", FONT_SMALL, fill, -7),
+        ("(A) に近づく", FONT_SUBTITLE, fill, 0),
+    ]
+
+
+def draw_cover_scene(
+    image: Image.Image,
+    box: Tuple[int, int, int, int],
+    rectangles: List[Tuple[float, float, float, float]],
+    stage: int,
+    canvas_w: int,
+) -> Image.Image:
+    draw = ImageDraw.Draw(image)
+    a_pixels = [
+        map_point(float(x), float(y), box)
+        for x, y in A_POINTS
+    ]
+
+    centered_text(
+        draw,
+        (canvas_w // 2, 29),
+        "可算被覆を細かくし, 重なりとはみ出しを減らす",
+        FONT_TITLE,
+        (20, 20, 20),
+    )
+
+    centered_text(
+        draw,
+        ((box[0] + box[2]) // 2, 61),
+        (
+            f"段階 {stage + 1}: 境界深さ {STAGE_BOUNDARY_DEPTHS[stage]}, "
+            f"被覆長方形 {len(rectangles)} 個"
+        ),
+        FONT_SUBTITLE,
+        (30, 30, 30),
+    )
+
+    draw.polygon(
+        a_pixels,
+        fill=(205, 205, 205, 255),
+        outline=(0, 0, 0, 255),
+    )
+
+    centered_text(
+        draw,
+        (
+            (box[0] + box[2]) // 2,
+            (box[1] + box[3]) // 2,
+        ),
+        "A",
+        FONT_A,
+        (0, 0, 0),
+    )
+
+    for rect in rectangles:
+        rect_layer = Image.new(
+            "RGBA",
+            image.size,
+            (0, 0, 0, 0),
+        )
+        rect_draw = ImageDraw.Draw(rect_layer)
+        rect_draw.rectangle(
+            map_rect(rect, box),
+            fill=(31, 119, 180, 56),
+            outline=(15, 70, 125, 150),
+            width=1,
+        )
+        image = Image.alpha_composite(image, rect_layer)
+
+    draw = ImageDraw.Draw(image)
+    draw.line(
+        a_pixels + [a_pixels[0]],
+        fill=(0, 0, 0, 255),
+        width=3,
+    )
+
+    return image
+
+
 def draw_graph(
     draw: ImageDraw.ImageDraw,
     stage: int,
 ) -> None:
-    x0, y0, x1, y1 = RIGHT_BOX
+    x0, y0, x1, y1 = GRAPH_BOX
 
     draw.line((x0, y1, x1, y1), fill=(40, 40, 40), width=2)
     draw.line((x0, y0, x0, y1), fill=(40, 40, 40), width=2)
@@ -412,12 +539,7 @@ def draw_graph(
         width=2,
     )
 
-    draw.text(
-        (x0 + 7, target_y - 19),
-        "面積(A)",
-        font=FONT_SMALL,
-        fill=(75, 75, 75),
-    )
+    draw_rich_text(draw, (x0 + 7, target_y - 20), mu_star_a_runs((75, 75, 75)))
 
     points = [
         (graph_x(i), graph_y(RAW_AREAS[i]))
@@ -462,124 +584,106 @@ def draw_graph(
         (40, 40, 40),
     )
 
-    centered_text(
+    draw_rich_text(
         draw,
         ((x0 + x1) // 2, y0 - 24),
-        "被覆コスト = 被覆長方形の面積和",
-        FONT_SUBTITLE,
-        (25, 25, 25),
+        graph_title_runs((25, 25, 25)),
+        centered=True,
     )
 
 
 # ============================================================
 # Render completed-cover frames
 # ============================================================
-frames: List[Image.Image] = []
+graph_frames: List[Image.Image] = []
+cover_frames: List[Image.Image] = []
 
 for stage, rectangles in enumerate(COVERS):
-    image = Image.new(
+    graph_image = Image.new(
         "RGBA",
-        (CANVAS_W, CANVAS_H),
+        (GRAPH_CANVAS_W, GRAPH_CANVAS_H),
         (249, 249, 247, 255),
     )
-
-    draw = ImageDraw.Draw(image)
-
-    centered_text(
-        draw,
-        (CANVAS_W // 2, 29),
-        "可算被覆を細かくし, 重なりとはみ出しを減らす",
-        FONT_TITLE,
-        (20, 20, 20),
+    graph_image = draw_cover_scene(
+        graph_image,
+        GRAPH_COVER_BOX,
+        rectangles,
+        stage,
+        GRAPH_CANVAS_W,
     )
-
-    centered_text(
-        draw,
-        ((LEFT_BOX[0] + LEFT_BOX[2]) // 2, 61),
-        (
-            f"段階 {stage + 1}: 境界深さ {STAGE_BOUNDARY_DEPTHS[stage]}, "
-            f"被覆長方形 {len(rectangles)} 個"
-        ),
-        FONT_SUBTITLE,
-        (30, 30, 30),
-    )
-
-    # Draw A first.
-    draw.polygon(
-        A_PIXELS,
-        fill=(205, 205, 205, 255),
-        outline=(0, 0, 0, 255),
-    )
-
-    centered_text(
-        draw,
-        (
-            (LEFT_BOX[0] + LEFT_BOX[2]) // 2,
-            (LEFT_BOX[1] + LEFT_BOX[3]) // 2,
-        ),
-        "A",
-        FONT_A,
-        (0, 0, 0),
-    )
-
-    for rect in rectangles:
-        rect_layer = Image.new(
-            "RGBA",
-            (CANVAS_W, CANVAS_H),
-            (0, 0, 0, 0),
-        )
-        rect_draw = ImageDraw.Draw(rect_layer)
-        rect_draw.rectangle(
-            map_rect(rect, LEFT_BOX),
-            fill=(31, 119, 180, 56),
-            outline=(15, 70, 125, 150),
-            width=1,
-        )
-        image = Image.alpha_composite(image, rect_layer)
-    draw = ImageDraw.Draw(image)
-
-    # Restore only the boundary of A.
-    draw.line(
-        A_PIXELS + [A_PIXELS[0]],
-        fill=(0, 0, 0, 255),
-        width=3,
-    )
-
-    draw_graph(draw, stage)
+    graph_draw = ImageDraw.Draw(graph_image)
+    draw_graph(graph_draw, stage)
 
     excess = RAW_AREAS[stage] - AREA_A
-
-    centered_text(
-        draw,
-        (CANVAS_W // 2, 494),
-        (
-            f"被覆コスト = {RAW_AREAS[stage]:.6f}   "
-            f"面積(A) からの超過 = {excess:.6f}"
-        ),
-        FONT_BODY,
-        (35, 35, 35),
+    label_x = 218
+    label_y = 486
+    graph_draw.text(
+        (label_x, label_y),
+        f"被覆和 = {RAW_AREAS[stage]:.6f}   ",
+        font=FONT_BODY,
+        fill=(35, 35, 35),
+    )
+    end_x = draw_rich_text(
+        graph_draw,
+        (label_x + 180, label_y),
+        mu_star_a_runs((35, 35, 35)),
+    )
+    graph_draw.text(
+        (end_x + 4, label_y),
+        f"からの超過 = {excess:.6f}",
+        font=FONT_BODY,
+        fill=(35, 35, 35),
     )
 
-    frames.append(
-        image.convert(
+    graph_frames.append(
+        graph_image.convert(
+            "P",
+            palette=Image.ADAPTIVE,
+        )
+    )
+
+    cover_image = Image.new(
+        "RGBA",
+        (COVER_CANVAS_W, COVER_CANVAS_H),
+        (249, 249, 247, 255),
+    )
+    cover_image = draw_cover_scene(
+        cover_image,
+        COVER_ONLY_BOX,
+        rectangles,
+        stage,
+        COVER_CANVAS_W,
+    )
+    cover_frames.append(
+        cover_image.convert(
             "P",
             palette=Image.ADAPTIVE,
         )
     )
 
 
-OUTPUT_GIF.parent.mkdir(parents=True, exist_ok=True)
+GRAPH_GIF.parent.mkdir(parents=True, exist_ok=True)
 
-frames[0].save(
-    OUTPUT_GIF,
+graph_frames[0].save(
+    GRAPH_GIF,
     save_all=True,
-    append_images=frames[1:],
+    append_images=graph_frames[1:],
     duration=FRAME_DURATION_MS,
     loop=LOOP,
     optimize=False,
 )
 
-print(f"Saved: {OUTPUT_GIF.resolve()}")
+cover_frames[0].save(
+    COVER_ONLY_GIF,
+    save_all=True,
+    append_images=cover_frames[1:],
+    duration=FRAME_DURATION_MS,
+    loop=LOOP,
+    optimize=False,
+)
+
+print(f"Saved: {GRAPH_GIF.resolve()}")
+print(f"Saved: {COVER_ONLY_GIF.resolve()}")
 print(f"Area(A): {AREA_A:.8f}")
 print("Raw cover sums:")
 for i, value in enumerate(RAW_AREAS, start=1):

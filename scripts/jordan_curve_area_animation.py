@@ -8,8 +8,8 @@ from dataclasses import dataclass
 from pathlib import Path
 import shutil
 
-import imageio.v2 as imageio
 import matplotlib
+from PIL import Image
 
 matplotlib.use("Agg")
 
@@ -20,6 +20,7 @@ from matplotlib.patches import Polygon, Rectangle
 from matplotlib.ticker import MaxNLocator
 
 GIF_LOOP = 0
+FRAME_DURATION_MS = 1000
 
 
 COLORS = {
@@ -321,14 +322,22 @@ def render_animation(
     steps = build_steps(mask, levels, seed)
     dots_x, dots_y = interior_dots(mask, xx, yy, seed=seed + 100)
 
-    images = []
+    frame_paths = []
     for step in steps:
         frame_path = frames_dir / f"frame_{step.level:03d}.png"
         draw_step(step, curve, exact_area, steps, dots_x, dots_y, frame_path)
-        images.append(imageio.imread(frame_path))
+        frame_paths.append(frame_path)
 
     gif_path = gif_dir / "jordan_curve_area.gif"
-    imageio.mimsave(gif_path, images, duration=duration, loop=GIF_LOOP)
+    frames = [Image.open(path).convert("P", palette=Image.ADAPTIVE) for path in frame_paths]
+    frames[0].save(
+        gif_path,
+        save_all=True,
+        append_images=frames[1:],
+        duration=FRAME_DURATION_MS,
+        loop=GIF_LOOP,
+        disposal=2,
+    )
     print(f"Saved GIF to: {gif_path.resolve()}")
     print(f"Saved frames to: {frames_dir.resolve()}")
 

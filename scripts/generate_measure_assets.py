@@ -720,9 +720,8 @@ def animate_lebesgue_area_convergence(outdir: Path, frames: int, *, write_gif: b
     x = np.linspace(0, 1, 900)
     y = lebesgue_demo_function(x)
     target_integral = integrate_on_unit_interval(y, x)
-    max_power = 10
-    powers = np.arange(1, max_power + 1)
-    interval_counts = 2**powers
+    del frames
+    interval_counts = np.array([2, 3, 4, 6, 8, 12, 16, 24, 32, 48, 64, 96, 128, 192, 256, 384, 512, 768, 1024])
     value_history = nested_value_partition_history(int(interval_counts[-1]))
     simple_integrals = np.array(
         [
@@ -731,8 +730,6 @@ def animate_lebesgue_area_convergence(outdir: Path, frames: int, *, write_gif: b
         ]
     )
     errors = target_integral - simple_integrals
-    frames_per_stage = max(1, round(frames / len(interval_counts)))
-    stage_indexes = np.repeat(np.arange(len(interval_counts)), frames_per_stage)
 
     fig, axes = plt.subplots(1, 2, figsize=(13.5, 5.8), gridspec_kw={"width_ratios": [1.45, 1.0]})
     ax_area, ax_conv = axes
@@ -740,12 +737,12 @@ def animate_lebesgue_area_convergence(outdir: Path, frames: int, *, write_gif: b
     def update(frame: int):
         ax_area.clear()
         ax_conv.clear()
-        frame_index = int(stage_indexes[min(frame, len(stage_indexes) - 1)])
+        frame_index = min(frame, len(interval_counts) - 1)
         m = int(interval_counts[frame_index])
-        power = int(powers[frame_index])
         value_edges = value_history[m - 1]
         simple_values = draw_value_partition(ax_area, x, y, value_edges, show_labels=False)
         simple_integral = integrate_on_unit_interval(simple_values, x)
+        max_delta_y = float(np.max(np.diff(value_edges)))
 
         ax_area.set_xlim(0, 1)
         ax_area.set_ylim(0, 1.05)
@@ -753,7 +750,7 @@ def animate_lebesgue_area_convergence(outdir: Path, frames: int, *, write_gif: b
         ax_area.text(
             0.02,
             0.96,
-            rf"$m={power_of_two_tex(power)}={m}$, $\max\Delta y={dyadic_mesh_tex(power)}$"
+            rf"$m={m}$, $\max\Delta y\approx {max_delta_y:.4f}$"
             + "\n"
             + rf"$\int_X \varphi_m(x)\, d\mu(x)={simple_integral:.12f}$",
             transform=ax_area.transAxes,
@@ -765,20 +762,21 @@ def animate_lebesgue_area_convergence(outdir: Path, frames: int, *, write_gif: b
         set_xy_axis_labels(ax_area)
         hide_numeric_tick_labels(ax_area)
 
-        shown_powers = powers[: frame_index + 1]
+        shown_counts = interval_counts[: frame_index + 1]
         shown_integrals = simple_integrals[: frame_index + 1]
         ax_conv.axhline(target_integral, color=COLORS["ink"], lw=1.6, ls="--", label=rf"$\int_X f(x)\, d\mu(x) \approx {target_integral:.6f}$")
-        ax_conv.plot(powers, simple_integrals, color=COLORS["grid"], lw=1.2, alpha=0.8)
-        ax_conv.plot(shown_powers, shown_integrals, color=COLORS["blue"], lw=2.2, marker="o", ms=4.2, label=r"$\int_X \varphi_{2^{k}}\, d\mu$")
-        ax_conv.scatter([power], [simple_integral], color=COLORS["red"], s=46, zorder=5)
-        ax_conv.set_xlim(float(powers[0]) - 0.15, float(powers[-1]) + 0.15)
+        ax_conv.plot(interval_counts, simple_integrals, color=COLORS["grid"], lw=1.2, alpha=0.8)
+        ax_conv.plot(shown_counts, shown_integrals, color=COLORS["blue"], lw=2.2, marker="o", ms=4.2, label=r"$\int_X \varphi_m\, d\mu$")
+        ax_conv.scatter([m], [simple_integral], color=COLORS["red"], s=46, zorder=5)
+        ax_conv.set_xscale("log", basex=2)
+        ax_conv.set_xlim(float(interval_counts[0]), float(interval_counts[-1]))
         y_min = float(np.min(simple_integrals)) - 0.015
         y_max = float(target_integral) + 0.015
         ax_conv.set_ylim(y_min, y_max)
         ax_conv.set_title("面積の収束", fontsize=15)
-        ax_conv.set_xlabel(r"$k=\log_2 m$")
-        ax_conv.set_xticks(powers)
-        ax_conv.set_xticklabels([str(int(power)) for power in powers])
+        ax_conv.set_xlabel("値域の分割数 m")
+        ax_conv.set_xticks([2, 4, 8, 16, 32, 64, 128, 256, 512, 1024])
+        ax_conv.set_xticklabels(["2", "4", "8", "16", "32", "64", "128", "256", "512", "1024"])
         ax_conv.set_ylabel("面積")
         hide_numeric_tick_labels(ax_conv)
         ax_conv.grid(color=COLORS["grid"], lw=0.8)
@@ -796,8 +794,8 @@ def animate_lebesgue_area_convergence(outdir: Path, frames: int, *, write_gif: b
 
     fig.suptitle("Lebesgue積分: 単函数の面積が収束する様子", fontsize=17, weight="bold")
     if write_gif:
-        save_gif(fig, update, len(stage_indexes), animation_gif_path(outdir, "lebesgue_area_convergence"))
-    save_keyframes(fig, update, len(stage_indexes), outdir, "lebesgue_area_convergence")
+        save_gif(fig, update, len(interval_counts), animation_gif_path(outdir, "lebesgue_area_convergence"))
+    save_keyframes(fig, update, len(interval_counts), outdir, "lebesgue_area_convergence")
     plt.close(fig)
 
 
