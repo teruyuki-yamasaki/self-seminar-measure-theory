@@ -2,45 +2,154 @@
 layout: section
 ---
 
-# 第4章 抽象的測度空間
+# 第4章 Carathéodory の定理と抽象的測度空間
 
-Lebesgue 測度から抽象的な定義へ
+Lebesgue 測度の構成を抽象化する
+
+---
+layout: default
+---
+
+# 目的
+
+前章で得た Lebesgue 測度の構成から, 抽象的な外測度, 可測性, 測度空間の定義を取り出す.
+
+一般の集合 $X$ 上で同じ構成を見直し, 測度空間
+
+$$
+(X,\mathfrak{B},\mu)
+$$
+
+の枠組みに進む.
 
 ---
 layout: two-cols
+---
+
+# 外測度の抽象化
+
+集合 $X$ 上の外測度とは, 集合函数
+
+$$
+\Gamma:2^X\to[0,\infty]
+$$
+
+であって, 次を満たすものである.
+
+**非負性と空集合**
+
+$$
+0\le\Gamma(A)\le\infty,\qquad \Gamma(\emptyset)=0
+$$
+
+**単調性**
+
+$$
+A\subset B\quad\Longrightarrow\quad \Gamma(A)\le\Gamma(B)
+$$
+
+**可算劣加法性**
+
+$$
+\Gamma\left(\bigcup_{n=1}^{\infty}A_n\right)
+\le
+\sum_{n=1}^{\infty}\Gamma(A_n)
+$$
+
+::right::
+
+<img class="slide-figure" src="../figures/measure/animations/caratheodory_outer_measure_axioms/gif/caratheodory_outer_measure_axioms.gif" alt="Carathéodory の外測度の基本性質" />
+
+---
+layout: default
+---
+
+# Carathéodory 可測性
+
+集合 $E\in 2^X$ が $\Gamma$-可測であるとは, 任意の集合 $B\in 2^X$ に対して
+
+$$
+\Gamma(B)=\Gamma(B\cap E)+\Gamma(B\cap E^c)
+$$
+
+が成り立つことである.
+
+$\Gamma$-可測集合全体を
+
+$$
+\mathfrak{M}_{\Gamma}
+:=
+\{E\in 2^X\mid E\text{ は }\Gamma\text{-可測}\}
+$$
+
+と書く.
+
+第3章の Lebesgue 可測集合は, この定義で $X=\mathbb{R}^N$, $\Gamma=\mu^*$ とした場合である.
+
+---
+layout: default
 ---
 
 # 可算加法族
 
-集合 $X$ の部分集合族 $\mathfrak{B}$ が可算加法族であるとは,
+$X$ の部分集合族 $\mathfrak{B}\subset 2^X$ が可算加法族であるとは, 次を満たすことである.
 
-- $\emptyset\in\mathfrak{B}$
-- $A\in\mathfrak{B}$ なら $A^c\in\mathfrak{B}$
-- $A_n\in\mathfrak{B}$ なら $\bigcup_{n=1}^{\infty}A_n\in\mathfrak{B}$
+**全体空間に対する閉性**
 
-を満たすことである.
+$$
+X\in\mathfrak{B}
+$$
 
-::note
-有限回の集合演算だけでなく, 可算回の和に閉じていることが測度論の基本言語になる.
-::
+**補集合に対する閉性**
 
-::right::
+$$
+A\in\mathfrak{B}
+\quad\Longrightarrow\quad
+A^c\in\mathfrak{B}
+$$
 
-<img class="slide-figure" src="../figures/measure/static/concepts/sigma_algebra_closure.png" alt="可算加法族の閉性を示す概念図" />
+**可算和に対する閉性**
+
+$$
+A_1,A_2,\ldots\in\mathfrak{B}
+\quad\Longrightarrow\quad
+\bigcup_{n=1}^{\infty}A_n\in\mathfrak{B}
+$$
+
+測度はこのような集合族の上で定義される.
 
 ---
-layout: two-cols
+layout: default
+---
+
+# Carathéodory の定理
+
+外測度 $\Gamma$ に対して, $\Gamma$-可測集合全体を $\mathfrak{M}_\Gamma$ と書く.
+
+Carathéodory の定理は次を主張する.
+
+- $\mathfrak{M}_\Gamma$ は可算加法族である.
+- $\Gamma$ を $\mathfrak{M}_\Gamma$ に制限すると測度になる.
+
+Lebesgue 測度の構成は, この定理を Lebesgue 外測度に適用したものである.
+
+---
+layout: default
 ---
 
 # 測度
 
-可算加法族 $\mathfrak{B}$ 上の函数
+可算加法族 $\mathfrak{B}$ 上の集合函数 $\mu:\mathfrak{B}\to[0,\infty]$ が次を満たすとき, $\mu$ を**測度**という.
+
+**非負性と空集合**
 
 $$
-\mu:\mathfrak{B}\to\mathbb{R}\cup\{\infty\}
+0\le\mu(A)\le\infty,\qquad \mu(\emptyset)=0
 $$
 
-が測度であるとは, 互いに素な集合列 $A_1,A_2,\ldots$ に対して
+**可算加法性**
+
+互いに素な $A_1,A_2,\ldots\in\mathfrak{B}$ に対して
 
 $$
 \mu\left(\bigcup_{n=1}^{\infty}A_n\right)
@@ -48,79 +157,29 @@ $$
 \sum_{n=1}^{\infty}\mu(A_n)
 $$
 
-を満たすことである.
-
-::right::
-
-<img class="slide-figure" src="../figures/measure/static/concepts/measure_additivity_partition.png" alt="互いに素な集合の測度を足し合わせる概念図" />
-
 ---
-layout: two-cols
+layout: default
 ---
 
-# 測度空間
+# 測度の基本性質: 単調性
 
-測度空間とは, 次の三つの組である.
+$A\subset B$ かつ $A,B\in\mathfrak{B}$ ならば
 
-::diagram
 $$
-(X,\mathfrak{B},\mu)
+\mu(A)\le \mu(B)
 $$
-::
 
-::example-box{title="記号の読み方"}
-$X$ は空間.
+である.
 
-$\mathfrak{B}$ は測れる集合の族.
-
-$\mu$ はその集合に大きさを与える測度.
-::
-
-::right::
-
-<img class="slide-figure" src="../figures/measure/static/concepts/measure_space_examples.png" alt="測度空間の三つの要素と例" />
+これは $B=A\sqcup(B-A)$ と分解して可算加法性を使えば得られる.
 
 ---
-layout: two-cols
+layout: default
 ---
 
-# 測度空間の例
+# 測度の基本性質: 可算劣加法性
 
-::example-box{title="Lebesgue 測度空間"}
-$$
-(\mathbb{R}^N,\mathfrak{M}_{\mu^*},\mu)
-$$
-::
-
-::example-box{title="Borel 測度空間"}
-$$
-(\mathbb{R}^N,\mathfrak{B}(\mathbb{R}^N),\mu|_{\mathfrak{B}(\mathbb{R}^N)})
-$$
-::
-
-::example-box{title="確率空間"}
-$$
-(\Omega,\mathfrak{B},P),
-\qquad
-P(\Omega)=1
-$$
-::
-
-::right::
-
-<img class="slide-figure" src="../figures/measure/static/concepts/measure_space_examples.png" alt="Lebesgue 空間 Borel 測度空間 確率空間の例" />
-
----
-layout: two-cols
----
-
-# 測度の基本性質
-
-可算加法性から次が従う.
-
-$$
-A\subset B\Longrightarrow \mu(A)\le\mu(B)
-$$
+測度 $\mu$ は任意の可測集合列 $A_1,A_2,\ldots$ に対して
 
 $$
 \mu\left(\bigcup_{n=1}^{\infty}A_n\right)
@@ -128,25 +187,33 @@ $$
 \sum_{n=1}^{\infty}\mu(A_n)
 $$
 
+を満たす.
+
+---
+layout: default
+---
+
+# 測度の基本性質: 下からの連続性
+
+$A_1\subset A_2\subset\cdots$ ならば
+
 $$
-A_1\subset A_2\subset\cdots
-\Longrightarrow
 \mu\left(\bigcup_{n=1}^{\infty}A_n\right)
 =
 \lim_{n\to\infty}\mu(A_n)
 $$
 
-::right::
+が成り立つ.
 
-<img class="slide-figure" src="../figures/measure/static/concepts/measure_additivity_partition.png" alt="測度の基本性質を支える加法性の概念図" />
+これは極限操作と測度を結びつける基本性質である.
 
 ---
-layout: two-cols
+layout: default
 ---
 
 # 零集合と a.e.
 
-集合 $N\in\mathfrak{B}$ が
+$N\in\mathfrak{B}$ が
 
 $$
 \mu(N)=0
@@ -154,7 +221,14 @@ $$
 
 を満たすとき, $N$ を零集合という.
 
-命題 $P(x)$ が零集合を除いて成り立つとき,
+集合 $E\in\mathfrak{B}$ 上の命題 $P(x)$ が, ある零集合 $N\subset E$ を除いて成り立つとき,
+
+$$
+\mu(N)=0,\qquad
+x\in E\setminus N\Longrightarrow P(x)
+$$
+
+である. このとき
 
 $$
 P(x)\quad \mu\text{-a.e. }x\in E
@@ -162,12 +236,113 @@ $$
 
 と書く.
 
-::note
-測度論では, 例外が全くないことよりも, 例外の測度が 0 であることが本質的になる.
-::
+---
+layout: default
+---
 
-::right::
+# 測度空間
 
-<img class="slide-figure" src="../figures/measure/static/concepts/null_set_ae.png" alt="測度 0 の例外を除いて一致する概念図" />
+空間 $X$, その上の可算加法族 $\mathfrak{B}$, および $\mathfrak{B}$ 上の測度 $\mu$ の組
+
+$$
+(X,\mathfrak{B},\mu)
+$$
+
+を測度空間という.
+
+前章の構成は, Lebesgue 外測度から一つの測度空間を作る手続きだったと見なせる.
 
 ---
+layout: default
+---
+
+# Lebesgue 測度空間
+
+Lebesgue 測度空間は
+
+$$
+(\mathbb{R}^N,\mathfrak{M}_{\mu^*},\mu)
+$$
+
+である.
+
+ここで $\mathfrak{M}_{\mu^*}$ は Lebesgue 可測集合全体であり, $\mu$ は Lebesgue 測度である.
+
+---
+layout: default
+---
+
+# Borel 測度空間
+
+開集合をすべて含む最小の可算加法族を Borel 集合族といい,
+
+$$
+\mathfrak{B}(\mathbb{R}^N)
+$$
+
+と書く.
+
+Lebesgue 測度 $\mu$ を Borel 集合族に制限すると,
+
+$$
+(\mathbb{R}^N,\mathfrak{B}(\mathbb{R}^N),\mu|_{\mathfrak{B}(\mathbb{R}^N)})
+$$
+
+も測度空間になる.
+
+---
+layout: default
+---
+
+# 確率空間
+
+確率空間も測度空間の一種である.
+
+$$
+(\Omega,\mathfrak{B},P)
+$$
+
+と書き, 全体空間の測度が
+
+$$
+P(\Omega)=1
+$$
+
+であることを要求する. 事象 $A,B\in\mathfrak{B}$ に対して, $A^c$, $A\cup B$, $A\cap B$, $B-A$ も再び事象である.　測度の基本性質から
+
+$$
+P(A^c)=P(\Omega-A)=P(\Omega)-P(A)=1-P(A)
+$$
+
+$$
+P(A\cup B)=P(A)+P(B)-P(A\cap B)
+$$
+
+が成り立つ. 特に $A\cap B=\emptyset$ なら
+
+$$
+P(A\cup B)=P(A)+P(B)
+$$
+
+---
+layout: default
+---
+
+# 測度空間としての対応表
+
+| 場面 | 空間 | 可測集合族 | 測度 |
+| --- | --- | --- | --- |
+| 抽象的な測度空間 | $X$ | $\mathfrak{B}$ | $\mu$ |
+| ユークリッド空間 | $\mathbb{R}^N$ | $\mathfrak{M}_{\mu^*}$ | Lebesgue 測度 $\mu$ |
+| 確率空間 | $\Omega$ | 事象の集合族 $\mathfrak{B}$ | 確率測度 $P$ |
+
+同じ記号の枠組みで, 長さ・面積・体積と確率を統一的に扱う.
+
+---
+layout: end
+---
+
+# この章の中心メッセージ
+
+- 測度空間 $(X,\mathfrak{B},\mu)$ は, 集合に大きさを与える理論の抽象的枠組みである.
+- 本質は, 可算集合操作に閉じた集合族 $\mathfrak{B}$ と, その上で可算加法性を満たす測度 $\mu$ にある.

@@ -133,9 +133,11 @@ html.dark,
 }
 
 .slidev-layout.cover h1 {
-  max-width: 15ch;
-  font-size: 3.45rem;
+  max-width: none;
+  width: 100%;
+  font-size: 3.25rem;
   line-height: 1.08;
+  white-space: nowrap;
 }
 
 .slidev-layout.cover p {
@@ -157,9 +159,11 @@ html.dark,
 
 .slidev-layout.section h1,
 .slidev-layout.end h1 {
-  max-width: 16ch;
-  font-size: 3rem;
+  max-width: none;
+  width: 100%;
+  font-size: 2.55rem;
   line-height: 1.1;
+  white-space: nowrap;
 }
 
 .slidev-layout.section p {
@@ -172,11 +176,35 @@ html.dark,
   font-size: 1.08rem;
 }
 
+.slidev-layout.end {
+  justify-items: start;
+  text-align: left;
+}
+
+.slidev-layout.end h1,
+.slidev-layout.end ul {
+  justify-self: start;
+  text-align: left;
+}
+
 .slidev-layout.two-cols,
 .slidev-layout.two-cols-header {
+  position: relative;
   column-gap: 2.4rem;
   grid-template-columns: minmax(0, 1.2fr) minmax(15rem, 0.8fr);
   align-items: stretch;
+  padding-top: 5.6rem;
+}
+
+.slidev-layout.two-cols h1:first-child,
+.slidev-layout.two-cols-header h1:first-child {
+  position: absolute;
+  top: 2.5rem;
+  left: 3.6rem;
+  right: 3.6rem;
+  width: auto;
+  max-width: none;
+  white-space: nowrap;
 }
 
 .slidev-layout.two-cols > div,

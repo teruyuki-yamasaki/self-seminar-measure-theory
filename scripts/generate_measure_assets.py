@@ -385,6 +385,147 @@ def draw_riemann_vs_lebesgue(outdir: Path) -> None:
     plt.close(fig)
 
 
+def draw_riemann_local_tagged_partition(outdir: Path) -> None:
+    def local_curve(values: np.ndarray) -> np.ndarray:
+        return 0.18 + 0.74 * np.exp(-18.0 * (values - 0.50) ** 2)
+
+    x_left, x_right = 0.22, 0.78
+    x = np.linspace(x_left, x_right, 700)
+    y = local_curve(x)
+    edges = np.linspace(x_left, x_right, 4)
+    tags = np.array([0.33, 0.54, 0.68])
+    heights = local_curve(tags)
+    focus_index = 1
+
+    fig, ax = plt.subplots(figsize=(9.2, 5.6))
+    fig.subplots_adjust(left=0.09, right=0.98, bottom=0.17, top=0.90)
+    ax.plot(x, y, color=COLORS["ink"], lw=3.2, zorder=6)
+
+    for index, (left, right, tag, height) in enumerate(zip(edges[:-1], edges[1:], tags, heights)):
+        is_focus = index == focus_index
+        ax.add_patch(
+            Rectangle(
+                (left, 0),
+                right - left,
+                float(height),
+                facecolor=COLORS["blue"],
+                edgecolor=COLORS["blue"],
+                lw=2.0 if is_focus else 1.0,
+                alpha=0.36 if is_focus else 0.17,
+                zorder=2,
+            )
+        )
+        ax.plot([left, right], [height, height], color=COLORS["blue"], lw=2.5 if is_focus else 1.2, alpha=0.95 if is_focus else 0.45)
+
+    ax.vlines(edges, 0, 0.98, color=COLORS["blue"], lw=1.1, alpha=0.45, zorder=1)
+
+    left, right = edges[focus_index], edges[focus_index + 1]
+    tag = tags[focus_index]
+    height = float(heights[focus_index])
+    ax.plot(tag, height, marker="o", ms=8.5, color=COLORS["red"], zorder=8)
+    ax.vlines(tag, 0, height, color=COLORS["red"], lw=1.8, ls="--", alpha=0.75, zorder=7)
+    ax.hlines(height, x_left, tag, color=COLORS["red"], lw=1.4, ls="--", alpha=0.55, zorder=1)
+    ax.annotate(
+        r"代表点 $(\xi_i, f(\xi_i))$",
+        xy=(tag, height),
+        xytext=(tag + 0.040, height + 0.040),
+        arrowprops={"arrowstyle": "->", "lw": 1.6, "color": COLORS["red"]},
+        fontsize=18,
+        color=COLORS["red"],
+    )
+    ax.annotate(
+        r"幅 $|\Delta_i|=x_i-x_{i-1}$",
+        xy=((left + right) / 2, 0.055),
+        xytext=((left + right) / 2, 0.18),
+        ha="center",
+        arrowprops={"arrowstyle": "<->", "lw": 1.5, "color": COLORS["blue"], "shrinkA": 0, "shrinkB": 0},
+        fontsize=17,
+        color=COLORS["blue"],
+    )
+    ax.annotate("", xy=(left, 0.055), xytext=(right, 0.055), arrowprops={"arrowstyle": "<->", "lw": 1.7, "color": COLORS["blue"]})
+
+    ax.text(left, -0.030, r"$x_{i-1}$", ha="center", va="top", fontsize=19)
+    ax.text(right, -0.030, r"$x_i$", ha="center", va="top", fontsize=19)
+    ax.text(tag, -0.030, r"$\xi_i$", ha="center", va="top", fontsize=19, color=COLORS["red"])
+    ax.text(x_left + 0.008, height + 0.014, r"$f(\xi_i)$", ha="left", va="bottom", fontsize=18, color=COLORS["red"])
+    ax.text((left + right) / 2, height * 0.55, r"$f(\xi_i)|\Delta_i|$", ha="center", va="center", fontsize=20, color=COLORS["blue"])
+
+    ax.set_xlim(x_left, x_right)
+    ax.set_ylim(-0.06, 1.02)
+    ax.spines["bottom"].set_position(("data", 0))
+    ax.set_title("Riemann 積分: 定義域の短冊を一つ見る", fontsize=21, weight="bold")
+    ax.set_xlabel("x", fontsize=20)
+    ax.set_ylabel("y", fontsize=20)
+    ax.xaxis.set_label_coords(0.5, -0.12)
+    hide_numeric_tick_labels(ax)
+    ax.grid(color=COLORS["grid"], lw=0.8)
+
+    fig.savefig(static_dir(outdir) / "riemann_local_tagged_partition.png")
+    plt.close(fig)
+
+
+def draw_lebesgue_local_value_band(outdir: Path) -> None:
+    def local_curve(values: np.ndarray) -> np.ndarray:
+        return 0.18 + 0.74 * np.exp(-18.0 * (values - 0.50) ** 2)
+
+    x_left, x_right = 0.22, 0.78
+    x = np.linspace(x_left, x_right, 1000)
+    y = local_curve(x)
+    y_k, y_next = 0.46, 0.66
+    mask = (y_k <= y) & (y < y_next)
+
+    fig, ax = plt.subplots(figsize=(9.2, 5.6))
+    fig.subplots_adjust(left=0.09, right=0.98, bottom=0.17, top=0.90)
+    ax.plot(x, y, color=COLORS["ink"], lw=3.2, zorder=6)
+
+    ax.axhspan(y_k, y_next, color=COLORS["yellow"], alpha=0.16, zorder=0)
+    ax.hlines([y_k, y_next], x_left, x_right, color=COLORS["yellow"], lw=2.2, linestyles="--", zorder=1)
+    ax.fill_between(x, 0, y_k, where=mask, color=COLORS["green"], alpha=0.35, zorder=2)
+    ax.fill_between(x, y_k, np.minimum(y, y_next), where=mask, color=COLORS["yellow"], alpha=0.34, zorder=3)
+    padded_mask = np.r_[False, mask, False]
+    starts = np.flatnonzero((~padded_mask[:-1]) & padded_mask[1:])
+    ends = np.flatnonzero(padded_mask[:-1] & (~padded_mask[1:]))
+    for start, end in zip(starts, ends):
+        segment_left = float(x[start])
+        segment_right = float(x[end - 1])
+        ax.plot(x[start:end], y[start:end], color=COLORS["green"], lw=4.5, zorder=7)
+        ax.plot([segment_left, segment_right], [0.025, 0.025], color=COLORS["green"], lw=6.0, solid_capstyle="round", zorder=8)
+        ax.vlines([segment_left, segment_right], 0, y_next, color=COLORS["green"], lw=1.3, ls=":", alpha=0.55, zorder=1)
+
+    representative_x = float(np.mean(x[mask]))
+    ax.annotate(
+        r"$E_k=\{x:\ y_k\leq f(x)<y_{k+1}\}$",
+        xy=(representative_x, 0.025),
+        xytext=(representative_x, 0.20),
+        ha="center",
+        arrowprops={"arrowstyle": "->", "lw": 1.5, "color": COLORS["green"]},
+        fontsize=19,
+        color=COLORS["green"],
+    )
+    ax.text(x_left + 0.008, y_k + 0.008, r"$y_k$", ha="left", va="bottom", fontsize=20, color=COLORS["yellow"])
+    ax.text(x_left + 0.008, y_next + 0.008, r"$y_{k+1}$", ha="left", va="bottom", fontsize=20, color=COLORS["yellow"])
+    ax.text(x_right - 0.008, (y_k + y_next) / 2, "値域の一層", ha="right", va="center", fontsize=18, color=COLORS["yellow"])
+    ax.text(representative_x, y_k / 2 + 0.110, r"$y_k\mu(E_k)$", ha="center", va="center", fontsize=20, color=COLORS["green"])
+
+    ax.set_xlim(x_left, x_right)
+    ax.set_ylim(-0.06, 1.02)
+    ax.spines["bottom"].set_position(("data", 0))
+    ax.set_title("Lebesgue 積分: 値域の一層から逆像を見る", fontsize=21, weight="bold")
+    ax.set_xlabel("x", fontsize=20)
+    ax.set_ylabel("y", fontsize=20)
+    ax.xaxis.set_label_coords(0.5, -0.12)
+    hide_numeric_tick_labels(ax)
+    ax.grid(color=COLORS["grid"], lw=0.8)
+
+    fig.savefig(static_dir(outdir) / "lebesgue_local_value_band.png")
+    plt.close(fig)
+
+
+def draw_local_integral_views(outdir: Path) -> None:
+    draw_riemann_local_tagged_partition(outdir)
+    draw_lebesgue_local_value_band(outdir)
+
+
 def draw_expectation_as_integral(outdir: Path) -> None:
     fig, ax = plt.subplots(figsize=(12.5, 6.8))
     ax.set_xlim(0, 1)
@@ -875,7 +1016,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--frames", type=int, default=72)
     parser.add_argument(
         "--only",
-        choices=["all", "riemann_refinement", "riemann_area_convergence", "lebesgue_layers"],
+        choices=["all", "riemann_refinement", "riemann_area_convergence", "lebesgue_layers", "local_integral_views"],
         default="all",
         help="Generate only one asset group.",
     )
@@ -905,8 +1046,14 @@ def main() -> None:
         print(f"Generated lebesgue_layers in {args.outdir}")
         return
 
+    if args.only == "local_integral_views":
+        draw_local_integral_views(args.outdir)
+        print(f"Generated local_integral_views in {args.outdir}")
+        return
+
     draw_measure_zero(args.outdir)
     draw_riemann_vs_lebesgue(args.outdir)
+    draw_local_integral_views(args.outdir)
     draw_expectation_as_integral(args.outdir)
     draw_fubini_grid(args.outdir)
     draw_readme_preview_gif(args.outdir)

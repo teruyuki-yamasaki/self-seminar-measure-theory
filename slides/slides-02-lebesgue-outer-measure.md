@@ -4,7 +4,17 @@ layout: section
 
 # 第2章 可算操作への移行：Lebesgue 外測度
 
-有限操作から可算操作へ
+有限近似から可算被覆へ
+
+---
+layout: default
+---
+
+# 目的
+
+Jordan 測度の限界を踏まえ, 可算個の $N$ 次元区間による被覆を用いて $\mathbb{R}^N$ 上の Lebesgue 外測度を導入する.
+
+Lebesgue 外測度は任意集合に定義されるが, そのまま測度ではない.
 
 ---
 layout: two-cols
@@ -12,63 +22,74 @@ layout: two-cols
 
 # 可算被覆
 
-集合 $A\subset\mathbb{R}^N$ を区間列 $I_1,I_2,\ldots$ によって覆うとは,
+集合 $A\subset\mathbb{R}^N$ を区間列 $I_1,I_2,\ldots\in\mathfrak{I}_N$ で覆うとは,
 
 $$
 A\subset\bigcup_{k=1}^{\infty}I_k
 $$
 
-が成り立つことをいう.
+が成り立つことである.
 
-::example-box{title="Jordan からの移行"}
-Jordan 的外側近似では有限個の区間塊を使った.
+Jordan 的外側近似では有限個の区間塊で覆った. Lebesgue 外測度では, 最初から可算個の区間による被覆を許す.
 
-Lebesgue 外測度では, 最初から可算個の区間被覆を許す.
-::
+この被覆のコストは
+
+$$
+\sum_{k=1}^{\infty}m(I_k)
+$$
+
+で測る.
 
 ::right::
 
-<img class="slide-figure" src="../figures/measure/static/concepts/countable_cover_plan.png" alt="集合を可算個の区間で覆う概念図" />
+<img class="slide-figure" src="../figures/measure/animations/outer_measure_quadtree_late_stages/gif/outer_measure_quadtree_late_stages_cover_only.gif" alt="可算被覆の細分化" />
 
 ---
 layout: two-cols
 ---
 
-# Lebesgue 外測度
+# Lebesgue 外測度 $\mu^*$ の定義
 
-集合 $A\subset\mathbb{R}^N$ に対して
+$A\subset\mathbb{R}^N$ に対して
 
 $$
-\mu^*(A)
-=
+\mu^*(A)=
 \inf\left\{
 \sum_{k=1}^{\infty}m(I_k)
-\ \middle|\
-A\subset\bigcup_{k=1}^{\infty}I_k,\ I_k\in\mathfrak{I}_N
+\mid
+A\subset\bigcup_{k=1}^{\infty}I_k
 \right\}
 $$
 
 と定める.
 
-::note
-$\mu^*$ は $\mathbb{R}^N$ の任意の部分集合に対して定義される. その代わり, この段階では測度ではなく外測度である.
-::
+これはすべての可算被覆にわたる被覆和の下限である.
 
 ::right::
 
-<img class="slide-figure" src="../figures/measure/static/concepts/outer_measure_infimum.png" alt="外測度を被覆コストの下限として見る概念図" />
+<img class="slide-figure" src="../figures/measure/animations/outer_measure_quadtree_late_stages/gif/outer_measure_quadtree_late_stages.gif" alt="被覆和と Lebesgue 外測度" />
 
 ---
 layout: two-cols
 ---
 
-# 外測度としての性質
+# Lebesgue 外測度の基本性質
 
-Lebesgue 外測度は次を満たす.
+Lebesgue 外測度 $\mu^*$ は次を満たす.
 
-- 非負性
-- 単調性
-- 可算劣加法性
+**非負性と空集合**
+
+$$
+0\le\mu^*(A)\le\infty,\qquad \mu^*(\emptyset)=0
+$$
+
+**単調性**
+
+$$
+A\subset B\quad\Longrightarrow\quad \mu^*(A)\le\mu^*(B)
+$$
+
+**可算劣加法性**
 
 $$
 \mu^*\left(\bigcup_{n=1}^{\infty}A_n\right)
@@ -76,90 +97,112 @@ $$
 \sum_{n=1}^{\infty}\mu^*(A_n)
 $$
 
-::note
-ここで得られるのは等号ではなく不等号である. 可算加法性は次章で可測集合へ制限してから回復する.
-::
+ただし, この段階では可算加法性は得られていない.
 
 ::right::
 
-<img class="slide-figure" src="../figures/measure/animations/caratheodory_outer_measure_axioms/gif/caratheodory_outer_measure_axioms.gif" alt="外測度の基本性質" />
+<img class="slide-figure" src="../figures/measure/animations/lebesgue_outer_measure_axioms/gif/lebesgue_outer_measure_axioms.gif" alt="Lebesgue 外測度の基本性質" />
 
 ---
-layout: two-cols
+layout: default
 ---
 
-# Jordan 測度との違い
+# Jordan 測度 $J$ との違い
 
-::example-box{title="定義域と代償"}
-Jordan 測度 $J$ は定義域を Jordan 可測集合に制限する代わりに加法的な面積概念になる.
+| 対象 | Jordan 測度 $J$ | Lebesgue 外測度 $\mu^*$ |
+| --- | --- | --- |
+| 定義域 | Jordan 可測な有界集合 $\mathcal{J}_N$ | 任意の部分集合 $2^{\mathbb{R}^N}$ |
+| 値域 | $[0,\infty)$ | $[0,\infty]$ |
+| 段階 | すでに測度である | この段階では外測度である |
+| 加法性 | 加法性を持つ | 一般には加法性を持たず, 劣加法性にとどまる |
 
-Lebesgue 外測度 $\mu^*$ は任意の部分集合に定義される代わりに, この段階では可算加法性を持たない.
-::
+Jordan 測度は定義域を $\mathcal{J}_N$ に制限する代わりに加法的である.
 
-$$
-J:\mathcal{J}_N\to[0,\infty),
-\qquad
-\mu^*:2^{\mathbb{R}^N}\to\mathbb{R}\cup\{\infty\}
-$$
+Lebesgue 外測度は定義域を $2^{\mathbb{R}^N}$ まで広げる代わりに, まだ測度ではない.
 
-::right::
-
-<img class="slide-figure" src="../figures/measure/static/concepts/lebesgue_measure_restriction.png" alt="任意集合上の外測度から可測集合へ制限する概念図" />
+このため次に, 可算操作に閉じた可測集合族を取り出す必要がある.
 
 ---
-layout: two-cols
+layout: default
 ---
 
-# 有限加法族から可算加法族へ
+# 補足: 有限和と可算和の違い
 
-有限加法族 $\mathfrak{F}$ では, 有限回の和・積・差に閉じる.
-
-しかし集合列
+有限加法族 $\mathfrak{F}$ では, 有限個の集合については
 
 $$
-E_1,E_2,E_3,\ldots\in\mathfrak{F}
+A_1,\ldots,A_n\in\mathfrak{F}
+\quad\Longrightarrow\quad
+\bigcup_{k=1}^n A_k\in\mathfrak{F}
 $$
 
-に対して
+が成り立つ. しかし可算個にすると, 自動ではない.
 
 $$
-\bigcup_{k=1}^{\infty}E_k
+A_1,A_2,\ldots\in\mathfrak{F}
+\quad\Longrightarrow\quad
+\bigcup_{k=1}^{\infty}A_k
 \overset{?}{\in}
 \mathfrak{F}
 $$
 
-が成り立つとは限らない.
+これは, 有理数の有限和は有理数だが, 有理数列の可算和の極限が有理数とは限らないことに似ている.
 
-::note
-可算集合や極限操作を扱うには, 有限加法族だけでは足りない.
-::
+$$
+\sum_{n=0}^{N}\frac{1}{n!}\in\mathbb{Q},
+\qquad
+\sum_{n=0}^{\infty}\frac{1}{n!}=e\notin\mathbb{Q}
+$$
 
-::right::
+---
+layout: default
+---
 
-<img class="slide-figure" src="../figures/measure/static/concepts/sigma_algebra_closure.png" alt="可算加法族が補集合と可算和に閉じる概念図" />
+# 補足: 可算劣加法性の意味
+
+外測度では, 互いに素な集合列に対しても一般には
+
+$$
+\mu^*\left(\bigcup_{n=1}^{\infty}A_n\right)
+=
+\sum_{n=1}^{\infty}\mu^*(A_n)
+$$
+
+とは限らない.
+
+この差が, 外測度と測度の違いである.
 
 ---
 layout: two-cols
 ---
 
-# 可算集合の外測度
+# 例: 可算集合の外測度
 
-可算集合
+可算集合 $A=\{x_1,x_2,\ldots\}$ に対して, 任意の $\varepsilon>0$ を取る.
 
-$$
-A=\{x_1,x_2,x_3,\ldots\}
-$$
-
-に対し, 各点 $x_k$ を体積 $\varepsilon/2^k$ 未満の区間で覆う.
-
-すると
+各点 $x_k$ を含む区間 $I_k$ を
 
 $$
-\sum_{k=1}^{\infty}m(I_k)<\varepsilon
+m(I_k)<\frac{\varepsilon}{2^k}
 $$
 
-となり, 任意の $\varepsilon>0$ で $\mu^*(A)\le\varepsilon$.
-したがって $\mu^*(A)=0$.
+となるように取れば,
+
+$$
+A\subset\bigcup_{k=1}^{\infty}I_k,\qquad
+\sum_{k=1}^{\infty}m(I_k)
+<
+\sum_{k=1}^{\infty}\frac{\varepsilon}{2^k}
+=\varepsilon
+$$
+
+である. よって任意の $\varepsilon>0$ に対して $\mu^*(A)\le\varepsilon$ となり,
+
+$$
+\mu^*(A)=0
+$$
+
+である.
 
 ::right::
 
@@ -169,18 +212,39 @@ $$
 layout: two-cols
 ---
 
-# 可測性への動機
+# 平面内の可算点集合
 
-Lebesgue 外測度 $\mu^*$ は任意集合に定義されるが, 一般には可算加法性を満たさない.
+同じ考えは次元によらず成立する. 可算点集合を
 
-::example-box{title="次の問い"}
-どの集合に制限すれば, 外測度は加法的に振る舞うのか.
-::
+$$
+A=\{p_1,p_2,\ldots\}\subset\mathbb{R}^2
+$$
 
-この問いへの答えが Carathéodory 可測性である.
+とする. 各点 $p_k$ を含む正方形 $Q_k$ を
+
+$$
+m(Q_k)<\frac{\varepsilon}{2^k}
+$$
+
+となるように取れば,
+
+$$
+A\subset\bigcup_{k=1}^{\infty}Q_k,\qquad
+\sum_{k=1}^{\infty}m(Q_k)<\varepsilon
+$$
+
+である. したがって平面内の可算点集合も外測度 $0$ である.
 
 ::right::
 
-<img class="slide-figure" src="../figures/measure/animations/lebesgue_inner_outer_overlap/gif/lebesgue_inner_outer_overlap.gif" alt="外測度と内外近似" />
+<img class="slide-figure" src="../figures/measure/animations/rational_points_outer_approx/gif/rational_points_outer_approx.gif" alt="平面内の可算点集合の外側近似" />
 
 ---
+layout: end
+---
+
+# この章の中心メッセージ
+
+- Lebesgue 外測度 $\mu^*$ は, 任意集合に対して可算被覆により大きさを与える.
+- これにより Jordan 的有限近似では扱いにくかった集合にも大きさを割り当てられる.
+- ただし, この段階で得られるのはまだ外測度であり, 測度ではない.

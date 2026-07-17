@@ -60,6 +60,8 @@ $$
 
 ここで $\|\Delta\|:=\max_i |\Delta_i|$ とすれば, 分割を細かくするとは $\|\Delta\|\to0$ とみなせる.
 
+![Riemann 積分で中央の短冊と代表点を見る図](../../figures/measure/static/riemann_local_tagged_partition.png)
+
 ### Lebesgue 積分の考え方
 
 これに対して **Lebesgue 積分**では, まず**値域** $[\alpha,\beta]$ を分割
@@ -103,6 +105,8 @@ $$
 $$
 
 ここで $\|\Theta\|:=\max_k |\Theta_k|$ とすれば, 値域分割を細かくするとは $\|\Theta\|\to0$ とみなせる.
+
+![Lebesgue 積分で値域の一層と逆像区間を見る図](../../figures/measure/static/lebesgue_local_value_band.png)
 
 
 ### Riemann 積分と Lebesgue 積分の違い

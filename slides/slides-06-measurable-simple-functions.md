@@ -4,7 +4,17 @@ layout: section
 
 # 第5章 可測函数と単函数
 
-測度空間から積分の対象へ
+Lebesgue 積分の対象となる函数を準備する
+
+---
+layout: default
+---
+
+# 目的
+
+測度空間上で函数を積分するために, 可測函数と単函数を導入する.
+
+Lebesgue 積分では, 函数値そのものだけでなく, 値域の集合を定義域に戻した逆像が可測であることが重要になる.
 
 ---
 layout: two-cols
@@ -12,41 +22,22 @@ layout: two-cols
 
 # 可測函数
 
-測度空間 $(X,\mathfrak{B},\mu)$ 上の函数 $f:X\to\mathbb{R}$ が可測であるとは, 任意の実数 $a$ に対して
+測度空間 $(X,\mathfrak{B},\mu)$ 上の函数
 
 $$
-\{x\in X\mid f(x)>a\}\in\mathfrak{B}
+f:X\to\mathbb{R}
 $$
 
-が成り立つこと.
-
-::note
-函数の値によって定まる集合が測度で扱えることを要求している.
-::
-
-::right::
-
-<img class="slide-figure" src="../figures/measure/animations/measurable_function_preimage_2d/gif/measurable_function_preimage_2d.gif" alt="可測函数が値域の集合を定義域の可測集合へ戻す概念図" />
-
----
-layout: two-cols
----
-
-# 逆像として見る
-
-値域側の区間を切り出したとき, その逆像が定義域側で可測集合になる.
+が可測であるとは, 任意の $\alpha<\beta$ に対して
 
 $$
-f^{-1}([\alpha,\beta))\in\mathfrak{B}
+f^{-1}([\alpha,\beta))
+=
+\{x\in X\mid \alpha\le f(x)<\beta\}
+\in\mathfrak{B}
 $$
 
-この条件により
-
-$$
-\mu\left(\{x\mid \alpha\le f(x)<\beta\}\right)
-$$
-
-が定義できる.
+が成り立つことである.
 
 ::right::
 
@@ -56,29 +47,52 @@ $$
 layout: two-cols
 ---
 
-# 定義函数
+# 2次元の可測函数の逆像
 
-集合 $E\subset X$ の定義函数は
+可測性は, 値域側で切った集合を定義域側に戻したときに, その集合の大きさを測れることを保証する.
+
+平面領域でも同様に,
 
 $$
-\mathbf{1}_E(x)=
-\begin{cases}
-1 & (x\in E),\\
-0 & (x\notin E)
-\end{cases}
+\{(x,y)\in X\mid \alpha\le f(x,y)<\beta\}
+=
+f^{-1}([\alpha,\beta))
+\in\mathfrak{B}
 $$
 
-である.
+であることを見る.
 
-$E\in\mathfrak{B}$ であるとき, $\mathbf{1}_E$ は可測函数である.
-
-::note
-集合 $E$ が可測であることと, その定義函数 $\mathbf{1}_E$ が可測であることは同値である.
-::
+Lebesgue 積分では, 値域の層ごとの逆像を測るため, この性質が基本になる.
 
 ::right::
 
-<img class="slide-figure" src="../figures/measure/static/concepts/indicator_function_set.png" alt="集合を 0 と 1 の定義函数として見る概念図" />
+<img class="slide-figure" src="../figures/measure/animations/measurable_function_preimage_2d/gif/measurable_function_preimage_2d.gif" alt="2次元の可測函数の逆像" />
+
+---
+layout: default
+---
+
+# 定義函数
+
+集合 $A\in\mathfrak{B}$ に対して, 定義函数を
+
+$$
+\mathbf{1}_A(x)=
+\begin{cases}
+1 & x\in A,\\
+0 & x\notin A
+\end{cases}
+$$
+
+で定める.
+
+可測集合の定義函数は可測函数であり, 逆に
+
+$$
+E=\{x\in X\mid \mathbf{1}_E(x)>1/2\}
+$$
+
+なので, $\mathbf{1}_E$ が可測なら $E\in\mathfrak{B}$ である.
 
 ---
 layout: two-cols
@@ -86,17 +100,17 @@ layout: two-cols
 
 # 単函数
 
-単函数とは
+単函数とは, 有限個の値しか取らない可測函数である.
+
+典型的には, 互いに素な可測集合 $E_k$ によって
 
 $$
-\varphi=\sum_{k=1}^{n}a_k\mathbf{1}_{E_k}
+\varphi(x)=\sum_{k=1}^n a_k\mathbf{1}_{E_k}(x),
+\qquad
+X=E_1+\cdots+E_n
 $$
 
-の形で表される可測函数である.
-
-::example-box{title="基本単位"}
-単函数は, 有限個の可測集合上で定数値を取る函数である.
-::
+と書ける.
 
 ::right::
 
@@ -106,38 +120,75 @@ $$
 layout: two-cols
 ---
 
+# 単函数の値と可測集合
+
+単函数は, 定義域を有限個の可測集合に分け, 各部分集合で一定値を取る函数である.
+
+値を $a_1,\ldots,a_n$ とすれば
+
+$$
+E_k=\{x\in X\mid \varphi(x)=a_k\}\in\mathfrak{B}
+$$
+
+であり, この $E_k$ が積分で測る対象になる.
+
+Lebesgue 積分では, まず単函数の積分を定義し, そこから一般の非負可測函数へ拡張する.
+
+::right::
+
+<img class="slide-figure" src="../figures/measure/animations/simple_function_examples_2d/gif/simple_function_examples_2d.gif" alt="単函数の値と可測集合" />
+
+---
+layout: default
+---
+
+# 非負単函数
+
+非負単函数は, 係数 $a_i$ がすべて $0$ 以上である単函数である.
+
+$$
+\varphi=\sum_{i=1}^n a_i\mathbf{1}_{A_i},
+\qquad a_i\ge0
+$$
+
+非負単函数の積分は, 各値とその値を取る集合の測度の積の有限和として定義される.
+
+$$
+\int_X\varphi\,d\mu
+:=
+\sum_{i=1}^n a_i\mu(A_i)
+$$
+
+---
+layout: two-cols
+---
+
 # 単函数による近似
 
-非負可測函数は, 非負単函数列によって下から単調に近似できる.
+非負可測函数は, 下から増加する非負単函数列で近似できる.
 
 $$
-0\le\varphi_1\le\varphi_2\le\cdots\le f,
-\qquad
-\varphi_n(x)\uparrow f(x)
+0\le \varphi_1\le\varphi_2\le\cdots\le f
 $$
 
-::note
-この事実が Lebesgue 積分の定義を支えている.
-::
+かつ各点で
+
+$$
+\varphi_n(x)\nearrow f(x)
+$$
+
+この事実が, 非負可測函数の Lebesgue 積分を定義する土台になる.
 
 ::right::
 
 <img class="slide-figure" src="../figures/measure/animations/monotone_simple_approximation/gif/monotone_simple_approximation.gif" alt="非負可測函数の単函数近似" />
 
 ---
-layout: two-cols
+layout: end
 ---
 
-# 第5章の結論
+# この章の中心メッセージ
 
-::example-box{title="中心メッセージ"}
-可測函数とは, 値によって定まる集合が測度で扱える函数である.
-
-単函数は可測集合の定義函数の有限線形結合であり, Lebesgue 積分を構成する基本単位である.
-::
-
-::right::
-
-<img class="slide-figure" src="../figures/measure/static/concepts/simple_function_algebra.png" alt="単函数を定義函数の有限線形結合として見る概念図" />
-
----
+- 可測函数とは, 値域側の集合の逆像が可測集合になる函数である.
+- 定義函数と単函数は, 可測函数を組み立てる基本部品である.
+- 非負可測函数は, 下から増加する単函数列で近似できる.
