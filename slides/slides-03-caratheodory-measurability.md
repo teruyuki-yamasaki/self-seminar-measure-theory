@@ -17,7 +17,7 @@ Lebesgue 外測度 $\mu^*$ から, 可算加法的な測度を得るために, L
 その上で $\mu^*$ を制限したものが Lebesgue 測度である.
 
 ---
-layout: two-cols
+layout: two-rows
 ---
 
 # Lebesgue 内測度
@@ -28,9 +28,7 @@ $$
 \mu_*(A;I):=m(I)-\mu^*(I\cap A^c)
 $$
 
-と見る.
-
-外側から $A^c$ を覆って, 残った部分を $A$ の内側の大きさと考える.
+と見る. すなわち, 外側から $A^c$ を覆って, 残った部分を $A$ の内側の大きさと考える.
 
 ::right::
 
@@ -72,31 +70,27 @@ $$
 
 ::right::
 
-<img class="slide-figure" src="../figures/measure/animations/lebesgue_inner_outer_overlap/gif/lebesgue_inner_outer_overlap.gif" alt="外測度と内外近似" />
+<img class="slide-figure" src="../figures/measure/animations/lebesgue_inner_outer_overlap/gif/lebesgue_inner_outer_overlap_vertical.gif" alt="外測度と内外近似" />
 
 ---
-layout: two-cols
+layout: two-rows
 ---
 
 # Lebesgue 可測集合
 
-集合 $E\in 2^{\mathbb{R}^N}$ が Lebesgue 可測であるとは, 任意の集合 $B\in 2^{\mathbb{R}^N}$ に対して
+集合 $E\in 2^{\mathbb{R}^N}$ が Lebesgue 可測であるとは, 任意の集合 $B\in 2^{\mathbb{R}^N}$ に対して次が成り立つことである:
 
 $$
 \mu^*(B)=\mu^*(B\cap E)+\mu^*(B\cap E^c)
 $$
 
-が成り立つことである.
-
-Lebesgue 可測集合全体を
+Lebesgue 可測集合全体を次のように書く:
 
 $$
 \mathfrak{M}_{\mu^*}
 :=
 \{E\in 2^{\mathbb{R}^N}\mid E\text{ は Lebesgue 可測}\}
 $$
-
-と書く.
 
 ::right::
 

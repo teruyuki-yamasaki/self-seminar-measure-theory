@@ -31,24 +31,12 @@ $$
 
 が次を満たすとき, $\Gamma$ を $X$ 上の **外測度** という.
 
-1. （空集合の外測度）$\Gamma(\emptyset)=0$.
-2. （単調性）$A\subset B$ ならば
-
-$$
-\Gamma(A)\leq\Gamma(B).
-$$
-
-3. （可算劣加法性）$A_1,A_2,\ldots\subset X$ ならば
-
-$$
-\Gamma\left(\bigcup_{n=1}^{\infty}A_n\right)
-\leq
-\sum_{n=1}^{\infty}\Gamma(A_n).
-$$
+|  | **非負性と空集合** | **単調性** | **可算劣加法性** |
+| --- | --- | --- | --- |
+| **式** | $\displaystyle 0\leq\Gamma(A)\leq\infty,\quad \Gamma(\emptyset)=0$ | $\displaystyle A\subset B\Longrightarrow \Gamma(A)\leq\Gamma(B)$ | $\displaystyle \Gamma\left(\bigcup_{n=1}^{\infty}A_n\right)\leq\sum_{n=1}^{\infty}\Gamma(A_n)$ |
+| **図** | <img src="../../figures/measure/animations/caratheodory_outer_measure_axioms/gif/caratheodory_outer_measure_axioms_nonnegative.gif" alt="Carathéodory 外測度の非負性" width="220"> | <img src="../../figures/measure/animations/caratheodory_outer_measure_axioms/gif/caratheodory_outer_measure_axioms_monotone.gif" alt="Carathéodory 外測度の単調性" width="220"> | <img src="../../figures/measure/animations/caratheodory_outer_measure_axioms/gif/caratheodory_outer_measure_axioms_subadditive.gif" alt="Carathéodory 外測度の可算劣加法性" width="220"> |
 
 第2章で導入した Lebesgue 外測度 $\mu^*$ は, $X=\mathbb{R}^N$ の場合の外測度である.
-
-![Carathéodory の外測度の基本性質](../../figures/measure/animations/caratheodory_outer_measure_axioms/gif/caratheodory_outer_measure_axioms.gif)
 
 また,
 
@@ -424,4 +412,3 @@ $$
 測度空間 $(X, \mathfrak{B}, \mu)$ は, 集合に大きさを与える理論の抽象的枠組みである. その本質は, 可算集合操作に閉じた集合族 $\mathfrak{B}$ と, その上で可算加法性を満たす測度 $\mu$ にある.
 
 この抽象的な記号は, 具体的な場面では次のように読むことができる.
-

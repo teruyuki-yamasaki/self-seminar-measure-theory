@@ -17,7 +17,7 @@ Jordan 測度の限界を踏まえ, 可算個の $N$ 次元区間による被覆
 Lebesgue 外測度は任意集合に定義されるが, そのまま測度ではない.
 
 ---
-layout: two-cols
+layout: default
 ---
 
 # 可算被覆
@@ -68,38 +68,19 @@ $$
 <img class="slide-figure" src="../figures/measure/animations/outer_measure_quadtree_late_stages/gif/outer_measure_quadtree_late_stages.gif" alt="被覆和と Lebesgue 外測度" />
 
 ---
-layout: two-cols
+layout: default
 ---
 
 # Lebesgue 外測度の基本性質
 
 Lebesgue 外測度 $\mu^*$ は次を満たす.
 
-**非負性と空集合**
-
-$$
-0\le\mu^*(A)\le\infty,\qquad \mu^*(\emptyset)=0
-$$
-
-**単調性**
-
-$$
-A\subset B\quad\Longrightarrow\quad \mu^*(A)\le\mu^*(B)
-$$
-
-**可算劣加法性**
-
-$$
-\mu^*\left(\bigcup_{n=1}^{\infty}A_n\right)
-\le
-\sum_{n=1}^{\infty}\mu^*(A_n)
-$$
+|  | 非負性と空集合 | 単調性 | 可算劣加法性 |
+| --- | --- | --- | --- |
+| 式 | $\displaystyle 0\le\mu^*(A)\le\infty,\quad \mu^*(\emptyset)=0$ | $\displaystyle A\subset B\Rightarrow \mu^*(A)\le\mu^*(B)$ | $\displaystyle \mu^*(\bigcup_{n=1}^{\infty}A_n)\le\sum_{n=1}^{\infty}\mu^*(A_n)$ |
+| 図 | <img class="axiom-gif" src="../figures/measure/animations/lebesgue_outer_measure_axioms/gif/lebesgue_outer_measure_axioms_nonnegative.gif" alt="Lebesgue 外測度の非負性" /> | <img class="axiom-gif" src="../figures/measure/animations/lebesgue_outer_measure_axioms/gif/lebesgue_outer_measure_axioms_monotone.gif" alt="Lebesgue 外測度の単調性" /> | <img class="axiom-gif" src="../figures/measure/animations/lebesgue_outer_measure_axioms/gif/lebesgue_outer_measure_axioms_subadditive.gif" alt="Lebesgue 外測度の可算劣加法性" /> |
 
 ただし, この段階では可算加法性は得られていない.
-
-::right::
-
-<img class="slide-figure" src="../figures/measure/animations/lebesgue_outer_measure_axioms/gif/lebesgue_outer_measure_axioms.gif" alt="Lebesgue 外測度の基本性質" />
 
 ---
 layout: default
@@ -158,7 +139,7 @@ layout: default
 
 # 補足: 可算劣加法性の意味
 
-外測度では, 互いに素な集合列に対しても一般には
+外測度では, 互いに素な集合列 $A_1,A_2,\ldots\in 2^{\mathbb{R}^N} \, (A_i \cap A_j = \emptyset \text{ for } i\neq j)$ に対しても一般には
 
 $$
 \mu^*\left(\bigcup_{n=1}^{\infty}A_n\right)

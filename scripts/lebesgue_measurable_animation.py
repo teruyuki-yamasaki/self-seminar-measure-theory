@@ -42,6 +42,13 @@ FRAME_DURATION = 1.0
 GIF_LOOP = 0
 DISPLAY_RESOLUTION = 280
 CLASSIFY_RESOLUTION = 240
+FIGSIZE = (17.2, 4.0)
+AX_LEFT = 0.018
+AX_RIGHT = 0.992
+AX_BOTTOM = 0.17
+AX_GAP = 0.007
+AX_WIDTH = (AX_RIGHT - AX_LEFT - 5 * AX_GAP) / 6
+AX_HEIGHT = AX_WIDTH * FIGSIZE[0] / FIGSIZE[1]
 
 
 @dataclass(frozen=True)
@@ -337,7 +344,7 @@ def draw_pattern_top(ax: plt.Axes, s_curve: np.ndarray, pattern: Pattern) -> Non
     ax.set_aspect("equal")
     ax.set_xticks([])
     ax.set_yticks([])
-    ax.set_title(pattern.name, fontsize=14, pad=8)
+    ax.set_title(pattern.name, fontsize=14, pad=4)
 
 
 def stable_unit(tag: str) -> float:
@@ -420,7 +427,7 @@ def draw_pattern_middle(ax: plt.Axes, s_curve: np.ndarray, pattern: Pattern, ste
     ax.set_aspect("equal")
     ax.set_xticks([])
     ax.set_yticks([])
-    ax.set_title(pattern.name, fontsize=12, pad=8)
+    ax.set_title(pattern.name, fontsize=12, pad=4)
 
 
 def draw_pattern_graph(ax: plt.Axes, pattern: Pattern, level: int) -> None:
@@ -433,10 +440,10 @@ def draw_pattern_graph(ax: plt.Axes, pattern: Pattern, level: int) -> None:
     band_thickness = np.maximum(0.0, overlap_upper - orange_lower)
 
     ax.fill_between(xs, 0.0, green, color=COLORS["green"], alpha=0.28, label=r"$B\cap E$ 被覆")
-    ax.plot(xs, green, color=COLORS["green_edge"], lw=2.2, marker="o")
+    ax.plot(xs, green, color=COLORS["green_edge"], lw=1.8, marker="o", markersize=3.0)
 
     ax.fill_between(xs, orange_lower, 1.0, color=COLORS["orange"], alpha=0.28, label=r"$B\cap E^c$ 被覆")
-    ax.plot(xs, orange_lower, color=COLORS["orange_edge"], lw=2.2, marker="o")
+    ax.plot(xs, orange_lower, color=COLORS["orange_edge"], lw=1.8, marker="o", markersize=3.0)
 
     mask = overlap_upper > orange_lower
     if np.any(mask):
@@ -446,11 +453,18 @@ def draw_pattern_graph(ax: plt.Axes, pattern: Pattern, level: int) -> None:
     ax.set_ylim(0.0, 1.08)
     ax.set_xticks(range(0, LEVELS + 1))
     ax.set_yticks(np.linspace(0.0, 1.0, 6))
-    ax.set_title(rf"正規化被覆の収束  |  重なり帯 {band_thickness[-1]:.4f}", fontsize=12, pad=8)
-    ax.set_xlabel("段階")
-    ax.set_ylabel("正規化面積")
+    ax.set_title(rf"重なり帯 {band_thickness[-1]:.4f}", fontsize=8, pad=5)
+    ax.tick_params(axis="x", labelsize=6, length=2)
+    ax.tick_params(axis="y", labelleft=False, length=0)
     ax.grid(axis="y", color=COLORS["grid"], lw=0.8, alpha=0.7)
-    ax.legend(loc="upper right", fontsize=9, frameon=False)
+    ax.legend(loc="upper right", fontsize=5.6, frameon=False, handlelength=1.1, borderaxespad=0.15)
+
+
+def horizontal_axes(fig: plt.Figure) -> list[plt.Axes]:
+    return [
+        fig.add_axes([AX_LEFT + idx * (AX_WIDTH + AX_GAP), AX_BOTTOM, AX_WIDTH, AX_HEIGHT])
+        for idx in range(6)
+    ]
 
 
 def build_patterns(s_curve: np.ndarray) -> list[Pattern]:
@@ -497,57 +511,64 @@ def build_patterns(s_curve: np.ndarray) -> list[Pattern]:
 
 
 def draw_intro_frame(save_path: Path, s_curve: np.ndarray, patterns: list[Pattern]) -> None:
-    fig = plt.figure(figsize=(16.8, 10.8))
-    row_y = [0.66, 0.36, 0.06]
-    axes_left = [fig.add_axes([0.045, y, 0.25, 0.24]) for y in row_y]
-    axes_right = [fig.add_axes([0.36, y + 0.02, 0.58, 0.20]) for y in row_y]
+    fig = plt.figure(figsize=FIGSIZE)
+    axes = horizontal_axes(fig)
+    shape_axes = axes[0::2]
+    graph_axes = axes[1::2]
 
-    for ax, pattern in zip(axes_left, patterns):
+    for ax, pattern in zip(shape_axes, patterns):
         draw_pattern_top(ax, s_curve, pattern)
 
-    for ax in axes_right:
+    for ax in graph_axes:
         ax.set_xlim(-0.15, LEVELS + 0.15)
         ax.set_ylim(0.0, 1.08)
         ax.set_xticks(range(0, LEVELS + 1))
         ax.set_yticks(np.linspace(0.0, 1.0, 6))
-        ax.set_xlabel("段階")
-        ax.set_ylabel("正規化面積")
+        ax.tick_params(axis="x", labelsize=6, length=2)
+        ax.tick_params(axis="y", labelleft=False, length=0)
         ax.grid(axis="y", color=COLORS["grid"], lw=0.8, alpha=0.7)
-        ax.set_title("正規化被覆の収束", fontsize=12, pad=8)
+        ax.set_title("正規化被覆の収束", fontsize=8, pad=5)
 
     fig.suptitle(
         r"Lebesgue 可測性の直観  $\mu^*(B)=\mu^*(B\cap E)+\mu^*(B\cap E^c)$",
-        fontsize=21,
-        y=0.965,
+        fontsize=15,
+        y=0.982,
     )
-    fig.text(0.5, 0.015, r"左列で $B$ を $E$ と $E^c$ で切り, 右列でそれぞれの外測度近似の重なりが消えていく様子を見る.", ha="center", fontsize=13.5, color=COLORS["muted"])
+    fig.text(
+        0.5,
+        0.045,
+        r"$B$ を $E$ と $E^c$ で切り, 外測度近似の重なりが消えていく様子を見る.",
+        ha="center",
+        fontsize=10.5,
+        color=COLORS["muted"],
+    )
     fig.savefig(save_path, dpi=150)
     plt.close(fig)
 
 
 def draw_frame(save_path: Path, s_curve: np.ndarray, patterns: list[Pattern], level: int) -> None:
-    fig = plt.figure(figsize=(16.8, 10.8))
-    row_y = [0.66, 0.36, 0.06]
-    axes_left = [fig.add_axes([0.045, y, 0.25, 0.24]) for y in row_y]
-    axes_right = [fig.add_axes([0.36, y + 0.02, 0.58, 0.20]) for y in row_y]
+    fig = plt.figure(figsize=FIGSIZE)
+    axes = horizontal_axes(fig)
+    shape_axes = axes[0::2]
+    graph_axes = axes[1::2]
 
-    for ax, pattern in zip(axes_left, patterns):
+    for ax, pattern in zip(shape_axes, patterns):
         draw_pattern_middle(ax, s_curve, pattern, pattern.steps[level])
 
-    for ax, pattern in zip(axes_right, patterns):
+    for ax, pattern in zip(graph_axes, patterns):
         draw_pattern_graph(ax, pattern, level)
 
     fig.suptitle(
         r"Lebesgue 可測性の直観  $\mu^*(B)=\mu^*(B\cap E)+\mu^*(B\cap E^c)$",
-        fontsize=20,
-        y=0.965,
+        fontsize=15,
+        y=0.982,
     )
     fig.text(
         0.5,
-        0.015,
-        rf"段階 {level}: 左列は $B\cap E$ と $B\cap E^c$ の外側近似, 右列は面積を正規化した収束図",
+        0.045,
+        rf"段階 {level}: $B\cap E$ と $B\cap E^c$ の外側近似と, 面積を正規化した収束図",
         ha="center",
-        fontsize=13.5,
+        fontsize=10.5,
     )
     fig.savefig(save_path, dpi=150)
     plt.close(fig)

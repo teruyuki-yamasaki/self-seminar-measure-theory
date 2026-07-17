@@ -27,13 +27,13 @@ layout: two-cols
 非負単函数
 
 $$
-\varphi=\sum_{i=1}^n a_i\mathbf{1}_{A_i}
+\varphi(x)=\sum_{i=1}^n a_i\mathbf{1}_{A_i}(x)
 $$
 
 ただし $a_i\ge0$, $A_i\in\mathfrak{B}$ とする. このとき積分を
 
 $$
-\int_X\varphi\,d\mu
+\int_X\varphi(x)\,d\mu(x)
 :=
 \sum_{i=1}^n a_i\mu(A_i)
 $$
@@ -89,13 +89,9 @@ layout: two-cols
 非負可測函数 $f$ に対して, 下から抑える非負単函数 $\varphi$ 全体を考え,
 
 $$
-\int_X f\,d\mu
+\int_X f(x)\,d\mu(x)
 :=
-\sup\left\{
-\int_X\varphi\,d\mu
-\mid
-0\le\varphi\le f,\ \varphi\text{ は単函数}
-\right\}
+\underset{0\le\varphi\le f,\ \varphi\text{ は単函数}}{\sup} \int_X\varphi(x)\,d\mu(x)
 $$
 
 で定義する.
@@ -112,7 +108,7 @@ layout: two-cols
 
 Lebesgue 積分は, 値域を細かく分けて得られる単函数近似の積分値の極限として理解できる.
 
-下からの近似 $\varphi_m$ が
+函数 $f$ の下からの近似 $\varphi_m$ が
 
 $$
 0\le\varphi_m\le f,\qquad \varphi_m(x)\nearrow f(x)
@@ -121,9 +117,9 @@ $$
 を満たすとき,
 
 $$
-\int_X\varphi_m\,d\mu
-\uparrow
-\int_X f\,d\mu
+\int_X\varphi_m(x)\,d\mu(x)
+\nearrow
+\int_X f(x)\,d\mu(x)
 $$
 
 と見る.

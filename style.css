@@ -118,6 +118,39 @@ html.dark,
   color: var(--measure-heading);
 }
 
+.slidev-layout table:has(.axiom-gif) {
+  width: 100%;
+  table-layout: fixed;
+  font-size: 0.72rem;
+}
+
+.slidev-layout table:has(.axiom-gif) th:first-child,
+.slidev-layout table:has(.axiom-gif) td:first-child {
+  width: 3.8rem;
+}
+
+.slidev-layout table:has(.axiom-gif) th,
+.slidev-layout table:has(.axiom-gif) td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.slidev-layout table:has(.axiom-gif) tr:has(.axiom-gif) td {
+  padding-top: 0.45rem;
+  padding-bottom: 0.45rem;
+}
+
+.slidev-layout .axiom-gif {
+  display: block;
+  width: 100%;
+  max-height: 9.2rem;
+  object-fit: contain;
+  border: 1px solid var(--measure-border);
+  border-radius: 0.45rem;
+  background: var(--measure-panel);
+  padding: 0.12rem;
+}
+
 .slidev-layout.cover,
 .slidev-layout.section,
 .slidev-layout.end {

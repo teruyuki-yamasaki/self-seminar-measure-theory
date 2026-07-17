@@ -32,8 +32,8 @@ A_EDGE = base.A_EDGE
 SET_A_FILL = (108, 169, 126, 190)
 SET_A_EDGE = (31, 87, 53, 230)
 
-LEFT_BOX = (52, 96, 694, 534)
-PANEL_BOX = (742, 116, 1030, 508)
+LEFT_BOX = (52, 96, 666, 534)
+PANEL_BOX = (704, 116, 1040, 508)
 
 
 def ensure_dirs() -> None:

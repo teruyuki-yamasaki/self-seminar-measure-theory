@@ -16,9 +16,12 @@ OUTDIR = Path("figures/measure/animations/lebesgue_inner_outer_overlap")
 FRAMES_DIR = OUTDIR / "frames"
 GIF_DIR = OUTDIR / "gif"
 GIF_PATH = GIF_DIR / "lebesgue_inner_outer_overlap.gif"
+VERTICAL_GIF_PATH = GIF_DIR / "lebesgue_inner_outer_overlap_vertical.gif"
 
 CANVAS_W = 1080
 CANVAS_H = 640
+VERTICAL_W = 760
+VERTICAL_H = 900
 FRAME_DURATION_MS = 1000
 LOOP = 0
 
@@ -426,8 +429,12 @@ def draw_dashed_rect(
     dashed_line((x0, y1), (x0, y0))
 
 
-def draw_graph(draw: ImageDraw.ImageDraw, stage_index: int) -> None:
-    x0, y0, x1, y1 = GRAPH_BOX
+def draw_graph(
+    draw: ImageDraw.ImageDraw,
+    stage_index: int,
+    graph_box: tuple[int, int, int, int] = GRAPH_BOX,
+) -> None:
+    x0, y0, x1, y1 = graph_box
     draw.line((x0, y1, x1, y1), fill=INK, width=2)
     draw.line((x0, y0, x0, y1), fill=INK, width=2)
 
@@ -545,14 +552,45 @@ def draw_frame(stage_index: int) -> Image.Image:
     return image
 
 
+def fit_crop(
+    source: Image.Image,
+    crop_box: tuple[int, int, int, int],
+    target_box: tuple[int, int, int, int],
+) -> Image.Image:
+    crop = source.crop(crop_box)
+    target_w = target_box[2] - target_box[0]
+    target_h = target_box[3] - target_box[1]
+    scale = min(target_w / crop.width, target_h / crop.height)
+    resample = getattr(getattr(Image, "Resampling", Image), "LANCZOS")
+    resized = crop.resize((int(crop.width * scale), int(crop.height * scale)), resample)
+
+    panel = Image.new("RGBA", (target_w, target_h), PAPER)
+    panel.alpha_composite(resized, ((target_w - resized.width) // 2, (target_h - resized.height) // 2))
+    return panel
+
+
+def draw_vertical_frame(stage_index: int) -> Image.Image:
+    source = draw_frame(stage_index)
+    image = Image.new("RGBA", (VERTICAL_W, VERTICAL_H), PAPER)
+    draw = ImageDraw.Draw(image)
+
+    top_panel = fit_crop(source, (28, 54, 675, 585), (40, 30, VERTICAL_W - 40, 540))
+
+    image.alpha_composite(top_panel, (40, 30))
+    draw_graph(draw, stage_index, (60, 605, VERTICAL_W - 60, 835))
+    return image
+
+
 def build_animation() -> None:
     ensure_dirs()
     frames: list[Image.Image] = []
+    vertical_frames: list[Image.Image] = []
     for index in range(len(STAGES)):
         frame = draw_frame(index)
         frame_path = FRAMES_DIR / f"frame_{index:03d}.png"
         frame.save(frame_path)
         frames.append(frame.convert("P", palette=Image.ADAPTIVE))
+        vertical_frames.append(draw_vertical_frame(index).convert("P", palette=Image.ADAPTIVE))
 
     frames[0].save(
         GIF_PATH,
@@ -563,7 +601,17 @@ def build_animation() -> None:
         disposal=2,
         optimize=False,
     )
+    vertical_frames[0].save(
+        VERTICAL_GIF_PATH,
+        save_all=True,
+        append_images=vertical_frames[1:],
+        duration=FRAME_DURATION_MS,
+        loop=LOOP,
+        disposal=2,
+        optimize=False,
+    )
     print(f"Saved GIF to: {GIF_PATH.resolve()}")
+    print(f"Saved vertical GIF to: {VERTICAL_GIF_PATH.resolve()}")
     print(f"Saved frames to: {FRAMES_DIR.resolve()}")
 
 

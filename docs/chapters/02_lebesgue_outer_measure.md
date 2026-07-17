@@ -75,28 +75,10 @@ $$
 
 Lebesgue 外測度 $\mu^*$ は, $\mathbb{R}^N$ の部分集合 $A, B, A_1, A_2, \ldots$ に対して次の性質を満たす.
 
-1. **非負性**：
-
-$$
-0\leq \mu^*(A)\leq \infty, \qquad
-\mu^*(\emptyset)=0
-$$
-
-2. **単調性**：
-
-$$
-A\subset B
-\quad\Longrightarrow\quad
-\mu^*(A)\leq \mu^*(B)
-$$
-
-3. **可算劣加法性**：
-
-$$
-\mu^*\left(\bigcup_{n=1}^{\infty}A_n\right)
-\leq
-\sum_{n=1}^{\infty}\mu^*(A_n)
-$$
+|  | **非負性と空集合** | **単調性** | **可算劣加法性** |
+| --- | --- | --- | --- |
+| **式** | $\displaystyle 0\leq \mu^*(A)\leq \infty,\quad \mu^*(\emptyset)=0$ | $\displaystyle A\subset B\Longrightarrow \mu^*(A)\leq \mu^*(B)$ | $\displaystyle \mu^*\left(\bigcup_{n=1}^{\infty}A_n\right)\leq\sum_{n=1}^{\infty}\mu^*(A_n)$ |
+| **図** | <img src="../../figures/measure/animations/lebesgue_outer_measure_axioms/gif/lebesgue_outer_measure_axioms_nonnegative.gif" alt="Lebesgue 外測度の非負性" width="220"> | <img src="../../figures/measure/animations/lebesgue_outer_measure_axioms/gif/lebesgue_outer_measure_axioms_monotone.gif" alt="Lebesgue 外測度の単調性" width="220"> | <img src="../../figures/measure/animations/lebesgue_outer_measure_axioms/gif/lebesgue_outer_measure_axioms_subadditive.gif" alt="Lebesgue 外測度の可算劣加法性" width="220"> |
 
 この三つの性質を持つため, $\mu^*$ は「外測度」と呼ばれる. ただしこの章では, 一般の空間上の外測度論にはまだ進まず, $\mathbb{R}^N$ 上で区間被覆から定まる Lebesgue 外測度だけを扱う. 外測度の公理的な扱いは第4章で行う.
 
@@ -107,8 +89,6 @@ $$
 $$
 
 を満たす集合 $N\subset\mathbb{R}^N$ を, Lebesgue 外測度に関する **零集合** という. 空集合は零集合であるが, 空集合だけが零集合なのではない. 後で見るように, 1点集合や可算集合も Lebesgue 外測度 $0$ の集合になる.
-
-![Lebesgue 外測度の基本性質](../../figures/measure/animations/lebesgue_outer_measure_axioms/gif/lebesgue_outer_measure_axioms.gif)
 
 Lebesgue 外測度は任意集合に対して定義され, 単調性と可算劣加法性を満たす. 一方で, この段階では可算加法性は得られていない.
 

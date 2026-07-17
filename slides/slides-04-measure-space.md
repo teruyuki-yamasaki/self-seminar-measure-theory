@@ -23,7 +23,7 @@ $$
 の枠組みに進む.
 
 ---
-layout: two-cols
+layout: default
 ---
 
 # 外測度の抽象化
@@ -36,29 +36,10 @@ $$
 
 であって, 次を満たすものである.
 
-**非負性と空集合**
-
-$$
-0\le\Gamma(A)\le\infty,\qquad \Gamma(\emptyset)=0
-$$
-
-**単調性**
-
-$$
-A\subset B\quad\Longrightarrow\quad \Gamma(A)\le\Gamma(B)
-$$
-
-**可算劣加法性**
-
-$$
-\Gamma\left(\bigcup_{n=1}^{\infty}A_n\right)
-\le
-\sum_{n=1}^{\infty}\Gamma(A_n)
-$$
-
-::right::
-
-<img class="slide-figure" src="../figures/measure/animations/caratheodory_outer_measure_axioms/gif/caratheodory_outer_measure_axioms.gif" alt="Carathéodory の外測度の基本性質" />
+|  | 非負性と空集合 | 単調性 | 可算劣加法性 |
+| --- | --- | --- | --- |
+| 式 | $\displaystyle 0\le\Gamma(A)\le\infty,\quad \Gamma(\emptyset)=0$ | $\displaystyle A\subset B\Rightarrow \Gamma(A)\le\Gamma(B)$ | $\displaystyle \Gamma(\bigcup_{n=1}^{\infty}A_n)\le\sum_{n=1}^{\infty}\Gamma(A_n)$ |
+| 図 | <img class="axiom-gif" src="../figures/measure/animations/caratheodory_outer_measure_axioms/gif/caratheodory_outer_measure_axioms_nonnegative.gif" alt="Carathéodory 外測度の非負性" /> | <img class="axiom-gif" src="../figures/measure/animations/caratheodory_outer_measure_axioms/gif/caratheodory_outer_measure_axioms_monotone.gif" alt="Carathéodory 外測度の単調性" /> | <img class="axiom-gif" src="../figures/measure/animations/caratheodory_outer_measure_axioms/gif/caratheodory_outer_measure_axioms_subadditive.gif" alt="Carathéodory 外測度の可算劣加法性" /> |
 
 ---
 layout: default
@@ -94,10 +75,10 @@ layout: default
 
 $X$ の部分集合族 $\mathfrak{B}\subset 2^X$ が可算加法族であるとは, 次を満たすことである.
 
-**全体空間に対する閉性**
+**空集合に対する閉性**
 
 $$
-X\in\mathfrak{B}
+\emptyset\in\mathfrak{B}
 $$
 
 **補集合に対する閉性**

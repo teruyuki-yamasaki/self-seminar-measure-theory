@@ -8,7 +8,7 @@ from math import gcd, sqrt
 from pathlib import Path
 import shutil
 
-import imageio.v2 as imageio
+import imageio
 import matplotlib
 
 matplotlib.use("Agg")
@@ -38,7 +38,7 @@ GIF_PATH = GIF_DIR / "rational_points_outer_approx.gif"
 
 EPSILON = 0.08
 N_STEPS = 10
-FRAME_DURATION = 1.0
+FRAME_DURATION = 0.5
 GIF_LOOP = 0
 RESOLUTION = 220
 EPSILON_STAGES = [0.08, 0.05, 0.03, 0.015]
@@ -227,9 +227,9 @@ def draw_frame(
             return point.x, point.y, point.label
         return point
 
-    fig = plt.figure(figsize=(12.8, 7.0))
-    ax_square = fig.add_axes([0.06, 0.14, 0.44, 0.72])
-    ax_area = fig.add_axes([0.58, 0.14, 0.36, 0.72])
+    fig = plt.figure(figsize=(7.2, 8.4))
+    ax_square = fig.add_axes([0.19, 0.48, 0.62, 0.47])
+    ax_area = fig.add_axes([0.12, 0.12, 0.80, 0.28])
 
     ax_square.scatter(dots[:, 0], dots[:, 1], s=3.0, color=COLORS["irrational"], alpha=0.32, linewidths=0, zorder=0)
     for rect in covers:
@@ -266,9 +266,9 @@ def draw_frame(
     ax_square.set_xlim(0, 1)
     ax_square.set_ylim(0, 1)
     ax_square.set_aspect("equal")
-    ax_square.set_xlabel("x", fontsize=18)
-    ax_square.set_ylabel("y", fontsize=18)
-    ax_square.set_title(r"$[0, 1]^2$ 内の有理点集合を外側から覆う", fontsize=16, pad=12)
+    ax_square.set_xlabel("")
+    ax_square.set_ylabel("")
+    ax_square.tick_params(axis="both", labelsize=9)
 
     levels = list(range(len(area_history)))
     ax_area.plot(levels, area_history, color=COLORS["cover_edge"], marker="o", lw=2.3, label="長方形面積の上界")
@@ -277,10 +277,10 @@ def draw_frame(
     ax_area.set_xlim(-0.2, N_STEPS + 0.2)
     ax_area.set_ylim(0.0, y_max)
     ax_area.set_xticks(range(0, N_STEPS + 1))
-    ax_area.set_xlabel("段階")
-    ax_area.set_ylabel("面積の上界")
-    ax_area.set_title("外側近似の面積上界", fontsize=16, pad=12)
-    ax_area.legend(loc="lower right", frameon=False)
+    ax_area.set_xlabel("段階", fontsize=11)
+    ax_area.set_ylabel("面積の上界", fontsize=11)
+    ax_area.tick_params(axis="both", labelsize=9)
+    ax_area.legend(loc="lower right", fontsize=8.5, frameon=False)
 
     ax_area.text(
         0.03,
@@ -288,11 +288,11 @@ def draw_frame(
         "\n".join(lines),
         transform=ax_area.transAxes,
         va="top",
-        fontsize=11,
+        fontsize=8.5,
         bbox=dict(boxstyle="round, pad=0.35", facecolor="white", edgecolor=COLORS["grid"]),
     )
 
-    fig.suptitle(title, fontsize=18, y=0.96)
+    fig.suptitle(title, fontsize=12.5, y=0.985)
     fig.savefig(save_path, dpi=180)
     plt.close(fig)
 
