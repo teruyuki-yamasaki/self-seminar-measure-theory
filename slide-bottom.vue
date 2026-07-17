@@ -1,16 +1,6 @@
-<script setup lang="ts">
-import { useSlideContext } from '@slidev/client'
-import { computed } from 'vue'
-
-const { $nav, $page } = useSlideContext()
-
-const currentPage = computed(() => $page.value)
-const totalPages = computed(() => $nav.value.total.value)
-</script>
-
 <template>
   <div class="measure-page-number" aria-label="page number">
-    {{ currentPage }} / {{ totalPages }}
+    {{ $slidev.nav.currentPage }} / {{ $slidev.nav.total }}
   </div>
 </template>
 

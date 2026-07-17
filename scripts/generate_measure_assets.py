@@ -513,7 +513,7 @@ def draw_lebesgue_local_value_band(outdir: Path) -> None:
     ax.set_title("Lebesgue 積分: 値域の一層から逆像を見る", fontsize=21, weight="bold")
     ax.set_xlabel("x", fontsize=20)
     ax.set_ylabel("y", fontsize=20)
-    ax.xaxis.set_label_coords(0.5, -0.12)
+    ax.xaxis.set_label_coords(0.5, -0.025)
     hide_numeric_tick_labels(ax)
     ax.grid(color=COLORS["grid"], lw=0.8)
 
@@ -872,7 +872,7 @@ def animate_lebesgue_area_convergence(outdir: Path, frames: int, *, write_gif: b
     )
     errors = target_integral - simple_integrals
 
-    fig, axes = plt.subplots(1, 2, figsize=(13.5, 5.8), gridspec_kw={"width_ratios": [1.45, 1.0]})
+    fig, axes = plt.subplots(2, 1, figsize=(8.4, 10.4), gridspec_kw={"height_ratios": [1.15, 1.0]})
     ax_area, ax_conv = axes
 
     def update(frame: int):
@@ -934,6 +934,7 @@ def animate_lebesgue_area_convergence(outdir: Path, frames: int, *, write_gif: b
         )
 
     fig.suptitle("Lebesgue積分: 単函数の面積が収束する様子", fontsize=17, weight="bold")
+    fig.subplots_adjust(left=0.11, right=0.97, bottom=0.08, top=0.92, hspace=0.34)
     if write_gif:
         save_gif(fig, update, len(interval_counts), animation_gif_path(outdir, "lebesgue_area_convergence"))
     save_keyframes(fig, update, len(interval_counts), outdir, "lebesgue_area_convergence")
@@ -1016,7 +1017,14 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--frames", type=int, default=72)
     parser.add_argument(
         "--only",
-        choices=["all", "riemann_refinement", "riemann_area_convergence", "lebesgue_layers", "local_integral_views"],
+        choices=[
+            "all",
+            "riemann_refinement",
+            "riemann_area_convergence",
+            "lebesgue_layers",
+            "lebesgue_area_convergence",
+            "local_integral_views",
+        ],
         default="all",
         help="Generate only one asset group.",
     )
@@ -1044,6 +1052,11 @@ def main() -> None:
     if args.only == "lebesgue_layers":
         animate_lebesgue_layers(args.outdir, args.frames, write_gif=write_gif)
         print(f"Generated lebesgue_layers in {args.outdir}")
+        return
+
+    if args.only == "lebesgue_area_convergence":
+        animate_lebesgue_area_convergence(args.outdir, args.frames, write_gif=write_gif)
+        print(f"Generated lebesgue_area_convergence in {args.outdir}")
         return
 
     if args.only == "local_integral_views":

@@ -498,13 +498,14 @@ def build_patterns(s_curve: np.ndarray) -> list[Pattern]:
 
 def draw_intro_frame(save_path: Path, s_curve: np.ndarray, patterns: list[Pattern]) -> None:
     fig = plt.figure(figsize=(16.8, 10.8))
-    axes_top = [fig.add_axes([0.02 + 0.327 * i, 0.49, 0.31, 0.41]) for i in range(3)]
-    axes_bottom = [fig.add_axes([0.04 + 0.32 * i, 0.09, 0.29, 0.28]) for i in range(3)]
+    row_y = [0.66, 0.36, 0.06]
+    axes_left = [fig.add_axes([0.045, y, 0.25, 0.24]) for y in row_y]
+    axes_right = [fig.add_axes([0.36, y + 0.02, 0.58, 0.20]) for y in row_y]
 
-    for ax, pattern in zip(axes_top, patterns):
+    for ax, pattern in zip(axes_left, patterns):
         draw_pattern_top(ax, s_curve, pattern)
 
-    for ax in axes_bottom:
+    for ax in axes_right:
         ax.set_xlim(-0.15, LEVELS + 0.15)
         ax.set_ylim(0.0, 1.08)
         ax.set_xticks(range(0, LEVELS + 1))
@@ -517,37 +518,36 @@ def draw_intro_frame(save_path: Path, s_curve: np.ndarray, patterns: list[Patter
     fig.suptitle(
         r"Lebesgue 可測性の直観  $\mu^*(B)=\mu^*(B\cap E)+\mu^*(B\cap E^c)$",
         fontsize=21,
-        y=0.95,
+        y=0.965,
     )
-    fig.text(0.5, 0.445, r"まず任意の集合 $B$ を $E$ と $E^c$ で切り, $B\cap E$ と $B\cap E^c$ に分けて見る", ha="center", fontsize=15)
-    fig.text(0.5, 0.03, r"次の段階から, それぞれの Lebesgue 外測度を長方形被覆で近似し, 余分な重なりが消えていく様子を見る.", ha="center", fontsize=14, color=COLORS["muted"])
+    fig.text(0.5, 0.015, r"左列で $B$ を $E$ と $E^c$ で切り, 右列でそれぞれの外測度近似の重なりが消えていく様子を見る.", ha="center", fontsize=13.5, color=COLORS["muted"])
     fig.savefig(save_path, dpi=150)
     plt.close(fig)
 
 
 def draw_frame(save_path: Path, s_curve: np.ndarray, patterns: list[Pattern], level: int) -> None:
     fig = plt.figure(figsize=(16.8, 10.8))
-    axes_top = [fig.add_axes([0.02 + 0.327 * i, 0.49, 0.31, 0.41]) for i in range(3)]
-    axes_bottom = [fig.add_axes([0.04 + 0.32 * i, 0.09, 0.29, 0.28]) for i in range(3)]
+    row_y = [0.66, 0.36, 0.06]
+    axes_left = [fig.add_axes([0.045, y, 0.25, 0.24]) for y in row_y]
+    axes_right = [fig.add_axes([0.36, y + 0.02, 0.58, 0.20]) for y in row_y]
 
-    for ax, pattern in zip(axes_top, patterns):
+    for ax, pattern in zip(axes_left, patterns):
         draw_pattern_middle(ax, s_curve, pattern, pattern.steps[level])
 
-    for ax, pattern in zip(axes_bottom, patterns):
+    for ax, pattern in zip(axes_right, patterns):
         draw_pattern_graph(ax, pattern, level)
 
-    fig.text(0.5, 0.445, r"上段: $B\cap E$ の外側近似を緑, $B\cap E^c$ の外側近似を橙の長方形で表示", ha="center", fontsize=13, color=COLORS["muted"])
     fig.suptitle(
         r"Lebesgue 可測性の直観  $\mu^*(B)=\mu^*(B\cap E)+\mu^*(B\cap E^c)$",
         fontsize=20,
-        y=0.96,
+        y=0.965,
     )
     fig.text(
         0.5,
-        0.03,
-        rf"段階 {level}: 下段では面積 $m(B)=1$ に正規化し, 緑を 0 から, 橙を 1 から描いて重なり帯が 0 に近づく様子を示す",
+        0.015,
+        rf"段階 {level}: 左列は $B\cap E$ と $B\cap E^c$ の外側近似, 右列は面積を正規化した収束図",
         ha="center",
-        fontsize=14,
+        fontsize=13.5,
     )
     fig.savefig(save_path, dpi=150)
     plt.close(fig)

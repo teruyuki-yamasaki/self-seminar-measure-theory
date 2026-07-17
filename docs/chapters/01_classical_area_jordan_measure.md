@@ -52,7 +52,7 @@ $$
 と定める. 空集合 $\emptyset \in \mathfrak{I}_N$ に対しては
 
 $$
-m(\emptyset)=0
+m(\emptyset):=0
 $$
 
 と定める.
@@ -77,7 +77,7 @@ $$
 区間塊 $E$ を互いに素な区間 $I_1, \ldots, I_n \in \mathfrak{I}_N$ の直和として表したとき, その体積を
 
 $$
-m(E)=\sum_{k=1}^{n}m(I_k)
+m(E):=\sum_{k=1}^{n}m(I_k)
 $$
 
 と定める.

@@ -118,7 +118,7 @@ $$
 この $f$ を $\nu$ の $\mu$ に関する Radon-Nikodym 微分と呼び,
 
 $$
-f=\frac{d\nu}{d\mu}
+\frac{d\nu}{d\mu}:=f
 $$
 
 と書く.

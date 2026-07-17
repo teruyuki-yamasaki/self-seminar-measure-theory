@@ -139,7 +139,12 @@ def draw_dct_condition_map() -> None:
 
 
 def draw_half_open_interval_volume() -> None:
-    fig, ax = canvas("半開区間と体積", "境界の重複を避けて基本図形を分割する")
+    fig, ax = plt.subplots(figsize=(10.6, 5.5))
+    fig.patch.set_facecolor(COLORS["paper"])
+    ax.set_facecolor(COLORS["paper"])
+    ax.set_xlim(0, 9.2)
+    ax.set_ylim(0, 5.2)
+    ax.axis("off")
     x0, y0, w, h = 1.1, 1.45, 5.6, 3.0
     ax.add_patch(Rectangle((x0, y0), w, h, facecolor=COLORS["cyan"], edgecolor=COLORS["ink"], lw=2.0, alpha=0.28))
     ax.plot([x0, x0 + w], [y0, y0], color=COLORS["ink"], lw=2.2)
@@ -151,7 +156,7 @@ def draw_half_open_interval_volume() -> None:
     ax.text(
         x0 + w / 2,
         y0 + h / 2,
-        r"$m(I)=\prod_{k=1}^N(b_k-a_k)$",
+        r"$m(I):=\prod_{k=1}^N(b_k-a_k)$",
         ha="center",
         va="center",
         fontsize=18,

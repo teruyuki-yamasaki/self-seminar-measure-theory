@@ -248,6 +248,45 @@ html.dark,
   margin-left: auto;
 }
 
+.slidev-layout.two-rows {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 0.95rem;
+  height: 100%;
+  overflow: hidden;
+  padding-bottom: 3.1rem;
+}
+
+.slidev-layout.two-rows h1:first-child {
+  margin-bottom: 0.85rem;
+  white-space: nowrap;
+}
+
+.slidev-layout.two-rows .two-rows-main {
+  overflow: visible;
+  min-height: 0;
+}
+
+.slidev-layout.two-rows .two-rows-main p {
+  margin: 0.4rem 0;
+}
+
+.slidev-layout.two-rows .two-rows-figure {
+  display: flex;
+  min-height: 0;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+}
+
+.slidev-layout.two-rows .slide-figure {
+  width: auto;
+  max-width: min(100%, 52rem);
+  max-height: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
 .slidev-layout blockquote {
   margin: 1rem 0;
   border-left: 4px solid var(--measure-accent);
@@ -281,6 +320,10 @@ html.dark,
   .slidev-layout.two-cols .slide-figure,
   .slidev-layout.two-cols-header .slide-figure {
     max-height: 38vh;
+  }
+
+  .slidev-layout.two-rows .slide-figure {
+    max-height: 40vh;
   }
 
   .slidev-layout .katex-display {

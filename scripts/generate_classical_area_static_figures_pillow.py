@@ -450,20 +450,15 @@ def draw_number_line(draw: ImageDraw.ImageDraw, x0: int, x1: int, y: int, values
 
 
 def draw_half_open_interval_volume() -> None:
-    width, height = 1404, 910
+    width, height = 1260, 650
     img = Image.new("RGBA", (width, height), COLORS["paper"])
     draw = ImageDraw.Draw(img)
-    title = load_font(52, bold=True)
-    subtitle = load_font(28)
     regular = load_font(36)
     formula = ImageFont.truetype(FONT_MATH, size=46)
     formula_small = ImageFont.truetype(FONT_MATH, size=24)
     legend = load_font(32, bold=True)
 
-    draw.text((60, 36), "半開区間と体積", font=title, fill=COLORS["ink"])
-    draw.text((60, 112), "境界の重複を避けて基本図形を分割する", font=subtitle, fill=COLORS["muted"])
-
-    x0, y0, w, h = 140, 250, 790, 420
+    x0, y0, w, h = 170, 72, 700, 405
     overlay = Image.new("RGBA", (width, height), (0, 0, 0, 0))
     overdraw = ImageDraw.Draw(overlay)
     overdraw.rectangle((x0, y0, x0 + w, y0 + h), fill=hex_rgba(COLORS["cyan"], 72), outline=COLORS["ink"], width=4)
@@ -476,7 +471,7 @@ def draw_half_open_interval_volume() -> None:
     dashed_line(draw, (x0, y0), (x0 + w, y0), COLORS["red"], 5)
 
     def draw_formula(center_x: float, center_y: float) -> None:
-        main_parts = ["m(I)=", "∏", "(", "b", "-", "a", ")"]
+        main_parts = ["m(I):=", "∏", "(", "b", "-", "a", ")"]
         main_widths = [text_size(draw, part, formula)[0] for part in main_parts]
         sub_k_width = text_size(draw, "k", formula_small)[0]
         under_width = text_size(draw, "k=1", formula_small)[0]
@@ -497,9 +492,9 @@ def draw_half_open_interval_volume() -> None:
             + main_widths[6]
         )
         x = center_x - total_width / 2
-        y = center_y - text_size(draw, "m(I)=∏(b-a)", formula)[1] / 2
+        y = center_y - text_size(draw, "m(I):=∏(b-a)", formula)[1] / 2
 
-        draw.text((x, y), "m(I)=", font=formula, fill=COLORS["ink"])
+        draw.text((x, y), "m(I):=", font=formula, fill=COLORS["ink"])
         x += main_widths[0] + 10
 
         prod_x = x
@@ -522,17 +517,17 @@ def draw_half_open_interval_volume() -> None:
 
         draw.text((x, y), ")", font=formula, fill=COLORS["ink"])
 
-    draw.rectangle((x0 + 215, y0 + 165, x0 + w - 215, y0 + h - 165), fill=hex_rgba(COLORS["panel"], 232))
+    draw.rectangle((x0 + 180, y0 + 165, x0 + w - 180, y0 + h - 165), fill=hex_rgba(COLORS["panel"], 232))
     draw_formula(x0 + w / 2, y0 + h / 2)
 
     axis_sub = load_font(24)
     draw_axis_interval_label(draw, (x0 + w / 2, y0 + h + 56), "1", regular, axis_sub, COLORS["ink"])
     draw_axis_interval_label(draw, (x0 - 62, y0 + h / 2), "2", regular, axis_sub, COLORS["ink"])
 
-    draw.text((1015, 350), "含む境界", font=legend, fill=COLORS["ink"])
-    draw.line((1000, 410, 1160, 410), fill=COLORS["ink"], width=5)
-    draw.text((1015, 505), "含まない境界", font=legend, fill=COLORS["red"])
-    dashed_line(draw, (1000, 565), (1160, 565), COLORS["red"], 5)
+    draw.text((930, 190), "含む境界", font=legend, fill=COLORS["ink"])
+    draw.line((915, 250, 1075, 250), fill=COLORS["ink"], width=5)
+    draw.text((930, 355), "含まない境界", font=legend, fill=COLORS["red"])
+    dashed_line(draw, (915, 415), (1075, 415), COLORS["red"], 5)
 
     OUTDIR.mkdir(parents=True, exist_ok=True)
     img.save(OUTDIR / "half_open_interval_volume.png")

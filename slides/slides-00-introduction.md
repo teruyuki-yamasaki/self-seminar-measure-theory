@@ -36,18 +36,12 @@ $$
 \Delta:a=x_0<x_1<\cdots<x_n=b
 $$
 
-のように分割し, 小区間 $\Delta_i=[x_{i-1},x_i]$ の幅と代表値 $f(\xi_i)$ から Riemann 和
-
-$$
-R(f,\Delta)=\sum_{i=1}^n f(\xi_i)|\Delta_i|
-$$
-
-を作り, その極限として積分を考える.
+のように分割し, 小区間 $\Delta_i=[x_{i-1},x_i]$ の幅と代表値 $f(\xi_i)$ から Riemann 和を作り, その極限として積分を考える.
 
 $$
 \int_a^b f(x)\,dx
 =
-\lim_{\|\Delta\|\to0}R(f,\Delta)
+\lim_{\|\Delta\|\to0}\sum_{i=1}^n f(\xi_i)(x_i-x_{i-1})
 $$
 
 ::right::
@@ -69,17 +63,17 @@ $$
 のように分割する. 値域区間を
 
 $$
-\Theta_k=[y_k,y_{k+1})
+\Theta_k:=[y_k,y_{k+1})
 $$
 
 とおき, その逆像
 
 $$
-E_k=f^{-1}(\Theta_k)
+E_k:=f^{-1}(\Theta_k)
 =\{x\in[a,b]\mid y_k\le f(x)<y_{k+1}\}
 $$
 
-を考え, $y_k\mu(E_k)$ の和分の極限として積分を考える.
+を考え, その"大きさ" $\mu(E_k)$ と区間の代表値 $y_k$ の積の和分の極限として積分を考える.
 
 $$
 \int_a^b f(x)\,dx
@@ -120,14 +114,14 @@ layout: two-cols
 Riemann 積分可能性は, 上 Darboux 和と下 Darboux 和で記述できる.
 
 $$
-M_i=\sup_{x\in[x_{i-1},x_i]}f(x),\qquad
-m_i=\inf_{x\in[x_{i-1},x_i]}f(x)
+M_i:=\sup_{x\in[x_{i-1},x_i]}f(x),\qquad
+m_i:=\inf_{x\in[x_{i-1},x_i]}f(x)
 $$
 
 $$
-S^+(f,\Delta)=\sum_i M_i|\Delta_i|,
+S^+(f,\Delta):=\sum_i M_i|\Delta_i|,
 \quad
-S^-(f,\Delta)=\sum_i m_i|\Delta_i|
+S^-(f,\Delta):=\sum_i m_i|\Delta_i|
 $$
 
 $f$ が Riemann 積分可能であるとは, 任意の $\varepsilon>0$ に対して, ある (十分細かな) 分割 $\Delta$ が存在して
@@ -154,7 +148,10 @@ layout: two-cols
 Dirichlet 函数
 
 $$
-D(x):=\mathbf{1}_{\mathbb{Q}\cap[0,1]}(x)
+D(x):=\mathbf{1}_{\mathbb{Q}\cap[0,1]}(x) = \begin{cases}
+1 & (x\in\mathbb{Q}\cap[0,1]), \\
+0 & (x\notin\mathbb{Q}\cap[0,1])
+\end{cases}
 $$
 
 では, 任意の小区間に有理数と無理数が入る.
@@ -211,7 +208,7 @@ $$
 $$
 
 ---
-layout: default
+layout: two-rows
 ---
 
 # 測度論はなぜ必要か
@@ -219,47 +216,58 @@ layout: default
 Lebesgue 積分では, 値域ごとの逆像として集合が自然に現れる.
 
 $$
-E_k=\{x\in[a,b]\mid f(x)\in\Theta_k\}
+E_k:=\{x\in[a,b]\mid f(x)\in\Theta_k\}
 $$
 
 そのため, 区間や図形だけでなく, より一般の集合にも破綻なく"大きさ"を与える必要がある.
 
 このような集合の"大きさ"を扱う理論が測度論であり, Lebesgue 積分はその上に構成される.
 
+::right::
+
+<img class="slide-figure" src="../figures/measure/static/lebesgue_local_value_band.png" alt="Lebesgue 積分で値域の一層と逆像区間を見る図" />
+
 ---
 layout: default
 ---
 
-# 極限と積分の交換
+# 積分の収束
 
-Lebesgue 積分を導入しても, 極限と積分が自動に交換できるわけではない.
+函数列 $f_n$ が函数 $f$ に収束するとする.
 
-考えるべき問題は二つに分かれる.
+$$
+f_n\to f
+$$
 
-- どのような函数に積分を定義できるか
-- どのような条件で極限と積分を交換できるか
+各 $f_n$ が積分可能なとき, 極限函数 $f$ も積分可能で, さらに次が成り立つかを考える.
 
-測度論と Lebesgue 積分論は, この二つを同じ枠組みで扱う.
+$$
+\int f\,d\mu
+\overset{?}{=}
+\lim_{n\to\infty}\int f_n\,d\mu
+$$
+
+Riemann 積分では, たとえば一様収束なら交換できるが, これは強い条件である.
+
+Lebesgue 積分論では, 単調収束定理や優収束定理により, 一様収束より広い状況でこの交換が可能になる.
 
 ---
-layout: two-cols
+layout: two-rows
 ---
 
 # 函数列の極限として見る
 
-有理数を $q_1,q_2,\ldots$ と並べ,
+有理数を $q_1,q_2,\ldots \in \mathbb{Q}\cap[0,1]$ と並べ,
 
 $$
-g_n(x)=
+g_n(x):=
 \begin{cases}
-1 & x\in\{q_1,\ldots,q_n\},\\
+1 & x\in\{q_1,\ldots,q_n\} \subset \mathbb{Q}\cap[0,1],\\
 0 & \text{otherwise}
 \end{cases}
 $$
 
-とおくと, 各 $g_n$ は Riemann 積分可能である.
-
-しかし $g_n$ の単調増加極限は Dirichlet 函数 $D$ になる.
+とおくと, 各 $g_n$ は Riemann 積分可能であるが, $g_n$ の単調増加極限は Dirichlet 函数 $D$ になり, Riemann 積分可能性は単調増加極限に対して閉じていないことがわかる. 一方, Lebesgue 積分では単調収束定理で扱える.
 
 ::right::
 
@@ -274,7 +282,7 @@ layout: default
 Fourier 解析では, 例えば
 
 $$
-\hat f(\xi)=\int_{\mathbb{R}} f(x)e^{-2\pi i x\xi}\,dx
+\hat f(\xi):=\int_{\mathbb{R}} f(x)e^{-2\pi i x\xi}\,dx
 $$
 
 のような積分が現れる.
@@ -287,6 +295,6 @@ layout: end
 
 # この章の中心メッセージ
 
-- Riemann 可積分性は, 零集合上の変更に対して安定ではない.
-- Riemann 可積分函数全体は, 各点収束や単調増加極限に対して閉じていない.
-- Lebesgue 積分論は, 零集合を無視する枠組みと, 極限と積分の関係を保証する収束定理を与える.
+- Riemann 積分は小区間での振動を制御する理論であり, 零集合上の変更や各点極限には弱い.
+- Lebesgue 積分では, 値を取る点集合の"大きさ"を測ることで Dirichlet 函数のような例を扱える.
+- 以後は測度, 可測函数, Lebesgue 積分, 収束定理の順に枠組みを作る.

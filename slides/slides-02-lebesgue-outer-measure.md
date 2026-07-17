@@ -45,23 +45,21 @@ $$
 <img class="slide-figure" src="../figures/measure/animations/outer_measure_quadtree_late_stages/gif/outer_measure_quadtree_late_stages_cover_only.gif" alt="可算被覆の細分化" />
 
 ---
-layout: two-cols
+layout: two-rows
 ---
 
 # Lebesgue 外測度 $\mu^*$ の定義
 
-$A\subset\mathbb{R}^N$ に対して
+$A\subset\mathbb{R}^N$ に対して, Lebesgue 外測度 $\mu^*(A)$ を次で定める:
 
 $$
-\mu^*(A)=
+\mu^*(A):=
 \inf\left\{
 \sum_{k=1}^{\infty}m(I_k)
 \mid
 A\subset\bigcup_{k=1}^{\infty}I_k
 \right\}
 $$
-
-と定める.
 
 これはすべての可算被覆にわたる被覆和の下限である.
 
@@ -164,7 +162,7 @@ layout: default
 
 $$
 \mu^*\left(\bigcup_{n=1}^{\infty}A_n\right)
-=
+\overset{?}{=}
 \sum_{n=1}^{\infty}\mu^*(A_n)
 $$
 
@@ -178,7 +176,7 @@ layout: two-cols
 
 # 例: 可算集合の外測度
 
-可算集合 $A=\{x_1,x_2,\ldots\}$ に対して, 任意の $\varepsilon>0$ を取る.
+可算集合 $A:=\{x_1,x_2,\ldots\}$ に対して, 任意の $\varepsilon>0$ を取る.
 
 各点 $x_k$ を含む区間 $I_k$ を
 
@@ -217,7 +215,7 @@ layout: two-cols
 同じ考えは次元によらず成立する. 可算点集合を
 
 $$
-A=\{p_1,p_2,\ldots\}\subset\mathbb{R}^2
+A:=\{p_1,p_2,\ldots\}\subset\mathbb{R}^2
 $$
 
 とする. 各点 $p_k$ を含む正方形 $Q_k$ を
@@ -245,6 +243,6 @@ layout: end
 
 # この章の中心メッセージ
 
-- Lebesgue 外測度 $\mu^*$ は, 任意集合に対して可算被覆により大きさを与える.
-- これにより Jordan 的有限近似では扱いにくかった集合にも大きさを割り当てられる.
-- ただし, この段階で得られるのはまだ外測度であり, 測度ではない.
+- Lebesgue 外測度 $\mu^*$ は, 任意集合に対して可算被覆のコストの下限で大きさを与える.
+- 可算集合は任意に小さい可算被覆を持つため, 外測度 $0$ になる.
+- ただし $\mu^*$ はまだ測度ではないため, 次に加法性を壊さない集合を取り出す.

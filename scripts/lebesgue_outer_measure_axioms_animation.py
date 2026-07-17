@@ -15,7 +15,7 @@ FRAMES_DIR = OUTDIR / "frames"
 GIF_DIR = OUTDIR / "gif"
 GIF_PATH = GIF_DIR / "lebesgue_outer_measure_axioms.gif"
 
-CANVAS = (1680, 690)
+CANVAS = (760, 1640)
 FRAME_DURATION_MS = 950
 LOOP = 0
 FRAME_COUNT = 6
@@ -274,7 +274,7 @@ def draw_frame(frame: int) -> Image.Image:
     image = Image.new("RGBA", CANVAS, COLORS["paper"])
     draw = ImageDraw.Draw(image)
     centered_text(draw, (CANVAS[0] / 2, 42), MAIN_TITLE, FONT_TITLE, COLORS["ink"])
-    panels = [(34, 90, 542, 650), (586, 90, 1094, 650), (1138, 90, 1646, 650)]
+    panels = [(40, 92, 720, 585), (40, 610, 720, 1103), (40, 1128, 720, 1621)]
     draw_nonnegative(draw, panels[0], frame)
     draw_monotone(draw, panels[1], frame)
     draw_subadditive(draw, panels[2], frame)

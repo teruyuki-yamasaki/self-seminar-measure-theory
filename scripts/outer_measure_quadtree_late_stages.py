@@ -444,15 +444,7 @@ def draw_cover_scene(
 
     centered_text(
         draw,
-        (canvas_w // 2, 29),
-        "可算被覆を細かくし, 重なりとはみ出しを減らす",
-        FONT_TITLE,
-        (20, 20, 20),
-    )
-
-    centered_text(
-        draw,
-        ((box[0] + box[2]) // 2, 61),
+        ((box[0] + box[2]) // 2, 35),
         (
             f"段階 {stage + 1}: 境界深さ {STAGE_BOUNDARY_DEPTHS[stage]}, "
             f"被覆長方形 {len(rectangles)} 個"

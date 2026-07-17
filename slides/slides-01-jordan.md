@@ -17,7 +17,7 @@ layout: default
 その過程で, Jordan 測度が有限個の区間塊による内外近似に基づくこと, そして可算集合や稠密集合を扱うには不十分であることを確認する.
 
 ---
-layout: default
+layout: two-rows
 ---
 
 # 古典的面積概念
@@ -36,19 +36,23 @@ layout: two-cols
 
 # 区間: 基本図形
 
-$\mathbb{R}^N$ の半開区間を
+$\mathbb{R}^N$ の半開区間 $I$ を
 
 $$
-I=\prod_{j=1}^N [a_j,b_j)
+I:=\prod_{j=1}^N [a_j,b_j)
 $$
 
-と書く. その体積を
+と書き, その体積を次で定める：
 
 $$
-m(I)=\prod_{j=1}^N (b_j-a_j)
+m(I):=\prod_{j=1}^N (b_j-a_j)
 $$
 
-で定める.
+半開区間全体を次のように表す：
+
+$$
+\mathfrak{I}_N:=\{I=\prod_{j=1}^N [a_j,b_j):a_j<b_j\}
+$$
 
 ::right::
 
@@ -63,23 +67,27 @@ layout: two-cols
 区間塊とは, 有限個の互いに素な区間の和集合である.
 
 $$
-E=\bigsqcup_{k=1}^r I_k
+E:=\bigsqcup_{k=1}^r I_k
 $$
 
-このとき
+区間塊 $E$ の体積を次で定める.
 
 $$
-m(E)=\sum_{k=1}^r m(I_k)
+m(E):=\sum_{k=1}^r m(I_k)
 $$
 
-と定める.
+区間塊全体を次のように表す：
+
+$$
+\mathfrak{F}_N:=\{E=\bigsqcup_{k=1}^n I_k:I_k\in\mathfrak{I}_N,\ n\in\mathbb{N}\}
+$$
 
 ::right::
 
 <img class="slide-figure" src="../figures/measure/static/concepts/interval_block_decomposition.png" alt="同じ区間塊を異なる長方形分割で表す図" />
 
 ---
-layout: two-cols
+layout: two-rows
 ---
 
 # Jordan 内測度と外測度
@@ -87,11 +95,11 @@ layout: two-cols
 有界集合 $A\subset\mathbb{R}^N$ に対して, 区間塊で内側から近似する量を Jordan 内測度, 外側から覆う量を Jordan 外測度とする.
 
 $$
-J_*(A)=\sup\{m(E):E\subset A,\ E\text{ は区間塊}\}
+J_*(A):=\sup\{m(E):E\subset A,\ E\text{ は区間塊}\}
 $$
 
 $$
-J^*(A)=\inf\{m(E):A\subset E,\ E\text{ は区間塊}\}
+J^*(A):=\inf\{m(E):A\subset E,\ E\text{ は区間塊}\}
 $$
 
 ::right::
@@ -99,26 +107,16 @@ $$
 <img class="slide-figure" style="max-height: 31vh;" src="../figures/measure/animations/jordan_curve_area/gif/jordan_curve_area.gif" alt="Jordan 的な面積近似" />
 
 ---
-layout: two-cols
+layout: two-rows
 ---
 
 # Jordan 可測性: 定義
 
-有界集合 $A$ が Jordan 可測であるとは
+有界集合 $A$ が Jordan 可測であるとは Jordan 内測度と Jordan 外測度が一致することをいい, このときの共通値を Jordan 測度と呼ぶ.
 
 $$
-J_*(A)=J^*(A)
+J(A):=J_*(A)=J^*(A)
 $$
-
-が成り立つことである.
-
-このとき共通値を Jordan 測度と呼び,
-
-$$
-J(A)=J_*(A)=J^*(A)
-$$
-
-と書く.
 
 ::right::
 
@@ -132,11 +130,11 @@ layout: default
 
 | 集合函数 | 定義域 | 値域 | 意味 |
 | --- | --- | --- | --- |
-| $m$ | $\mathfrak{I}_N$ | $[0,\infty)$ | 区間の体積 |
-| $m$ | $\mathfrak{F}_N$ | $[0,\infty)$ | 区間塊の体積 |
-| $J_*$ | $2^{\mathbb{R}^N}$ の有界部分集合 | $[0,\infty)$ | Jordan 内測度 |
-| $J^*$ | $2^{\mathbb{R}^N}$ の有界部分集合 | $[0,\infty)$ | Jordan 外測度 |
-| $J$ | $\mathcal{J}_N$ | $[0,\infty)$ | Jordan 測度 |
+| $m$ | 半開区間全体 $\mathfrak{I}_N$ | $[0,\infty)$ | 区間の体積 |
+| $m$ | 区間塊全体 $\mathfrak{F}_N$ | $[0,\infty)$ | 区間塊の体積 |
+| $J_*$ | 有界部分集合全体 $2^{\mathbb{R}^N}_{\mathrm{bd}}$ | $[0,\infty)$ | Jordan 内測度 |
+| $J^*$ | 有界部分集合全体 $2^{\mathbb{R}^N}_{\mathrm{bd}}$ | $[0,\infty)$ | Jordan 外測度 |
+| $J$ | Jordan 可測集合全体 $\mathcal{J}_N$ | $[0,\infty)$ | Jordan 測度 |
 
 $m$ は区間と区間塊に対する体積である. $J_*$ と $J^*$ は有界集合全体に対する内外近似であり, $J$ は $J_*(A)=J^*(A)$ が成り立つ集合だけに定義される.
 
@@ -147,7 +145,7 @@ layout: two-cols
 # Jordan 可測でない例: 有理点集合
 
 $$
-A=\mathbb{Q}^2\cap[0,1]^2
+A:=\mathbb{Q}^2\cap[0,1]^2
 $$
 
 を考える.
@@ -174,6 +172,6 @@ layout: end
 
 # この章の中心メッセージ
 
-- Jordan 測度は, 有限個の基本図形による内外近似として自然な面積概念である.
-- しかし, 可算集合や稠密集合を安定に扱うには不十分である.
-- Lebesgue 測度への移行点は, 有限近似から可算被覆へ移るところにある.
+- 半開区間と区間塊の体積から, 有限加法的な古典的面積概念を作る.
+- Jordan 測度は, 区間塊による内外近似が一致する集合に面積を与える.
+- 可算かつ稠密な集合を扱うには, 有限近似から可算被覆へ進む必要がある.
