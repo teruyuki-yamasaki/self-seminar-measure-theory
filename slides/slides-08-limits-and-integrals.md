@@ -12,23 +12,13 @@ layout: two-rows
 
 # 目的
 
-この章では, 函数列 $f_n$ の極限と積分の交換
+本章では, 極限と積分を交換できるための条件を考える.
 
-$$
-\lim_{n\to\infty}\int_X f_n\,d\mu
-\overset{?}{=}
-\int_X \lim_{n\to\infty} f_n\,d\mu
-$$
-
-が, どのような条件のもとで正当化されるかを考える.
-
-Lebesgue 積分の強みは, 積分できる函数の範囲が広いだけでなく, 一様収束より柔軟な条件で極限操作を制御できる点にある.
+函数列が収束しても, 積分値が極限函数の積分へ収束するとは限らない.
 
 ::figure::
 
 <img class="slide-figure" style="max-height: 30vh;" src="../figures/measure/static/concepts/integral_commutative_diagram.png" alt="函数列の収束と積分写像の関係を表す可換図式" />
-
-::
 
 ---
 layout: default
@@ -138,27 +128,21 @@ $$
 <img class="slide-figure" src="../figures/measure/animations/uniform_convergence_band/gif/uniform_convergence_band.gif" alt="一様収束で函数列が同じ epsilon 帯に入る様子" />
 
 ---
-layout: default
+layout: two-rows
 ---
 
 # 一様収束なら Riemann 積分でも安全
 
 $f_n\to f$ が $[a,b]$ 上で一様収束し, 各 $f_n$ が Riemann 可積分なら,
 
-$$
-\begin{aligned}
-\left|\int_a^b f_n(x)\,dx-\int_a^b f(x)\,dx\right|
-&\le
-\int_a^b |f_n(x)-f(x)|\,dx
-&\le
-(b-a)\epsilon
-\longrightarrow0.
-\end{aligned}
-$$
+Riemann 積分でも, 一様収束のもとでは極限と積分を交換できる.
 
-したがって, 一様収束のもとでは極限と積分を交換できる.
+問題は, より弱い収束条件のもとで交換を正当化できるかである.
 
-Lebesgue 積分では, 一様収束より柔軟な条件を用いる.
+::figure::
+
+<img class="slide-figure" style="max-height: 32vh;" src="../figures/measure/static/concepts/integral_commutative_diagram_uniform_riemann.png" alt="一様収束のもとで Riemann 積分と極限を交換できる図式" />
+
 
 ---
 layout: default
@@ -223,7 +207,7 @@ $$
 Fatou の補題では, 一般の非負函数列に対して, 極限函数の積分を評価できる.
 
 ---
-layout: default
+layout: two-rows
 ---
 
 # 優収束定理
@@ -238,15 +222,11 @@ $$
 
 をすべての $n$ で満たすなら,
 
-$$
-\lim_{n\to\infty}\int_X f_n\,d\mu
-=
-\int_X f\,d\mu
-$$
+可積分函数による支配のもとでは, 極限と積分を交換できる.
 
-が成り立つ.
+::figure::
 
-可積分函数 $g$ が, 函数列全体の積分量を共通に制御する.
+<img class="slide-figure" style="max-height: 32vh;" src="../figures/measure/static/concepts/integral_commutative_diagram_dominated_convergence.png" alt="優収束定理により極限と積分を交換できる図式" />
 
 ---
 layout: default
@@ -348,14 +328,13 @@ layout: end
 
 # この章のまとめ
 
-- 各点収束や a.e. 収束だけでは, 積分値の収束は保証されない.
-- 単調収束定理は, 非負単調増加する函数列の極限を扱う.
-- Fatou の補題は, 一般の非負函数列に対して $\liminf$ による評価を与える.
-- 優収束定理は, a.e. 収束と可積分支配から $L^1$ 収束を導く.
-- $L^1$ 収束は, 積分値の収束を直接保証する.
+- 函数列が収束しても, 一般には極限と積分を交換できない.
+- Riemann 積分でも, 一様収束のもとでは交換できる.
+- Lebesgue 積分では, 単調性や可積分函数による支配など, より柔軟な条件によって交換を正当化できる.
+- 単調収束定理, Fatou の補題, 優収束定理は, 極限操作に対する積分の振る舞いを段階的に制御する.
 
 $$
 \boxed{
-\text{Lebesgue 積分では, 一様収束より柔軟な条件で極限と積分を交換できる}
+\text{極限と積分の交換を, 条件ごとに見極める}
 }
 $$
