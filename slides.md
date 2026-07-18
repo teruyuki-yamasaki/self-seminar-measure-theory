@@ -26,6 +26,30 @@ layout: cover
 [60-80分想定 / 章別原稿ベース]{class="deck-meta"}
 
 ---
+layout: default
+---
+
+# 資料リンク
+
+<div class="resource-qr-grid">
+  <div class="resource-qr-card">
+    <h2>GitHub リポジトリ</h2>
+    <img src="./figures/measure/static/qrcode/github.svg" alt="GitHub リポジトリの QR コード" />
+    <p>github.com/teruyuki-yamasaki/self-seminar-measure-theory</p>
+  </div>
+  <div class="resource-qr-card">
+    <h2>章別原稿</h2>
+    <img src="./figures/measure/static/qrcode/chapters.svg" alt="章別原稿の QR コード" />
+    <p>teruyuki-yamasaki.github.io/self-seminar-measure-theory/chapters/</p>
+  </div>
+  <div class="resource-qr-card">
+    <h2>本スライド</h2>
+    <img src="./figures/measure/static/qrcode/slides.svg" alt="本スライドの QR コード" />
+    <p>teruyuki-yamasaki.github.io/self-seminar-measure-theory/</p>
+  </div>
+</div>
+
+---
 src: ./slides/slides-00-introduction.md
 ---
 
@@ -60,3 +84,12 @@ src: ./slides/slides-08-limits-and-integrals.md
 ---
 src: ./slides/slides-appendix-radon-nikodym.md
 ---
+
+---
+layout: end
+---
+
+# 参考文献
+
+- 伊藤清三『ルベーグ積分入門』
+- 志賀浩二『ルベーグ積分30講』
