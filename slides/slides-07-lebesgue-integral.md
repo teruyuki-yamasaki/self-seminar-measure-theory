@@ -189,6 +189,37 @@ $$
 layout: default
 ---
 
+# 可積分函数
+
+一般の可測函数 $f$ に対して
+
+$$
+\int_X f\,d\mu
+=
+\int_X f^+\,d\mu-\int_X f^-\,d\mu
+$$
+
+を考える.
+
+このとき
+
+$$
+\int_X |f|\,d\mu<\infty
+$$
+
+が成り立つなら, $f$ は **可積分** であるという.
+
+この条件は,  以下とも同値である:
+
+$$
+\int_X f^+\,d\mu<\infty\quad\text{かつ}\quad
+\int_X f^-\,d\mu<\infty
+$$
+
+---
+layout: default
+---
+
 # 積分の基本性質
 
 Lebesgue 積分は, 適切な可積分性のもとで次を満たす.
@@ -211,8 +242,6 @@ $$
 \int_X|f|\,d\mu
 $$
 
-これらは後の収束定理の基礎になる.
-
 ---
 layout: default
 ---
@@ -227,7 +256,7 @@ $$
 \int_{[a,b]} f\,d\mu
 $$
 
-Lebesgue 積分は Riemann 積分を捨てるものではなく, より広い函数と極限操作に耐える形に拡張するものである.
+Lebesgue 積分は Riemann 積分を, より広い函数族と極限操作に適合する形へ拡張するものである.
 
 ---
 layout: default
@@ -235,20 +264,24 @@ layout: default
 
 # 可積分函数全体
 
-可測函数 $f$ が可積分であるとは
+可積分な実数値可測函数全体を
 
 $$
-\int_X |f|\,d\mu<\infty
+V
+:=
+\left\{
+f:X\to\mathbb{R}
+\mid
+f\text{ は可測},\ \int_X|f|\,d\mu<\infty
+\right\}
 $$
 
-であることをいう.
-
-可積分函数全体は線形空間をなす.
+とおく. このとき $V$ は線形空間をなす.
 
 $$
-f,g\in L^1,\ a,b\in\mathbb{R}
+f,g\in V,\ a,b\in\mathbb{R}
 \quad\Longrightarrow\quad
-af+bg\in L^1
+af+bg\in V
 $$
 
 ---
@@ -257,7 +290,7 @@ layout: default
 
 # $L^1$ 半ノルムと a.e. 一致
 
-可積分函数に対して
+$V$ の各函数 $f$ に対して
 
 $$
 \|f\|_1:=\int_X |f|\,d\mu
