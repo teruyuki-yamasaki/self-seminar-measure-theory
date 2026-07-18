@@ -258,7 +258,7 @@ def draw_frame(save_path: Path, r: int) -> None:
     ax_domain.text(
         0.50,
         -0.11,
-        r"$Y_r=X\setminus E_r$ とおくと, $E_r$ は不連続点の $\varepsilon_r$ 近傍だけからなる",
+        r"$Y_r=X\backslash E_r$ とおくと, $E_r$ は不連続点の $\varepsilon_r$ 近傍だけからなる",
         ha="center",
         va="top",
         fontsize=11.8,
@@ -284,7 +284,7 @@ def draw_frame(save_path: Path, r: int) -> None:
     ax_text.text(
         0.00,
         0.40,
-        rf"$k\geq n_r$ なら, $Y_r=X\setminus E_r$ 上で $|f_k(x)-f(x)|\leq 2^{{-{r}}}$.",
+        rf"$k\geq n_r$ なら, $Y_r=X\backslash E_r$ 上で $|f_k(x)-f(x)|\leq 2^{{-{r}}}$.",
         fontsize=13.0,
         color=COLORS["ink"],
     )
@@ -325,7 +325,8 @@ def build_animation() -> None:
         draw_frame(frame_path, r)
         frame_paths.append(frame_path)
 
-    images = [Image.open(path).convert("P", palette=Image.Palette.ADAPTIVE) for path in frame_paths]
+    adaptive_palette = getattr(getattr(Image, "Palette", Image), "ADAPTIVE", Image.ADAPTIVE)
+    images = [Image.open(path).convert("P", palette=adaptive_palette) for path in frame_paths]
     images[0].save(
         GIF_PATH,
         save_all=True,
