@@ -96,7 +96,7 @@ $$
 
 この考えを区間 $I \in \mathfrak{I}_N \subset 2^{\mathbb{R}^N}$ だけでなく, 任意の集合 $B\in 2^{\mathbb{R}^N}$ に対して要求することで, Lebesgue 可測性が定義される.
 
-![外測度と内外近似](../../figures/measure/animations/lebesgue_inner_outer_overlap/gif/lebesgue_inner_outer_overlap.gif)
+![外測度と内外近似](../../figures/measure/animations/lebesgue_inner_outer_overlap/gif/lebesgue_inner_outer_overlap_vertical.gif)
 
 
 ## Lebesgue 可測集合

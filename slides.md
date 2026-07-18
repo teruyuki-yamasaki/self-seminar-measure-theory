@@ -70,15 +70,15 @@ src: ./slides/slides-04-measure-space.md
 ---
 
 ---
-src: ./slides/slides-06-measurable-simple-functions.md
+src: ./slides/slides-05-measurable-simple-functions.md
 ---
 
 ---
-src: ./slides/slides-07-lebesgue-integral.md
+src: ./slides/slides-06-lebesgue-integral.md
 ---
 
 ---
-src: ./slides/slides-08-limits-and-integrals.md
+src: ./slides/slides-07-limits-and-integrals.md
 ---
 
 ---
