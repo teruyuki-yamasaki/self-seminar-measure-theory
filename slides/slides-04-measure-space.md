@@ -174,19 +174,37 @@ $$
 layout: default
 ---
 
-# 測度の基本性質: 下からの連続性
+# 測度の基本性質: 調な集合列の極限と整合
 
-$A_1\subset A_2\subset\cdots$ ならば
+**下からの連続性**
+
+$A_1\subset A_2\subset\cdots$ ならば以下が成り立つ:
 
 $$
-\mu\left(\bigcup_{n=1}^{\infty}A_n\right)
-=
-\lim_{n\to\infty}\mu(A_n)
+\begin{aligned}
+\mu\left(\lim_{n\to\infty}A_n\right)
+&=
+\lim_{n\to\infty}\mu(A_n),\\
+\lim_{n\to\infty}A_n
+&=
+\bigcup_{n=1}^{\infty}A_n
+\end{aligned}
 $$
 
-が成り立つ.
+**上からの連続性**
 
-これは極限操作と測度を結びつける基本性質である.
+$A_1\supset A_2\supset\cdots$ かつ $\mu(A_1)<\infty$ ならば以下が成り立つ:
+
+$$
+\begin{aligned}
+\mu\left(\lim_{n\to\infty}A_n\right)
+&=
+\lim_{n\to\infty}\mu(A_n),\\
+\lim_{n\to\infty}A_n
+&=
+\bigcap_{n=1}^{\infty}A_n
+\end{aligned}
+$$
 
 ---
 layout: default
@@ -206,7 +224,7 @@ $$
 
 $$
 \mu(N)=0,\qquad
-x\in E\setminus N\Longrightarrow P(x)
+x\in E - N\Longrightarrow P(x)
 $$
 
 である. このとき
@@ -313,7 +331,7 @@ layout: default
 
 | 場面 | 空間 | 可測集合族 | 測度 |
 | --- | --- | --- | --- |
-| 抽象的な測度空間 | $X$ | $\mathfrak{B}$ | $\mu$ |
+| 抽象的な測度空間 | $X$ | $\mathfrak{B}$ | Carathéodory 測度 $\mu$ |
 | ユークリッド空間 | $\mathbb{R}^N$ | $\mathfrak{M}_{\mu^*}$ | Lebesgue 測度 $\mu$ |
 | 確率空間 | $\Omega$ | 事象の集合族 $\mathfrak{B}$ | 確率測度 $P$ |
 
