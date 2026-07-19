@@ -317,6 +317,14 @@ html.dark,
   box-shadow: var(--measure-shadow-figure);
 }
 
+.slidev-layout .commutative-diagram {
+  width: min(100%, 36rem);
+  max-height: 22vh;
+  margin: 0.2rem auto 0;
+  padding: 0.25rem;
+  box-sizing: border-box;
+}
+
 .slidev-layout.two-cols .slide-figure,
 .slidev-layout.two-cols-header .slide-figure {
   width: min(100%, 22rem);
@@ -361,6 +369,11 @@ html.dark,
   max-height: 100%;
   margin: 0 auto;
   box-sizing: border-box;
+}
+
+.slidev-layout.two-rows .commutative-diagram {
+  width: min(100%, 36rem);
+  max-height: 22vh;
 }
 
 .slidev-layout blockquote {

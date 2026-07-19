@@ -24,7 +24,7 @@ $$
 
 ::figure::
 
-<img class="slide-figure" style="max-height: 30vh;" src="../figures/measure/static/concepts/integral_commutative_diagram.png" alt="函数列の収束と積分の関係を表す可換図式" />
+<img class="slide-figure commutative-diagram" src="../figures/measure/static/concepts/integral_commutative_diagram.png" alt="函数列の収束と積分の関係を表す可換図式" />
 
 ---
 layout: default
@@ -133,7 +133,7 @@ $$
 
 ::figure::
 
-<img class="slide-figure" style="max-height: 32vh;" src="../figures/measure/static/concepts/integral_commutative_diagram_uniform_riemann.png" alt="一様収束のもとで Riemann 積分と極限を交換できる図式" />
+<img class="slide-figure commutative-diagram" src="../figures/measure/static/concepts/integral_commutative_diagram_uniform_riemann.png" alt="一様収束のもとで Riemann 積分と極限を交換できる図式" />
 
 
 ---
@@ -158,17 +158,15 @@ layout: two-rows
 
 # 単調収束定理
 
-非負可測函数列が a.e. に
+非負可測函数列が
 
 $$
 0\le f_1\le f_2\le\cdots,
 \qquad
 f_n\nearrow f
-\qquad
-\mu\text{-a.e.}
 $$
 
-を満たすなら,
+を a.e. に満たすなら,
 
 $$
 \int_X f_n\,d\mu
@@ -176,13 +174,11 @@ $$
 \int_X f\,d\mu
 $$
 
-が成り立つ.
-
-非負函数列が下から増加して極限函数に近づくとき, 積分値も下から増加して極限の積分に近づく.
+が成り立つ. つまり, 下から増加する非負函数列では積分値も下から極限に近づく.
 
 ::figure::
 
-<img class="slide-figure" style="max-height: 32vh;" src="../figures/measure/static/concepts/integral_commutative_diagram_monotone_convergence.png" alt="単調収束定理により極限と積分を交換できる図式" />
+<img class="slide-figure commutative-diagram" src="../figures/measure/static/concepts/integral_commutative_diagram_monotone_convergence.png" alt="単調収束定理により極限と積分を交換できる図式" />
 
 ---
 layout: default
@@ -224,7 +220,7 @@ $$
 
 ::figure::
 
-<img class="slide-figure" style="max-height: 32vh;" src="../figures/measure/static/concepts/integral_commutative_diagram_dominated_convergence.png" alt="優収束定理により極限と積分を交換できる図式" />
+<img class="slide-figure commutative-diagram" src="../figures/measure/static/concepts/integral_commutative_diagram_dominated_convergence.png" alt="優収束定理により極限と積分を交換できる図式" />
 
 ---
 layout: default
