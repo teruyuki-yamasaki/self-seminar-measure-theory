@@ -144,16 +144,16 @@ $$
 
 $\Gamma$-可測集合の全体を$\mathfrak{M}_\Gamma$と書く.
 - $E \in \mathfrak{M}_\Gamma$ならば, $E^c \in \mathfrak{M}_\Gamma$.
-- $\Gamma(N) = 0$ならば, $N \in \mathfrak{M}_\Gamma$. 従って特に $\emptyset \in \mathfrak{M}_\Gamma$.
-    - $\because \forall A \subset X, \; \Gamma(A \cap N) \le \Gamma(N) = 0$.
+- $\Gamma(Z) = 0$ならば, $Z \in \mathfrak{M}_\Gamma$. 従って特に $\emptyset \in \mathfrak{M}_\Gamma$.
+    - $\because \forall A \subset X, \; \Gamma(A \cap Z) \le \Gamma(Z) = 0$.
     $$
-    \Gamma(A) \ge \Gamma(A \cap N^c) = \Gamma(A \cap N) + \Gamma(A \cap N^c)
+    \Gamma(A) \ge \Gamma(A \cap Z^c) = \Gamma(A \cap Z) + \Gamma(A \cap Z^c)
     $$
 
 ### 零集合
-$\Gamma(N) = 0$なる集合$N$を ($\Gamma$に関する) **零集合**という. 
+$\Gamma(Z) = 0$なる集合$Z$を ($\Gamma$に関する) **零集合**という. 
 - 空集合$\emptyset$は零集合であるが逆は成り立たない.
-- 零集合の全体を$\mathfrak{N}_\Gamma$と書く. 
+- 零集合の全体を$\mathfrak{Z}_\Gamma$と書く. 
 
 
 ### 性質

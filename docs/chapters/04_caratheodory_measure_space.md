@@ -41,10 +41,10 @@ $$
 また,
 
 $$
-\Gamma(N)=0
+\Gamma(Z)=0
 $$
 
-を満たす集合 $N\subset X$ を, $\Gamma$ に関する **零集合** という.
+を満たす集合 $Z\subset X$ を, $\Gamma$ に関する **零集合** という.
 
 ## Carathéodory 可測性
 
@@ -290,15 +290,15 @@ $$
 第3章では, Lebesgue 外測度 $0$ の集合が Lebesgue 可測であることを見た.
 測度空間では, 同じ考えを一般の測度 $\mu$ に対して次のように表す.
 
-集合 $N\in\mathfrak{B}$ が
+集合 $Z\in\mathfrak{B}$ が
 
 $$
-\mu(N)=0
+\mu(Z)=0
 $$
 
-を満たすとき, $N$ を零集合という.
+を満たすとき, $Z$ を零集合という.
 
-集合 $E\in\mathfrak{B}$ 上の点 $x$ に関する命題 $P(x)$ が, ある零集合 $N\subset E$ を除いて成り立つとき, $P(x)$ は $E$ 上で $\mu$ に関して **ほとんど至る所 (almost everywhere, a.e.)** 成り立つという.
+集合 $E\in\mathfrak{B}$ 上の点 $x$ に関する命題 $P(x)$ が, ある零集合 $Z\subset E$ を除いて成り立つとき, $P(x)$ は $E$ 上で $\mu$ に関して **ほとんど至る所 (almost everywhere, a.e.)** 成り立つという.
 
 記号では
 

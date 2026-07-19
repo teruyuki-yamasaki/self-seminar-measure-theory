@@ -141,22 +141,22 @@ $$
 
 第2章では, Lebesgue 外測度が $0$ になる集合を零集合と呼んだ.
 
-零集合 $N\subset\mathbb{R}^N$ は Lebesgue 可測である. 実際, 任意の $B\subset\mathbb{R}^N$ に対して
+零集合 $Z\subset\mathbb{R}^N$ は Lebesgue 可測である. 実際, 任意の $B\subset\mathbb{R}^N$ に対して
 
 $$
-\mu^*(B\cap N)\leq \mu^*(N)=0
+\mu^*(B\cap Z)\leq \mu^*(Z)=0
 $$
 
 であるから
 
 $$
-\mu^*(B\cap N)=0
+\mu^*(B\cap Z)=0
 $$
 
-である. また $B\cap N^c\subset B$ より
+である. また $B\cap Z^c\subset B$ より
 
 $$
-\mu^*(B\cap N^c)\leq \mu^*(B)
+\mu^*(B\cap Z^c)\leq \mu^*(B)
 $$
 
 である. 一方, 可算劣加法性より
@@ -164,9 +164,9 @@ $$
 $$
 \mu^*(B)
 \leq
-\mu^*(B\cap N)+\mu^*(B\cap N^c)
+\mu^*(B\cap Z)+\mu^*(B\cap Z^c)
 =
-\mu^*(B\cap N^c)
+\mu^*(B\cap Z^c)
 $$
 
 となる. したがって
@@ -174,12 +174,12 @@ $$
 $$
 \mu^*(B)
 =
-\mu^*(B\cap N)+\mu^*(B\cap N^c)
+\mu^*(B\cap Z)+\mu^*(B\cap Z^c)
 $$
 
 が成り立つ.
 
-よって $N$ は Lebesgue 可測である.
+よって $Z$ は Lebesgue 可測である.
 
 第2章で見たように, 任意の可算集合 $A\subset\mathbb{R}^N$ は $\mu^*(A)=0$ を満たす. したがって, 任意の可算集合は Lebesgue 可測集合であり, Lebesgue 測度 $0$ を持つ.
 

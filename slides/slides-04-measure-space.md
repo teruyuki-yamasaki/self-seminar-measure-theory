@@ -212,10 +212,10 @@ layout: default
 
 # 零集合 と ほとんど至る所 (almost everywhere, a.e.)
 
-集合 $N\in\mathfrak{B}$ が次を満たすとき, $N$ を **零集合** という.
+集合 $Z\in\mathfrak{B}$ が次を満たすとき, $Z$ を **零集合** という.
 
 $$
-\mu(N)=0
+\mu(Z)=0
 $$
 
 集合 $E\in\mathfrak{B}$ 上の命題 $P(x)$ について次が成り立つとき

@@ -166,10 +166,10 @@ layout: default
 
 # 零集合
 
-Lebesgue 外測度が $0$ である集合 $N\subset\mathbb{R}^N$ を **零集合** という.
+Lebesgue 外測度が $0$ である集合 $Z\subset\mathbb{R}^N$ を **零集合** という.
 
 $$
-\mu^*(N)=0
+\mu^*(Z)=0
 $$
 
 零集合は, 外測度から見て大きさを持たない集合である.
@@ -177,15 +177,15 @@ $$
 このとき, 任意の集合 $B\subset\mathbb{R}^N$ に対して
 
 $$
-\mu^*(B\cap N)=0
+\mu^*(B\cap Z)=0
 $$
 
-であり, $N$ は Lebesgue 可測である.
+であり, $Z$ は Lebesgue 可測である.
 
 したがって
 
 $$
-\mu(N)=0
+\mu(Z)=0
 $$
 
 となる.
