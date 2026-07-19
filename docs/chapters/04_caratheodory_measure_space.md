@@ -34,7 +34,7 @@ $$
 |  | **非負性と空集合** | **単調性** | **可算劣加法性** |
 | --- | --- | --- | --- |
 | **式** | $\displaystyle 0\leq\Gamma(A)\leq\infty,\quad \Gamma(\emptyset)=0$ | $\displaystyle A\subset B\Longrightarrow \Gamma(A)\leq\Gamma(B)$ | $\displaystyle \Gamma\left(\bigcup_{n=1}^{\infty}A_n\right)\leq\sum_{n=1}^{\infty}\Gamma(A_n)$ |
-| **図** | <img src="../../figures/measure/animations/caratheodory_outer_measure_axioms/gif/caratheodory_outer_measure_axioms_nonnegative.gif" alt="Carathéodory 外測度の非負性" width="220"> | <img src="../../figures/measure/animations/caratheodory_outer_measure_axioms/gif/caratheodory_outer_measure_axioms_monotone.gif" alt="Carathéodory 外測度の単調性" width="220"> | <img src="../../figures/measure/animations/caratheodory_outer_measure_axioms/gif/caratheodory_outer_measure_axioms_subadditive.gif" alt="Carathéodory 外測度の可算劣加法性" width="220"> |
+| **図** | ![Carathéodory 外測度の非負性](../../figures/measure/animations/caratheodory_outer_measure_axioms/gif/caratheodory_outer_measure_axioms_nonnegative.gif) | ![Carathéodory 外測度の単調性](../../figures/measure/animations/caratheodory_outer_measure_axioms/gif/caratheodory_outer_measure_axioms_monotone.gif) | ![Carathéodory 外測度の可算劣加法性](../../figures/measure/animations/caratheodory_outer_measure_axioms/gif/caratheodory_outer_measure_axioms_subadditive.gif) |
 
 第2章で導入した Lebesgue 外測度 $\mu^*$ は, $X=\mathbb{R}^N$ の場合の外測度である.
 

@@ -78,7 +78,7 @@ Lebesgue 外測度 $\mu^*$ は, $\mathbb{R}^N$ の部分集合 $A, B, A_1, A_2, 
 |  | **非負性と空集合** | **単調性** | **可算劣加法性** |
 | --- | --- | --- | --- |
 | **式** | $\displaystyle 0\leq \mu^*(A)\leq \infty,\quad \mu^*(\emptyset)=0$ | $\displaystyle A\subset B\Longrightarrow \mu^*(A)\leq \mu^*(B)$ | $\displaystyle \mu^*\left(\bigcup_{n=1}^{\infty}A_n\right)\leq\sum_{n=1}^{\infty}\mu^*(A_n)$ |
-| **図** | <img src="../../figures/measure/animations/lebesgue_outer_measure_axioms/gif/lebesgue_outer_measure_axioms_nonnegative.gif" alt="Lebesgue 外測度の非負性" width="220"> | <img src="../../figures/measure/animations/lebesgue_outer_measure_axioms/gif/lebesgue_outer_measure_axioms_monotone.gif" alt="Lebesgue 外測度の単調性" width="220"> | <img src="../../figures/measure/animations/lebesgue_outer_measure_axioms/gif/lebesgue_outer_measure_axioms_subadditive.gif" alt="Lebesgue 外測度の可算劣加法性" width="220"> |
+| **図** | ![Lebesgue 外測度の非負性](../../figures/measure/animations/lebesgue_outer_measure_axioms/gif/lebesgue_outer_measure_axioms_nonnegative.gif) | ![Lebesgue 外測度の単調性](../../figures/measure/animations/lebesgue_outer_measure_axioms/gif/lebesgue_outer_measure_axioms_monotone.gif) | ![Lebesgue 外測度の可算劣加法性](../../figures/measure/animations/lebesgue_outer_measure_axioms/gif/lebesgue_outer_measure_axioms_subadditive.gif) |
 
 この三つの性質を持つため, $\mu^*$ は「外測度」と呼ばれる. ただしこの章では, 一般の空間上の外測度論にはまだ進まず, $\mathbb{R}^N$ 上で区間被覆から定まる Lebesgue 外測度だけを扱う. 外測度の公理的な扱いは第4章で行う.
 

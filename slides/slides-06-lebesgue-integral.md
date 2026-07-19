@@ -42,7 +42,7 @@ $$
 
 ::right::
 
-<img class="slide-figure" src="../figures/measure/animations/simple_function_examples_2d/gif/simple_function_examples_2d.gif" alt="単函数の積分" />
+![単函数の積分](../figures/measure/animations/simple_function_examples_2d/gif/simple_function_examples_2d.gif)
 
 ---
 layout: default
@@ -98,7 +98,7 @@ $$
 
 ::right::
 
-<img class="slide-figure" src="../figures/measure/animations/monotone_simple_approximation/gif/monotone_simple_approximation.gif" alt="下からの単函数近似" />
+![下からの単函数近似](../figures/measure/animations/monotone_simple_approximation/gif/monotone_simple_approximation.gif)
 
 ---
 layout: two-cols
@@ -128,7 +128,7 @@ $$
 
 ::right::
 
-<img class="slide-figure" src="../figures/measure/animations/integral_on_subset_monotone_limit_2d/gif/integral_on_subset_monotone_limit_2d.gif" alt="可測集合上で単函数近似の積分値が下から収束する様子" />
+![可測集合上で単函数近似の積分値が下から収束する様子](../figures/measure/animations/integral_on_subset_monotone_limit_2d/gif/integral_on_subset_monotone_limit_2d.gif)
 
 ---
 layout: default

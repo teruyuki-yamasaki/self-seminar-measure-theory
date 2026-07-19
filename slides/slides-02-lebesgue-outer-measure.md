@@ -42,7 +42,7 @@ $$
 
 ::right::
 
-<img class="slide-figure" src="../figures/measure/animations/outer_measure_quadtree_late_stages/gif/outer_measure_quadtree_late_stages_cover_only.gif" alt="可算被覆の細分化" />
+![可算被覆の細分化](../figures/measure/animations/outer_measure_quadtree_late_stages/gif/outer_measure_quadtree_late_stages_cover_only.gif)
 
 ---
 layout: two-rows
@@ -65,7 +65,7 @@ $$
 
 ::right::
 
-<img class="slide-figure" src="../figures/measure/animations/outer_measure_quadtree_late_stages/gif/outer_measure_quadtree_late_stages.gif" alt="被覆和と Lebesgue 外測度" />
+![被覆和と Lebesgue 外測度](../figures/measure/animations/outer_measure_quadtree_late_stages/gif/outer_measure_quadtree_late_stages.gif)
 
 ---
 layout: default
@@ -78,7 +78,7 @@ Lebesgue 外測度 $\mu^*$ は次を満たす.
 |  | 非負性と空集合 | 単調性 | 可算劣加法性 |
 | --- | --- | --- | --- |
 | 式 | $\displaystyle 0\le\mu^*(A)\le\infty,\quad \mu^*(\emptyset)=0$ | $\displaystyle A\subset B\Rightarrow \mu^*(A)\le\mu^*(B)$ | $\displaystyle \mu^*(\bigcup_{n=1}^{\infty}A_n)\le\sum_{n=1}^{\infty}\mu^*(A_n)$ |
-| 図 | <img class="axiom-gif" src="../figures/measure/animations/lebesgue_outer_measure_axioms/gif/lebesgue_outer_measure_axioms_nonnegative.gif" alt="Lebesgue 外測度の非負性" /> | <img class="axiom-gif" src="../figures/measure/animations/lebesgue_outer_measure_axioms/gif/lebesgue_outer_measure_axioms_monotone.gif" alt="Lebesgue 外測度の単調性" /> | <img class="axiom-gif" src="../figures/measure/animations/lebesgue_outer_measure_axioms/gif/lebesgue_outer_measure_axioms_subadditive.gif" alt="Lebesgue 外測度の可算劣加法性" /> |
+| 図 | ![Lebesgue 外測度の非負性](../figures/measure/animations/lebesgue_outer_measure_axioms/gif/lebesgue_outer_measure_axioms_nonnegative.gif) | ![Lebesgue 外測度の単調性](../figures/measure/animations/lebesgue_outer_measure_axioms/gif/lebesgue_outer_measure_axioms_monotone.gif) | ![Lebesgue 外測度の可算劣加法性](../figures/measure/animations/lebesgue_outer_measure_axioms/gif/lebesgue_outer_measure_axioms_subadditive.gif) |
 
 ただし, この段階では可算加法性は得られていない.
 
@@ -185,7 +185,7 @@ $$
 
 ::right::
 
-<img class="slide-figure" src="../figures/measure/animations/rational_measure_zero/gif/rational_measure_zero.gif" alt="可算集合を短い区間列で覆う" />
+![可算集合を短い区間列で覆う](../figures/measure/animations/rational_measure_zero/gif/rational_measure_zero.gif)
 
 ---
 layout: two-cols
@@ -216,7 +216,7 @@ $$
 
 ::right::
 
-<img class="slide-figure" src="../figures/measure/animations/rational_points_outer_approx/gif/rational_points_outer_approx.gif" alt="平面内の可算点集合の外側近似" />
+![平面内の可算点集合の外側近似](../figures/measure/animations/rational_points_outer_approx/gif/rational_points_outer_approx.gif)
 
 ---
 layout: end

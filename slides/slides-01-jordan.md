@@ -28,7 +28,7 @@ layout: two-rows
 
 ::right::
 
-<img class="slide-figure" src="../figures/measure/animations/classical_area_coverings/gif/classical_area_coverings.gif" alt="基本図形を増やしながら円板の面積を近似する図" />
+![基本図形を増やしながら円板の面積を近似する図](../figures/measure/animations/classical_area_coverings/gif/classical_area_coverings.gif)
 
 ---
 layout: two-cols
@@ -56,7 +56,7 @@ $$
 
 ::right::
 
-<img class="slide-figure" src="../figures/measure/static/concepts/half_open_interval_volume.png" alt="半開区間と体積の概念図" />
+![半開区間と体積の概念図](../figures/measure/static/concepts/half_open_interval_volume.png)
 
 ---
 layout: two-cols
@@ -84,7 +84,7 @@ $$
 
 ::right::
 
-<img class="slide-figure" src="../figures/measure/static/concepts/interval_block_decomposition.png" alt="同じ区間塊を異なる長方形分割で表す図" />
+![同じ区間塊を異なる長方形分割で表す図](../figures/measure/static/concepts/interval_block_decomposition.png)
 
 ---
 layout: default
@@ -136,7 +136,7 @@ $$
 
 ::right::
 
-<img class="slide-figure" style="max-height: 31vh;" src="../figures/measure/animations/jordan_curve_area/gif/jordan_curve_area.gif" alt="Jordan 的な面積近似" />
+![Jordan 的な面積近似](../figures/measure/animations/jordan_curve_area/gif/jordan_curve_area.gif)
 
 ---
 layout: two-rows
@@ -152,7 +152,7 @@ $$
 
 ::right::
 
-<img class="slide-figure" src="../figures/measure/animations/jordan_holes_adaptive/gif/jordan_holes_adaptive.gif" alt="穴を持つ集合の Jordan 的近似" />
+![穴を持つ集合の Jordan 的近似](../figures/measure/animations/jordan_holes_adaptive/gif/jordan_holes_adaptive.gif)
 
 ---
 layout: default
@@ -196,7 +196,7 @@ $$
 
 ::right::
 
-<img class="slide-figure" src="../figures/measure/animations/rational_density_zoom_centered/gif/rational_density_zoom_centered.gif" alt="有理点集合の拡大図" />
+![有理点集合の拡大図](../figures/measure/animations/rational_density_zoom_centered/gif/rational_density_zoom_centered.gif)
 
 ---
 layout: end

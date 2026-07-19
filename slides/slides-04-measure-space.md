@@ -39,7 +39,7 @@ $$
 |  | 非負性と空集合 | 単調性 | 可算劣加法性 |
 | --- | --- | --- | --- |
 | 式 | $\displaystyle 0\le\Gamma(A)\le\infty,\quad \Gamma(\emptyset)=0$ | $\displaystyle A\subset B\Rightarrow \Gamma(A)\le\Gamma(B)$ | $\displaystyle \Gamma(\bigcup_{n=1}^{\infty}A_n)\le\sum_{n=1}^{\infty}\Gamma(A_n)$ |
-| 図 | <img class="axiom-gif" src="../figures/measure/animations/caratheodory_outer_measure_axioms/gif/caratheodory_outer_measure_axioms_nonnegative.gif" alt="Carathéodory 外測度の非負性" /> | <img class="axiom-gif" src="../figures/measure/animations/caratheodory_outer_measure_axioms/gif/caratheodory_outer_measure_axioms_monotone.gif" alt="Carathéodory 外測度の単調性" /> | <img class="axiom-gif" src="../figures/measure/animations/caratheodory_outer_measure_axioms/gif/caratheodory_outer_measure_axioms_subadditive.gif" alt="Carathéodory 外測度の可算劣加法性" /> |
+| 図 | ![Carathéodory 外測度の非負性](../figures/measure/animations/caratheodory_outer_measure_axioms/gif/caratheodory_outer_measure_axioms_nonnegative.gif) | ![Carathéodory 外測度の単調性](../figures/measure/animations/caratheodory_outer_measure_axioms/gif/caratheodory_outer_measure_axioms_monotone.gif) | ![Carathéodory 外測度の可算劣加法性](../figures/measure/animations/caratheodory_outer_measure_axioms/gif/caratheodory_outer_measure_axioms_subadditive.gif) |
 
 ---
 layout: default

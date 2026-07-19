@@ -31,23 +31,10 @@ layout: default
 
 # 資料リンク
 
-<div class="resource-qr-grid">
-  <div class="resource-qr-card">
-    <h2>GitHub リポジトリ</h2>
-    <img src="./figures/measure/static/qrcode/github.svg" alt="GitHub リポジトリの QR コード" />
-    <p>github.com/teruyuki-yamasaki/self-seminar-measure-theory</p>
-  </div>
-  <div class="resource-qr-card">
-    <h2>章別原稿</h2>
-    <img src="./figures/measure/static/qrcode/chapters.svg" alt="章別原稿の QR コード" />
-    <p>teruyuki-yamasaki.github.io/self-seminar-measure-theory/chapters/</p>
-  </div>
-  <div class="resource-qr-card">
-    <h2>本スライド</h2>
-    <img src="./figures/measure/static/qrcode/slides.svg" alt="本スライドの QR コード" />
-    <p>teruyuki-yamasaki.github.io/self-seminar-measure-theory/</p>
-  </div>
-</div>
+| GitHub リポジトリ | 章別原稿 | 本スライド |
+| --- | --- | --- |
+| ![GitHub リポジトリの QR コード](./figures/measure/static/qrcode/github.svg) | ![章別原稿の QR コード](./figures/measure/static/qrcode/chapters.svg) | ![本スライドの QR コード](./figures/measure/static/qrcode/slides.svg) |
+| github.com/teruyuki-yamasaki/self-seminar-measure-theory | teruyuki-yamasaki.github.io/self-seminar-measure-theory/chapters/ | teruyuki-yamasaki.github.io/self-seminar-measure-theory/ |
 
 ---
 src: ./slides/slides-00-introduction.md
