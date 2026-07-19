@@ -12,6 +12,7 @@
     "build:all": "pnpm build && pnpm build:chapters",
     "docs:preview": "vitepress preview docs/chapters --host 0.0.0.0",
     "export": "slidev export slides.md --output dist/measure-theory-seminar.pdf",
+    "gif:prepend-final-frame": "python scripts/prepend_gif_final_frame.py",
     "format": "biome format --write .",
     "check": "biome check ."
   },
