@@ -36,8 +36,8 @@ BACKGROUND = "#ffffff"
 
 TOP_Y = 2.45
 BOTTOM_Y = 0.95
-LEFT_X = 1.65
-RIGHT_X = 4.15
+LEFT_X = 3.05
+RIGHT_X = 6.95
 DEFINITION_X = 7.25
 DEFINITION_Y = 1.72
 
@@ -105,10 +105,10 @@ def draw_diagram(
     *,
     top_label: str | None = None,
     show_question: bool = True,
-    bottom_left: str = r"$I(f_n)$",
-    bottom_right: str = r"$I(f)$",
-    vertical_label: str = r"$I$",
-    definition: str | None = r"$I(f)=\int_X f\,d\mu$",
+    bottom_left: str = r"$\int_X f_n\,d\mu$",
+    bottom_right: str = r"$\int_X f\,d\mu$",
+    vertical_label: str = r"$\int$",
+    definition: str | None = None,
     bottom_font_size: float = NODE_FONT_SIZE,
     horizontal_gap: float = HORIZONTAL_NODE_GAP,
     figsize: tuple[float, float] = FIGSIZE,
@@ -165,7 +165,11 @@ def main() -> None:
     setup_style()
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-    draw_diagram(GENERAL_OUTPUT_FILE, horizontal_gap=0.78)
+    draw_diagram(
+        GENERAL_OUTPUT_FILE,
+        bottom_font_size=BOTTOM_LONG_FONT_SIZE,
+        horizontal_gap=BOTTOM_LONG_GAP,
+    )
     draw_diagram(
         RIEMANN_OUTPUT_FILE,
         top_label="一様収束",
@@ -184,7 +188,8 @@ def main() -> None:
         DOMINATED_OUTPUT_FILE,
         top_label="概収束 + 可積分な支配",
         show_question=False,
-        horizontal_gap=0.78,
+        bottom_font_size=BOTTOM_LONG_FONT_SIZE,
+        horizontal_gap=BOTTOM_LONG_GAP,
         top_label_font_size=13,
     )
     for output_file in [GENERAL_OUTPUT_FILE, RIEMANN_OUTPUT_FILE, DOMINATED_OUTPUT_FILE]:

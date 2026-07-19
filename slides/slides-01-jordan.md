@@ -67,13 +67,13 @@ layout: two-cols
 区間塊とは, 有限個の互いに素な区間の和集合である.
 
 $$
-E:=\bigsqcup_{k=1}^r I_k
+E:=\bigsqcup_{k=1}^n I_k
 $$
 
 区間塊 $E$ の体積を次で定める.
 
 $$
-m(E):=\sum_{k=1}^r m(I_k)
+m(E):=\sum_{k=1}^n m(I_k)
 $$
 
 区間塊全体を次のように表す：
@@ -85,6 +85,38 @@ $$
 ::right::
 
 <img class="slide-figure" src="../figures/measure/static/concepts/interval_block_decomposition.png" alt="同じ区間塊を異なる長方形分割で表す図" />
+
+---
+layout: default
+---
+
+# 有限加法族
+
+$X$ の部分集合族 $\mathfrak{F}\subset 2^X$ が有限加法族であるとは, 次を満たすことである.
+
+**空集合に対する閉性**
+
+$$
+\emptyset\in\mathfrak{F}
+$$
+
+**補集合に対する閉性**
+
+$$
+A\in\mathfrak{F}
+\quad\Longrightarrow\quad
+A^c\in\mathfrak{F}
+$$
+
+**有限和に対する閉性**
+
+$$
+A_1,\ldots,A_n\in\mathfrak{F}
+\quad\Longrightarrow\quad
+\bigcup_{k=1}^{n}A_k\in\mathfrak{F}
+$$
+
+区間塊全体 $\mathfrak{F}_N$ はこのような集合族である.
 
 ---
 layout: two-rows

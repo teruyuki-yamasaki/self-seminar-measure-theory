@@ -210,30 +210,25 @@ $$
 layout: default
 ---
 
-# 零集合と a.e.
+# 零集合 と ほとんど至る所 (almost everywhere, a.e.)
 
-$N\in\mathfrak{B}$ が
+集合 $N\in\mathfrak{B}$ が次を満たすとき, $N$ を **零集合** という.
 
 $$
 \mu(N)=0
 $$
 
-を満たすとき, $N$ を零集合という.
-
-集合 $E\in\mathfrak{B}$ 上の命題 $P(x)$ が, ある零集合 $N\subset E$ を除いて成り立つとき,
+集合 $E\in\mathfrak{B}$ 上の命題 $P(x)$ について次が成り立つとき
 
 $$
-\mu(N)=0,\qquad
-x\in E - N\Longrightarrow P(x)
+\mu(\{x\in E\mid \neg P(x)\})=0
 $$
 
-である. このとき
+すなわち, $P(x)$ が $E$ 上の零集合を除いた点で成り立つとき, $P(x)$ は $E$ 上で **ほとんど至る所** 成り立つといい, 次のように書く.
 
 $$
 P(x)\quad \mu\text{-a.e. }x\in E
 $$
-
-と書く.
 
 ---
 layout: default
@@ -332,7 +327,7 @@ layout: default
 | 場面 | 空間 | 可測集合族 | 測度 |
 | --- | --- | --- | --- |
 | 抽象的な測度空間 | $X$ | $\mathfrak{B}$ | Carathéodory 測度 $\mu$ |
-| ユークリッド空間 | $\mathbb{R}^N$ | $\mathfrak{M}_{\mu^*}$ | Lebesgue 測度 $\mu$ |
+| Euclid空間 | $\mathbb{R}^N$ | $\mathfrak{M}_{\mu^*}$ | Lebesgue 測度 $\mu$ |
 | 確率空間 | $\Omega$ | 事象の集合族 $\mathfrak{B}$ | 確率測度 $P$ |
 
 同じ記号の枠組みで, 長さ・面積・体積と確率を統一的に扱う.

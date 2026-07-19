@@ -12,44 +12,27 @@ layout: two-rows
 
 # 目的
 
-本章では, 極限と積分を交換できるための条件を考える.
+本章では, 函数列の極限と積分を交換できる条件を考える.
 
-函数列が収束しても, 積分値が極限函数の積分へ収束するとは限らない.
+問題は, $f_n\to f$ から次が従うかどうかである.
+
+$$
+\int_X f_n\,d\mu\longrightarrow \int_X f\,d\mu
+$$
+
+答えは一般には否であり, 収束に加えて積分量を制御する条件が必要になる.
 
 ::figure::
 
-<img class="slide-figure" style="max-height: 30vh;" src="../figures/measure/static/concepts/integral_commutative_diagram.png" alt="函数列の収束と積分写像の関係を表す可換図式" />
+<img class="slide-figure" style="max-height: 30vh;" src="../figures/measure/static/concepts/integral_commutative_diagram.png" alt="函数列の収束と積分の関係を表す可換図式" />
 
 ---
 layout: default
 ---
 
-# この章で考える問題
+# 各点収束と a.e. 収束
 
-函数列 $f_n$ が $f$ に収束しているとする.
-
-問題は, 点ごとの収束だけで
-
-$$
-\int_X f_n\,d\mu
-\longrightarrow
-\int_X f\,d\mu
-$$
-
-が成り立つかである.
-
-答えは一般には否である.
-各点収束に加えて, 函数列の積分量を制御する条件が必要になる.
-
-ただし, Riemann 積分よりも柔軟な条件で, 積分値の収束を保証できる.
-
----
-layout: default
----
-
-# 各点収束とは
-
-函数列 $f_n:X\to\mathbb{R}$ が $f:X\to\mathbb{R}$ に各点収束するとは, 各 $x\in X$ に対して
+函数列 $f_n:X\to\mathbb{R}$ が $f:X\to\mathbb{R}$ に **各点収束** するとは, 各 $x\in X$ に対して
 
 $$
 \lim_{n\to\infty}f_n(x)=f(x)
@@ -57,23 +40,23 @@ $$
 
 が成り立つことである.
 
-すなわち任意の $\varepsilon>0$ と各 $x\in X$ に対して, ある $N=N(x,\varepsilon)$ が存在し,
+Lebesgue 積分では, 零集合上の例外を許した **a.e. 収束** も基本になる.
 
 $$
-n\ge N
-\quad\Longrightarrow\quad
-|f_n(x)-f(x)|<\varepsilon
+f_n(x)\to f(x)
+\quad
+\mu\text{-a.e. }x\in X
 $$
 
-となる.
+これは, ある零集合 $N$ を除いた $X-N$ 上で各点収束するという意味である.
 
-この $N$ は点 $x$ に依存してよい.
+各点収束は a.e. 収束を含むが, 逆は一般には成り立たない.
 
 ---
 layout: two-cols
 ---
 
-# 各点収束だけでは積分値を制御できない
+# a.e. 収束だけでは積分値を制御できない
 
 $[0,1]$ 上で
 
@@ -87,10 +70,10 @@ $$
 
 $$
 f_n(x)\to0
-\qquad \text{a.e.}
+\qquad(\forall x\in[0,1])
 $$
 
-であるが,
+である. したがって a.e. 収束もしている. しかし,
 
 $$
 \int_0^1 f_n\,d\mu=1
@@ -135,7 +118,16 @@ layout: two-rows
 
 $f_n\to f$ が $[a,b]$ 上で一様収束し, 各 $f_n$ が Riemann 可積分なら,
 
-Riemann 積分でも, 一様収束のもとでは極限と積分を交換できる.
+Riemann 積分でも, 一様収束のもとでは極限と積分を交換できる. 
+$\forall \varepsilon>0,\ \exists N(\varepsilon)\in\mathbb{N},\ n\ge N$,
+
+$$
+\left|\int_a^b f_n(x)\,dx - \int_a^b f(x)\,dx\right|
+\le
+\int_a^b | f_n(x) - f(x) |\,dx 
+\le
+(b-a) \varepsilon \longrightarrow 0
+$$
 
 問題は, より弱い収束条件のもとで交換を正当化できるかである.
 
@@ -232,34 +224,21 @@ $$
 layout: default
 ---
 
-# 優収束定理と $L^1$ 収束
+# 優収束定理の帰結
 
-優収束定理からは,
+優収束定理は, 積分値の収束だけでなく **$L^1$ 収束** も与える.
 
 $$
 \int_X |f_n-f|\,d\mu\to0
 $$
 
-が得られる.
-
-これを
+これを次のように書く.
 
 $$
-f_n\to f
-\qquad\text{in }L^1
+f_n\to f\quad\text{in }L^1
 $$
 
-と書く.
-
-$L^1$ 収束は, 函数間の差を積分された総量として測る収束である.
-
----
-layout: default
----
-
-# $L^1$ 収束と積分値の収束
-
-$f_n\to f$ in $L^1$ なら,
+$L^1$ 収束すれば,
 
 $$
 \begin{aligned}
@@ -267,14 +246,14 @@ $$
 \int_X f_n\,d\mu-\int_X f\,d\mu
 \right|
 &\le
-\int_X |f_n-f|\,d\mu\\
+\int_X |f_n-f|\,d\mu
 &=
 \|f_n-f\|_1
 \longrightarrow0.
 \end{aligned}
 $$
 
-したがって,
+したがって優収束定理は
 
 $$
 \boxed{
@@ -288,39 +267,7 @@ L^1\text{ 収束}
 }
 $$
 
-となる.
-
----
-layout: default
----
-
-# 一様収束との関係
-
-有限測度空間では,
-
-$$
-\|f_n-f\|_1
-\le
-\mu(X)\|f_n-f\|_\infty
-$$
-
-であるから,
-
-$$
-f_n\to f\text{ 一様}
-\quad\Longrightarrow\quad
-f_n\to f\text{ in }L^1.
-$$
-
-一方, 優収束定理は, 一様収束を仮定せず,
-
-$$
-f_n\to f\text{ a.e.},
-\qquad
-|f_n|\le g\in L^1
-$$
-
-から $L^1$ 収束を導く.
+という形で, 極限と積分の交換を正当化する.
 
 ---
 layout: end
