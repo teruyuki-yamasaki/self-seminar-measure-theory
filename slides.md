@@ -49,7 +49,7 @@ src: ./slides/slides-02-lebesgue-outer-measure.md
 ---
 
 ---
-src: ./slides/slides-03-caratheodory-measurability.md
+src: ./slides/slides-03-lebesgue-measurability-measure.md
 ---
 
 ---
