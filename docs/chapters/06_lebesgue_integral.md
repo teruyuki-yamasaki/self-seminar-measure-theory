@@ -135,9 +135,9 @@ $$
 
 したがって, Lebesgue 積分は, 単函数の積分を非負可測函数へ拡張したものである.
 
-![Lebesgue 積分の層による近似と積分値の収束](../../figures/measure/animations/lebesgue_area_convergence/gif/lebesgue_area_convergence.gif)
+![可測集合上で単函数近似の積分値が下から収束する様子](../../figures/measure/animations/integral_on_subset_monotone_limit_2d/gif/integral_on_subset_monotone_limit_2d.gif)
 
-値の分割を細かくすると, 左図では下からの単函数近似が細かくなり, 右図ではその積分値が極限として非負可測函数の積分に近づいていく.
+可測集合 $E$ 上に制限しても, $\mathbf{1}_E\varphi_n\uparrow\mathbf{1}_E f$ であり, 単函数近似の積分値は下から極限の積分に近づいていく.
 
 ## 可測函数の安定性
 

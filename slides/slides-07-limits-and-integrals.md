@@ -146,24 +146,26 @@ Lebesgue 積分では, 次の三つの収束定理が基本となる.
 
 | 定理 | 主な条件 | 結論 |
 | --- | --- | --- |
-| 単調収束定理 | 非負単調増加 | 積分と極限を交換できる |
+| 単調収束定理 | 非負単調増加 a.e. | 積分と極限を交換できる |
 | Fatou の補題 | 非負函数列 | $\liminf$ による評価 |
 | 優収束定理 | a.e. 収束と可積分支配 | $L^1$ 収束と積分値の収束 |
 
 これらは, 点ごとの極限と積分の極限を結びつける基本結果である.
 
 ---
-layout: default
+layout: two-rows
 ---
 
 # 単調収束定理
 
-非負可測函数列が
+非負可測函数列が a.e. に
 
 $$
 0\le f_1\le f_2\le\cdots,
 \qquad
 f_n\nearrow f
+\qquad
+\mu\text{-a.e.}
 $$
 
 を満たすなら,
@@ -176,7 +178,11 @@ $$
 
 が成り立つ.
 
-非負可測函数の積分を, 非負単函数による下からの近似として定義したことに対応する.
+非負函数列が下から増加して極限函数に近づくとき, 積分値も下から増加して極限の積分に近づく.
+
+::figure::
+
+<img class="slide-figure" style="max-height: 32vh;" src="../figures/measure/static/concepts/integral_commutative_diagram_monotone_convergence.png" alt="単調収束定理により極限と積分を交換できる図式" />
 
 ---
 layout: default

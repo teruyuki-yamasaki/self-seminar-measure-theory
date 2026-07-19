@@ -124,9 +124,11 @@ $$
 
 と見る.
 
+可測集合 $E$ 上に制限しても, 同じ下からの近似で積分値が極限へ近づく.
+
 ::right::
 
-<img class="slide-figure" src="../figures/measure/animations/lebesgue_area_convergence/gif/lebesgue_area_convergence.gif" alt="Lebesgue 積分の層による近似と積分値の収束" />
+<img class="slide-figure" src="../figures/measure/animations/integral_on_subset_monotone_limit_2d/gif/integral_on_subset_monotone_limit_2d.gif" alt="可測集合上で単函数近似の積分値が下から収束する様子" />
 
 ---
 layout: default

@@ -103,12 +103,12 @@ layout: two-cols
 
 単函数とは, 有限個の値しか取らない可測函数である.
 
-典型的には, 互いに素な可測集合 $E_k$ によって
+典型的には, 互いに素な可測集合 $E_1,\ldots,E_n \in \mathfrak{B}$ によって
 
 $$
 \varphi(x)=\sum_{k=1}^n a_k\mathbf{1}_{E_k}(x),
 \qquad
-X=E_1+\cdots+E_n
+X=\bigsqcup_{k=1}^n E_k
 $$
 
 と書ける.

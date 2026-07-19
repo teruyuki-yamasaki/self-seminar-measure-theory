@@ -23,6 +23,7 @@ from matplotlib.patches import FancyArrowPatch
 OUTPUT_DIR = Path("figures/measure/static/concepts")
 GENERAL_OUTPUT_FILE = OUTPUT_DIR / "integral_commutative_diagram.png"
 RIEMANN_OUTPUT_FILE = OUTPUT_DIR / "integral_commutative_diagram_uniform_riemann.png"
+MONOTONE_OUTPUT_FILE = OUTPUT_DIR / "integral_commutative_diagram_monotone_convergence.png"
 DOMINATED_OUTPUT_FILE = OUTPUT_DIR / "integral_commutative_diagram_dominated_convergence.png"
 
 FIGSIZE = (9.2, 3.1)
@@ -185,6 +186,13 @@ def main() -> None:
         right_x=6.30,
     )
     draw_diagram(
+        MONOTONE_OUTPUT_FILE,
+        top_label=r"$0\leq f_n \nearrow f\ \mathrm{a.\!e.}$",
+        show_question=False,
+        bottom_font_size=BOTTOM_LONG_FONT_SIZE,
+        horizontal_gap=BOTTOM_LONG_GAP,
+    )
+    draw_diagram(
         DOMINATED_OUTPUT_FILE,
         top_label="概収束 + 可積分な支配",
         show_question=False,
@@ -192,7 +200,7 @@ def main() -> None:
         horizontal_gap=BOTTOM_LONG_GAP,
         top_label_font_size=13,
     )
-    for output_file in [GENERAL_OUTPUT_FILE, RIEMANN_OUTPUT_FILE, DOMINATED_OUTPUT_FILE]:
+    for output_file in [GENERAL_OUTPUT_FILE, RIEMANN_OUTPUT_FILE, MONOTONE_OUTPUT_FILE, DOMINATED_OUTPUT_FILE]:
         print(output_file)
 
 

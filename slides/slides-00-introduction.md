@@ -228,28 +228,30 @@ $$
 <img class="slide-figure" src="../figures/measure/static/lebesgue_local_value_band.png" alt="Lebesgue 積分で値域の一層と逆像区間を見る図" />
 
 ---
-layout: default
+layout: two-rows
 ---
 
 # 積分の収束
 
 函数列 $f_n$ が函数 $f$ に収束するとする.
 
-$$
-f_n\to f
-$$
-
-各 $f_n$ が積分可能なとき, 極限函数 $f$ も積分可能で, さらに次が成り立つかを考える.
+問題は, 函数列の収束から積分値の収束
 
 $$
-\int f\,d\mu
-\overset{?}{=}
-\lim_{n\to\infty}\int f_n\,d\mu
+\int_X f_n\,d\mu
+\longrightarrow
+\int_X f\,d\mu
 $$
+
+が従うかどうかである.
 
 Riemann 積分では, たとえば一様収束なら交換できるが, これは強い条件である.
 
 Lebesgue 積分論では, 単調収束定理や優収束定理により, 一様収束より広い状況でこの交換が可能になる.
+
+::figure::
+
+<img class="slide-figure" style="max-height: 30vh;" src="../figures/measure/static/concepts/integral_commutative_diagram.png" alt="函数列の収束と積分の関係を表す可換図式" />
 
 ---
 layout: two-rows
