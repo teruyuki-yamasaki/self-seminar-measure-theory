@@ -406,7 +406,9 @@ html.dark,
 }
 
 .slidev-layout.two-rows:has(img[alt="被覆和と Lebesgue 外測度"]) .two-rows-figure,
-.slidev-layout.two-rows:has(img[alt="被覆和と Lebesgue 外測度"]) .two-rows-figure p:has(> img:only-child) {
+.slidev-layout.two-rows:has(img[alt="被覆和と Lebesgue 外測度"])
+  .two-rows-figure
+  p:has(> img:only-child) {
   align-items: flex-start;
 }
 
