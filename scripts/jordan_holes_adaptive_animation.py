@@ -232,9 +232,9 @@ def draw_step(
     dots_y: np.ndarray,
     save_path: Path,
 ) -> None:
-    fig = plt.figure(figsize=(12.8, 6.9))
-    ax_shape = fig.add_axes([0.06, 0.1, 0.44, 0.82])
-    ax_area = fig.add_axes([0.58, 0.1, 0.36, 0.82])
+    fig = plt.figure(figsize=(12.8, 7.2))
+    ax_shape = fig.add_axes([0.06, 0.08, 0.44, 0.76])
+    ax_area = fig.add_axes([0.58, 0.08, 0.36, 0.76])
 
     ax_shape.add_patch(
         Polygon(outer[:-1], closed=True, facecolor=COLORS["region_fill"], edgecolor=COLORS["region_edge"], lw=2.2, alpha=0.10, zorder=0)
@@ -277,6 +277,7 @@ def draw_step(
     ax_shape.set_aspect("equal")
     ax_shape.set_xlabel("x", fontsize=18)
     ax_shape.set_ylabel("y", fontsize=18)
+    ax_shape.set_title("図形と内外近似の長方形", fontsize=16, pad=8)
 
     levels = [item.level for item in steps]
     inner_values = [item.inner_area for item in steps]
@@ -295,6 +296,7 @@ def draw_step(
     ax_area.set_ylim(min(inner_values) - margin, max(outer_values) + margin)
     ax_area.set_xlabel("細分段階")
     ax_area.set_ylabel("面積")
+    ax_area.set_title("内外近似の収束", fontsize=16, pad=8)
     ax_area.legend(loc="lower right", frameon=False)
     ax_area.text(
         0.03,
@@ -314,6 +316,7 @@ def draw_step(
         bbox=dict(boxstyle="round, pad=0.35", facecolor="white", edgecolor=COLORS["grid"]),
     )
 
+    fig.suptitle("Jordan 的な面積近似: 境界に触れる長方形だけを細分する", fontsize=18, y=0.97)
     fig.savefig(save_path, dpi=180)
     plt.close(fig)
 

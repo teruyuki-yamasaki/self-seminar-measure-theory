@@ -119,15 +119,15 @@ m_i:=\inf_{x\in[x_{i-1},x_i]}f(x)
 $$
 
 $$
-S^+(f,\Delta):=\sum_i M_i|\Delta_i|,
+S^*(f,\Delta):=\sum_i M_i|\Delta_i|,
 \quad
-S^-(f,\Delta):=\sum_i m_i|\Delta_i|
+S_*(f,\Delta):=\sum_i m_i|\Delta_i|
 $$
 
 $f$ が Riemann 積分可能であるとは, 任意の $\varepsilon>0$ に対して, ある (十分細かな) 分割 $\Delta$ が存在して
 
 $$
-S^+(f,\Delta)-S^-(f,\Delta)<\varepsilon
+S^*(f,\Delta)-S_*(f,\Delta)<\varepsilon
 $$
 
 となることである.
@@ -233,17 +233,13 @@ layout: two-rows
 
 # 積分の収束
 
-函数列 $f_n$ が函数 $f$ に収束するとする.
-
-問題は, 函数列の収束から積分値の収束
+函数列 $f_n$ が函数 $f$ に収束するとき, 積分と極限の順序を交換できるかどうかが問題になる.
 
 $$
-\int_X f_n\,d\mu
-\longrightarrow
-\int_X f\,d\mu
+f_n \to f \quad
+\overset{?}{\Rightarrow}\quad
+\int_X f_n d\mu \to \int_X f d\mu
 $$
-
-が従うかどうかである.
 
 Riemann 積分では, たとえば一様収束なら交換できるが, これは強い条件である.
 

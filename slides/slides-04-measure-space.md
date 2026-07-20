@@ -36,7 +36,7 @@ $$
 
 であって, 次を満たすものである.
 
-|  | 非負性と空集合 | 単調性 | 可算劣加法性 |
+|  | **非負性と空集合** | **単調性** | **可算劣加法性** |
 | --- | --- | --- | --- |
 | 式 | $\displaystyle 0\le\Gamma(A)\le\infty,\quad \Gamma(\emptyset)=0$ | $\displaystyle A\subset B\Rightarrow \Gamma(A)\le\Gamma(B)$ | $\displaystyle \Gamma(\bigcup_{n=1}^{\infty}A_n)\le\sum_{n=1}^{\infty}\Gamma(A_n)$ |
 | 図 | ![Carathéodory 外測度の非負性](../figures/measure/animations/caratheodory_outer_measure_axioms/gif/caratheodory_outer_measure_axioms_nonnegative.gif) | ![Carathéodory 外測度の単調性](../figures/measure/animations/caratheodory_outer_measure_axioms/gif/caratheodory_outer_measure_axioms_monotone.gif) | ![Carathéodory 外測度の可算劣加法性](../figures/measure/animations/caratheodory_outer_measure_axioms/gif/caratheodory_outer_measure_axioms_subadditive.gif) |
@@ -244,8 +244,6 @@ $$
 
 を測度空間という.
 
-前章の構成は, Lebesgue 外測度から一つの測度空間を作る手続きだったと見なせる.
-
 ---
 layout: default
 ---
@@ -324,11 +322,11 @@ layout: default
 
 # 測度空間としての対応表
 
-| 場面 | 空間 | 可測集合族 | 測度 |
-| --- | --- | --- | --- |
-| 抽象的な測度空間 | $X$ | $\mathfrak{B}$ | Carathéodory 測度 $\mu$ |
-| Euclid空間 | $\mathbb{R}^N$ | $\mathfrak{M}_{\mu^*}$ | Lebesgue 測度 $\mu$ |
-| 確率空間 | $\Omega$ | 事象の集合族 $\mathfrak{B}$ | 確率測度 $P$ |
+| 空間 | 可測集合族 | 測度 |
+| --- | --- | --- |
+| 抽象的な測度空間 $X$ | 可算加法族 $\mathfrak{B}$ | Carathéodory 測度 $\mu$ |
+| ユークリッド空間 $\mathbb{R}^N$ | Lebesgue 可測集合族 $\mathfrak{M}_{\mu^*}$ | Lebesgue 測度 $\mu$ |
+| 確率空間 $\Omega$ | 事象の可算加法族 $\mathfrak{B}$ | 確率測度 $P$ |
 
 同じ記号の枠組みで, 長さ・面積・体積と確率を統一的に扱う.
 

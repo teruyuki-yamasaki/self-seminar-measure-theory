@@ -354,6 +354,11 @@ def stable_unit(tag: str) -> float:
     return value / 104729.0
 
 
+def expansion_scale(level: int) -> float:
+    progress = level / LEVELS
+    return 0.18 * (1.0 - progress) ** 1.45
+
+
 def expanded_cell(cell: Cell, tag: str, scale: float = 0.16) -> Cell:
     width = cell.x1 - cell.x0
     height = cell.y1 - cell.y0
@@ -369,9 +374,19 @@ def expanded_cell(cell: Cell, tag: str, scale: float = 0.16) -> Cell:
     )
 
 
-def draw_cells(ax: plt.Axes, cells: list[Cell], face: str, edge: str, alpha: float, *, expanded: bool = False, tag: str = "") -> None:
+def draw_cells(
+    ax: plt.Axes,
+    cells: list[Cell],
+    face: str,
+    edge: str,
+    alpha: float,
+    *,
+    expanded: bool = False,
+    expansion: float = 0.18,
+    tag: str = "",
+) -> None:
     for cell in cells:
-        draw_cell = expanded_cell(cell, f"{tag}:{cell.x0:.5f}:{cell.y0:.5f}", 0.18) if expanded else cell
+        draw_cell = expanded_cell(cell, f"{tag}:{cell.x0:.5f}:{cell.y0:.5f}", expansion) if expanded else cell
         ax.add_patch(
             Rectangle(
                 (draw_cell.x0, draw_cell.y0),
@@ -412,9 +427,37 @@ def draw_pattern_middle(ax: plt.Axes, s_curve: np.ndarray, pattern: Pattern, ste
     ax.imshow(patterned_rgba(pattern.display_b, COLORS["orange"], "dots", 0.08), origin="lower", extent=(0, 1, 0, 1), interpolation="nearest")
     ax.imshow(patterned_rgba(pattern.display_a, COLORS["green"], "hatch", 0.10), origin="lower", extent=(0, 1, 0, 1), interpolation="nearest")
 
-    draw_cells(ax, step.orange_cells + step.overlap_cells, COLORS["orange"], COLORS["orange_edge"], 0.23, expanded=True, tag=pattern.name + ":orange")
-    draw_cells(ax, step.green_cells + step.overlap_cells, COLORS["green"], COLORS["green_edge"], 0.25, expanded=True, tag=pattern.name + ":green")
-    draw_cells(ax, step.overlap_cells, COLORS["overlap"], COLORS["overlap"], 0.26, expanded=True, tag=pattern.name + ":overlap")
+    cover_expansion = expansion_scale(step.level)
+    draw_cells(
+        ax,
+        step.orange_cells + step.overlap_cells,
+        COLORS["orange"],
+        COLORS["orange_edge"],
+        0.23,
+        expanded=True,
+        expansion=cover_expansion,
+        tag=pattern.name + ":orange",
+    )
+    draw_cells(
+        ax,
+        step.green_cells + step.overlap_cells,
+        COLORS["green"],
+        COLORS["green_edge"],
+        0.25,
+        expanded=True,
+        expansion=cover_expansion,
+        tag=pattern.name + ":green",
+    )
+    draw_cells(
+        ax,
+        step.overlap_cells,
+        COLORS["overlap"],
+        COLORS["overlap"],
+        0.26,
+        expanded=True,
+        expansion=0.6 * cover_expansion,
+        tag=pattern.name + ":overlap",
+    )
     green_mask = cells_to_mask(step.green_cells + step.overlap_cells, DISPLAY_RESOLUTION)
     orange_mask = cells_to_mask(step.orange_cells + step.overlap_cells, DISPLAY_RESOLUTION)
     draw_mask_outline(ax, green_mask, COLORS["green_edge"], 2.8)

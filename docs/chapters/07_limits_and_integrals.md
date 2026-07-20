@@ -18,10 +18,15 @@ $$
 
 ## 各点収束と a.e. 収束
 
-函数列 $f_n:X\to\mathbb{R}$ が $f:X\to\mathbb{R}$ に **各点収束** するとは, 各 $x\in X$ に対して
+函数列 $f_n:X\to\mathbb{R}$ が $f:X\to\mathbb{R}$ に **各点収束** するとは,
 
 $$
-\lim_{n\to\infty}f_n(x)=f(x)
+\forall \varepsilon>0,\ \forall x\in X,\ \exists N(\varepsilon,x)\in\mathbb{N},\ \forall n\in\mathbb{N},
+\left[
+    n\ge N(\varepsilon,x)
+    \quad\Longrightarrow\quad
+    |f_n(x)-f(x)|<\varepsilon
+\right]
 $$
 
 が成り立つことである.
@@ -35,6 +40,10 @@ f_n(x)\to f(x)
 $$
 
 これは, ある零集合 $Z$ を除いた $X\setminus Z$ 上で各点収束するという意味である.
+
+$$
+\mu\left(\{x\in X\mid f_n(x)\not\to f(x)\}\right)=0
+$$
 
 各点収束は a.e. 収束を含むが, 逆は一般には成り立たない.
 
@@ -69,13 +78,15 @@ $$
 
 ## 一様収束
 
-$f_n\to f$ が一様収束するとは, 任意の $\varepsilon>0$ に対して, ある自然数 $N=N(\varepsilon)$ が存在し,
+函数列 $f_n:X\to\mathbb{R}$ が $f:X\to\mathbb{R}$ に **一様収束** するとは,
 
 $$
-n\ge N
-\quad\Longrightarrow\quad
-|f_n(x)-f(x)|<\varepsilon
-\qquad(\forall x\in X)
+\forall \varepsilon>0,\ \exists N(\varepsilon)\in\mathbb{N},\ \forall x\in X,\ \forall n\in\mathbb{N},
+\left[
+    n\ge N(\varepsilon)
+    \quad\Longrightarrow\quad
+    |f_n(x)-f(x)|<\varepsilon
+\right]
 $$
 
 が成り立つことである.
@@ -86,16 +97,16 @@ $$
 
 ## 一様収束なら Riemann 積分でも安全
 
-$f_n\to f$ が $[a,b]$ 上で一様収束し, 各 $f_n$ が Riemann 可積分なら, Riemann 積分でも, 一様収束のもとでは極限と積分を交換できる.
+$f_n\to f$ が $[a,b]$ 上で一様収束し, 各 $f_n$ が Riemann 可積分なら, $f$ も Riemann 可積分であり, Riemann 積分でも極限と積分を交換できる.
 
-実際, 任意の $\varepsilon>0$ に対して十分大きな $n$ では
+実際, 一様収束の定義より
 
 $$
-|f_n(x)-f(x)|<\varepsilon
-\qquad(\forall x\in[a,b])
+\forall \varepsilon>0,\ \exists N(\varepsilon)\in\mathbb{N},\ \forall x\in[a,b],\ \forall n\in\mathbb{N},
+n\ge N(\varepsilon)\Rightarrow |f_n(x)-f(x)|<\varepsilon
 $$
 
-であるから,
+である. したがって $n\ge N(\varepsilon)$ なら
 
 $$
 \left|\int_a^b f_n(x)\,dx-\int_a^b f(x)\,dx\right|
@@ -105,7 +116,7 @@ $$
 (b-a)\varepsilon
 $$
 
-となる.
+となる. $\varepsilon>0$ は任意であるから, 積分値も収束する.
 
 ![一様収束のもとで Riemann 積分と極限を交換できる図式](../../figures/measure/static/concepts/integral_commutative_diagram_uniform_riemann.png)
 

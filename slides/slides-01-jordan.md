@@ -51,7 +51,7 @@ $$
 半開区間全体を次のように表す：
 
 $$
-\mathfrak{I}_N:=\{I=\prod_{j=1}^N [a_j,b_j):a_j<b_j\}
+\mathfrak{I}_N:=\left\{I=\prod_{j=1}^N [a_j,b_j):a_j<b_j\right\}
 $$
 
 ::right::
@@ -79,7 +79,7 @@ $$
 区間塊全体を次のように表す：
 
 $$
-\mathfrak{F}_N:=\{E=\bigsqcup_{k=1}^n I_k:I_k\in\mathfrak{I}_N,\ n\in\mathbb{N}\}
+\mathfrak{F}_N:=\left\{E=\bigsqcup_{k=1}^n I_k:I_k\in\mathfrak{I}_N,\ n\in\mathbb{N}\right\}
 $$
 
 ::right::
@@ -124,14 +124,14 @@ layout: two-rows
 
 # Jordan 内測度と外測度
 
-有界集合 $A\subset\mathbb{R}^N$ に対して, 区間塊で内側から近似する量を Jordan 内測度, 外側から覆う量を Jordan 外測度とする.
+有界集合 $A\subset\mathbb{R}^N$ の体積の区間塊 $E \in \mathfrak{F}_N$ による内側近似の上限が Jordan 内測度, 外側近似の下限が Jordan 外測度
 
 $$
-J_*(A):=\sup\{m(E):E\subset A,\ E\text{ は区間塊}\}
+J_*(A):=\sup\{m(E):E\subset A,\ E \in \mathfrak{F}_N\}
 $$
 
 $$
-J^*(A):=\inf\{m(E):A\subset E,\ E\text{ は区間塊}\}
+J^*(A):=\inf\{m(E):A\subset E,\ E \in \mathfrak{F}_N\}
 $$
 
 ::right::
@@ -160,15 +160,19 @@ layout: default
 
 # ここまでの集合函数と定義域
 
-| 集合函数 | 定義域 | 値域 | 意味 |
-| --- | --- | --- | --- |
-| $m$ | 半開区間全体 $\mathfrak{I}_N$ | $[0,\infty)$ | 区間の体積 |
-| $m$ | 区間塊全体 $\mathfrak{F}_N$ | $[0,\infty)$ | 区間塊の体積 |
-| $J_*$ | 有界部分集合全体 $2^{\mathbb{R}^N}_{\mathrm{bd}}$ | $[0,\infty)$ | Jordan 内測度 |
-| $J^*$ | 有界部分集合全体 $2^{\mathbb{R}^N}_{\mathrm{bd}}$ | $[0,\infty)$ | Jordan 外測度 |
-| $J$ | Jordan 可測集合全体 $\mathcal{J}_N$ | $[0,\infty)$ | Jordan 測度 |
+| 集合函数 | 定義域 | 値域 |
+| --- | --- | --- |
+| 区間の体積 $m$ | 半開区間全体 $\mathfrak{I}_N$ | $[0,\infty)$ |
+| 区間塊の体積 $m$ | 区間塊全体 $\mathfrak{F}_N$ | $[0,\infty)$ |
+| Jordan 内測度 $J_*$ | 有界部分集合全体 $\mathcal{P}_{\mathrm{bd}}(\mathbb{R}^N)$ | $[0,\infty)$ |
+| Jordan 外測度 $J^*$ | 有界部分集合全体 $\mathcal{P}_{\mathrm{bd}}(\mathbb{R}^N)$ | $[0,\infty)$ |
+| Jordan 測度 $J$ | Jordan 可測集合全体 $\mathcal{J}_N$ | $[0,\infty)$ |
 
 $m$ は区間と区間塊に対する体積である. $J_*$ と $J^*$ は有界集合全体に対する内外近似であり, $J$ は $J_*(A)=J^*(A)$ が成り立つ集合だけに定義される.
+
+$$
+\mathfrak{I}_N\subset\mathfrak{F}_N\subset \mathcal{J}_N \subset \mathcal{P}_{\mathrm{bd}}(\mathbb{R}^N) \subset 2^{\mathbb{R}^N}
+$$
 
 ---
 layout: two-cols

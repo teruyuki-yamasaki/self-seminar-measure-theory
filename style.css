@@ -313,6 +313,18 @@ html.dark,
   box-sizing: border-box;
 }
 
+.slidev-layout.two-columns .col-right p:has(> img[src*="rational_points_outer_approx"]:only-child) {
+  align-items: center;
+  justify-content: center;
+}
+
+.slidev-layout.two-columns .col-right img[src*="rational_points_outer_approx"] {
+  width: auto;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+}
+
 .slidev-layout img[src*="integral_commutative_diagram"] {
   width: min(100%, 36rem);
   max-height: 22vh;
@@ -374,6 +386,28 @@ html.dark,
 .slidev-layout.two-rows .two-rows-figure img[src*="integral_commutative_diagram"] {
   width: min(100%, 36rem);
   max-height: min(100%, 22vh);
+}
+
+.slidev-layout.two-rows:has(img[alt="被覆和と Lebesgue 外測度"]) {
+  gap: 0.35rem;
+}
+
+.slidev-layout.two-rows:has(img[alt="被覆和と Lebesgue 外測度"]) h1:first-child {
+  margin-bottom: 0.55rem;
+}
+
+.slidev-layout.two-rows:has(img[alt="被覆和と Lebesgue 外測度"]) .two-rows-main p {
+  margin: 0.25rem 0;
+}
+
+.slidev-layout.two-rows:has(img[alt="被覆和と Lebesgue 外測度"]) .katex-display {
+  margin: 0.45rem 0;
+  padding: 0.45rem 0.7rem;
+}
+
+.slidev-layout.two-rows:has(img[alt="被覆和と Lebesgue 外測度"]) .two-rows-figure,
+.slidev-layout.two-rows:has(img[alt="被覆和と Lebesgue 外測度"]) .two-rows-figure p:has(> img:only-child) {
+  align-items: flex-start;
 }
 
 .slidev-layout blockquote {

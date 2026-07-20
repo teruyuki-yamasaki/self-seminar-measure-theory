@@ -225,13 +225,13 @@ $$
 
 ここまでに出てきた集合函数とその定義域を整理すると, 次のようになる.
 
-| 集合函数 | 定義域 | 値域 | 意味 |
-| --- | --- | --- | --- |
-| $m$ | $\mathfrak{I}_N$ | $[0,\infty)$ | 区間の体積 |
-| $m$ | $\mathfrak{F}_N$ | $[0,\infty)$ | 区間塊の体積 |
-| $J_*$ | $\mathcal{P}_{\mathrm{bd}}(\mathbb{R}^N)$ | $[0,\infty)$ | Jordan 内測度 |
-| $J^*$ | $\mathcal{P}_{\mathrm{bd}}(\mathbb{R}^N)$ | $[0,\infty)$ | Jordan 外測度 |
-| $J$ | $\mathcal{J}_N$ | $[0,\infty)$ | Jordan 測度 |
+| 集合函数 | 定義域 | 値域 |
+| --- | --- | --- |
+| 区間の体積 $m$ | 半開区間全体 $\mathfrak{I}_N$ | $[0,\infty)$ |
+| 区間塊の体積 $m$ | 区間塊全体 $\mathfrak{F}_N$ | $[0,\infty)$ |
+| Jordan 内測度 $J_*$ | 有界部分集合全体 $\mathcal{P}_{\mathrm{bd}}(\mathbb{R}^N)$ | $[0,\infty)$ |
+| Jordan 外測度 $J^*$ | 有界部分集合全体 $\mathcal{P}_{\mathrm{bd}}(\mathbb{R}^N)$ | $[0,\infty)$ |
+| Jordan 測度 $J$ | Jordan 可測集合全体 $\mathcal{J}_N$ | $[0,\infty)$ |
 
 つまり, $m$ は基本図形である区間と区間塊に対する体積であり, $J_*$ と $J^*$ は有界集合全体に対する内外近似である. そのうち $J_*(A)=J^*(A)$ が成り立つ集合だけを集めたものが $\mathcal{J}_N$ であり, その上で Jordan 測度 $J$ が定義される.
 

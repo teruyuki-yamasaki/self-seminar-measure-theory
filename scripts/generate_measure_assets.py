@@ -699,9 +699,9 @@ def animate_riemann_area_convergence(outdir: Path, frames: int, *, write_gif: bo
             0.96,
             rf"$n={n}$, $\|\Delta\|={mesh:.3f}$"
             + "\n"
-            + rf"$\mathcal{{S}}^{{-}}={lower_sums[frame_index]:.12f}$"
+            + rf"$S_*={lower_sums[frame_index]:.12f}$"
             + "\n"
-            + rf"$\mathcal{{S}}^{{+}}={upper_sums[frame_index]:.12f}$",
+            + rf"$S^*={upper_sums[frame_index]:.12f}$",
             transform=ax_area.transAxes,
             va="top",
             fontsize=10.8,
@@ -715,8 +715,8 @@ def animate_riemann_area_convergence(outdir: Path, frames: int, *, write_gif: bo
         ax_conv.axhline(target_integral, color=COLORS["ink"], lw=1.6, ls="--", label=rf"$\int_0^1 f(x)\, dx \approx {target_integral:.6f}$")
         ax_conv.plot(interval_counts, lower_sums, color=COLORS["grid"], lw=1.0, alpha=0.75)
         ax_conv.plot(interval_counts, upper_sums, color=COLORS["grid"], lw=1.0, alpha=0.75)
-        ax_conv.plot(shown_counts, lower_sums[: frame_index + 1], color=COLORS["blue"], lw=2.0, label=r"$\mathcal{S}^{-}(f,\Delta)$")
-        ax_conv.plot(shown_counts, upper_sums[: frame_index + 1], color=COLORS["red"], lw=2.0, label=r"$\mathcal{S}^{+}(f,\Delta)$")
+        ax_conv.plot(shown_counts, lower_sums[: frame_index + 1], color=COLORS["blue"], lw=2.0, label=r"$S_*(f,\Delta)$")
+        ax_conv.plot(shown_counts, upper_sums[: frame_index + 1], color=COLORS["red"], lw=2.0, label=r"$S^*(f,\Delta)$")
         ax_conv.scatter([n], [lower_sums[frame_index]], color=COLORS["blue"], s=38, zorder=5)
         ax_conv.scatter([n], [upper_sums[frame_index]], color=COLORS["red"], s=38, zorder=5)
         ax_conv.set_xlim(float(interval_counts[0]), float(interval_counts[-1]))
@@ -732,7 +732,7 @@ def animate_riemann_area_convergence(outdir: Path, frames: int, *, write_gif: bo
         ax_conv.text(
             0.04,
             0.92,
-            rf"$\mathcal{{S}}^{{+}}-\mathcal{{S}}^{{-}}={upper_sums[frame_index] - lower_sums[frame_index]:.12f}$",
+            rf"$S^*-S_*={upper_sums[frame_index] - lower_sums[frame_index]:.12f}$",
             transform=ax_conv.transAxes,
             va="top",
             fontsize=10.5,

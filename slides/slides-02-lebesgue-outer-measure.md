@@ -17,7 +17,7 @@ Jordan 測度の限界を踏まえ, 可算個の $N$ 次元区間による被覆
 Lebesgue 外測度は任意集合に定義されるが, そのまま測度ではない.
 
 ---
-layout: default
+layout: two-cols
 ---
 
 # 可算被覆
@@ -30,15 +30,13 @@ $$
 
 が成り立つことである.
 
-Jordan 的外側近似では有限個の区間塊で覆った. Lebesgue 外測度では, 最初から可算個の区間による被覆を許す.
+Jordan 的外側近似では有限個の互いに素な区間塊で覆った. Lebesgue 外測度では, 可算個の重なりを許す区間による被覆を許す.
 
-この被覆のコストは
+可算被覆の体積和は次で与えられる:
 
 $$
 \sum_{k=1}^{\infty}m(I_k)
 $$
-
-で測る.
 
 ::right::
 
@@ -50,7 +48,7 @@ layout: two-rows
 
 # Lebesgue 外測度 $\mu^*$ の定義
 
-$A\subset\mathbb{R}^N$ に対して, Lebesgue 外測度 $\mu^*(A)$ を次で定める:
+集合 $A\subset\mathbb{R}^N$ に対して, Lebesgue 外測度 $\mu^*(A)$ を次で定める:
 
 $$
 \mu^*(A):=
@@ -75,9 +73,9 @@ layout: default
 
 Lebesgue 外測度 $\mu^*$ は次を満たす.
 
-|  | 非負性と空集合 | 単調性 | 可算劣加法性 |
+|  | **非負性と空集合** | **単調性** | **可算劣加法性** |
 | --- | --- | --- | --- |
-| 式 | $\displaystyle 0\le\mu^*(A)\le\infty,\quad \mu^*(\emptyset)=0$ | $\displaystyle A\subset B\Rightarrow \mu^*(A)\le\mu^*(B)$ | $\displaystyle \mu^*(\bigcup_{n=1}^{\infty}A_n)\le\sum_{n=1}^{\infty}\mu^*(A_n)$ |
+| 式 | $\displaystyle 0\le\mu^*(A)\le\infty,\quad \mu^*(\emptyset)=0$ | $\displaystyle A\subset B\Rightarrow \mu^*(A)\le\mu^*(B)$ | $\displaystyle \mu^*\left(\bigcup_{n=1}^{\infty}A_n\right)\le\sum_{n=1}^{\infty}\mu^*\left(A_n\right)$ |
 | 図 | ![Lebesgue 外測度の非負性](../figures/measure/animations/lebesgue_outer_measure_axioms/gif/lebesgue_outer_measure_axioms_nonnegative.gif) | ![Lebesgue 外測度の単調性](../figures/measure/animations/lebesgue_outer_measure_axioms/gif/lebesgue_outer_measure_axioms_monotone.gif) | ![Lebesgue 外測度の可算劣加法性](../figures/measure/animations/lebesgue_outer_measure_axioms/gif/lebesgue_outer_measure_axioms_subadditive.gif) |
 
 ただし, この段階では可算加法性は得られていない.

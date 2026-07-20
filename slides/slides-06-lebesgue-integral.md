@@ -27,18 +27,16 @@ layout: two-cols
 非負単函数
 
 $$
-\varphi(x)=\sum_{i=1}^n a_i\mathbf{1}_{A_i}(x)
+\varphi(x)=\sum_{i=1}^n a_i\mathbf{1}_{A_i}(x), \qquad a_i\ge0,\ A_i\in\mathfrak{B}
 $$
 
-ただし $a_i\ge0$, $A_i\in\mathfrak{B}$ とする. このとき積分を
+の積分を次で定める:
 
 $$
 \int_X\varphi(x)\,d\mu(x)
 :=
 \sum_{i=1}^n a_i\mu(A_i)
 $$
-
-で定める.
 
 ::right::
 
@@ -48,9 +46,11 @@ $$
 layout: default
 ---
 
-# 非負単函数の基本性質: 線形性
+# 非負単函数の積分の基本性質
 
-非負単函数 $\varphi,\psi$ と $a,b\ge0$ に対して
+非負単函数 $\varphi,\psi$ と実数 $a,b\ge0$ に対して
+
+**線形性**
 
 $$
 \int_X(a\varphi+b\psi)\,d\mu
@@ -60,41 +60,29 @@ a\int_X\varphi\,d\mu
 b\int_X\psi\,d\mu
 $$
 
-が成り立つ.
-
----
-layout: default
----
-
-# 非負単函数の基本性質: 単調性
-
-$0\le\varphi\le\psi$ ならば
+**単調性**
 
 $$
+0\le\varphi\le\psi
+\quad\Longrightarrow\quad
 \int_X\varphi\,d\mu
 \le
 \int_X\psi\,d\mu
 $$
 
-である.
-
-単函数の段階で, 積分は面積・体積の有限和として振る舞う.
-
 ---
-layout: two-cols
+layout: two-rows
 ---
 
 # 非負可測函数の積分
 
-非負可測函数 $f$ に対して, 下から抑える非負単函数 $\varphi$ 全体を考え,
+非負可測函数 $f$ に対して, 下から抑える非負単函数 $\varphi$ 全体を考え, その積分値の上限を $f$ の積分値と定める:
 
 $$
 \int_X f(x)\,d\mu(x)
 :=
 \underset{0\le\varphi\le f,\ \varphi\text{ は単函数}}{\sup} \int_X\varphi(x)\,d\mu(x)
 $$
-
-で定義する.
 
 ::right::
 
@@ -108,21 +96,19 @@ layout: two-cols
 
 Lebesgue 積分は, 値域を細かく分けて得られる単函数近似の積分値の極限として理解できる.
 
-函数 $f$ の下からの近似 $\varphi_m$ が
+函数 $f$ の下からの近似 $\varphi_n$ が各点 $x$ で $f(x)$ に単調増加に近づくとき,
 
 $$
-0\le\varphi_m\le f,\qquad \varphi_m(x)\nearrow f(x)
+0\le\varphi_n(x)\le f(x) \quad \wedge \quad \varphi_n(x)\nearrow f(x)
 $$
 
-を満たすとき,
+を満たすとき, 積分値も下から極限に近づくと見る.
 
 $$
-\int_X\varphi_m(x)\,d\mu(x)
+\int_X\varphi_n(x)\,d\mu(x)
 \nearrow
 \int_X f(x)\,d\mu(x)
 $$
-
-と見る.
 
 可測集合 $E$ 上に制限しても, 同じ下からの近似で積分値が極限へ近づく.
 
@@ -134,36 +120,9 @@ $$
 layout: default
 ---
 
-# 可測函数の安定性
-
-可測函数は, 四則演算や極限操作に対して安定に振る舞う.
-
-すなわち $f,g$ が可測で $c\in\mathbb{R}$ なら
-
-$$
-f+g,\quad cf,\quad fg,\quad |f|
-$$
-
-も可測である.
-
-また可測函数列 $f_n$ について
-
-$$
-\limsup_{n\to\infty}f_n,\qquad
-\liminf_{n\to\infty}f_n
-$$
-
-も可測である.
-
-Lebesgue 積分論では, この可測性の安定性が収束定理の前提になる.
-
----
-layout: default
----
-
 # 一般の可測函数の積分
 
-一般の可測函数 $f$ は正部分と負部分に分ける.
+一般の可測函数 $f: X\to\mathbb{R}$ は正部分と負部分に分ける.
 
 $$
 f^+:=\max(f,0),\qquad f^-:=\max(-f,0)
@@ -226,17 +185,23 @@ layout: default
 
 Lebesgue 積分は, 適切な可積分性のもとで次を満たす.
 
+**線形性**
+
 $$
 \int_X(af+bg)\,d\mu
 =
 a\int_Xf\,d\mu+b\int_Xg\,d\mu
 $$
 
+**単調性**
+
 $$
 f\le g\ \mu\text{-a.e.}
 \quad\Longrightarrow\quad
 \int_Xf\,d\mu\le\int_Xg\,d\mu
 $$
+
+**絶対値評価**
 
 $$
 \left|\int_X f\,d\mu\right|
@@ -255,7 +220,7 @@ layout: default
 $$
 \int_a^b f(x)\,dx
 =
-\int_{[a,b]} f\,d\mu
+\int_{[a,b]} f(x)\,d\mu(x)
 $$
 
 Lebesgue 積分は Riemann 積分を, より広い函数族と極限操作に適合する形へ拡張するものである.
@@ -269,7 +234,7 @@ layout: default
 可積分な実数値可測函数全体を
 
 $$
-V
+V_1
 :=
 \left\{
 f:X\to\mathbb{R}
@@ -278,12 +243,12 @@ f\text{ は可測},\ \int_X|f|\,d\mu<\infty
 \right\}
 $$
 
-とおく. このとき $V$ は線形空間をなす.
+とおく. このとき $V_1$ は線形空間をなす.
 
 $$
-f,g\in V,\ a,b\in\mathbb{R}
+f,g\in V_1,\ a,b\in\mathbb{R}
 \quad\Longrightarrow\quad
-af+bg\in V
+af+bg\in V_1
 $$
 
 ---
@@ -292,7 +257,7 @@ layout: default
 
 # $L^1$ 半ノルムと a.e. 一致
 
-$V$ の各函数 $f$ に対して
+$V_1$ の各函数 $f$ に対して
 
 $$
 \|f\|_1:=\int_X |f|\,d\mu
@@ -324,13 +289,17 @@ f\sim g
 f=g\ \mu\text{-a.e.}
 $$
 
-この同値類の空間が
+この同値類
 
 $$
-L^1(\mu):=V/{\sim}
+[f] := \{g\in V_1 \mid g\sim f\}
 $$
 
-である.
+の空間が $L^1$ ノルム空間である.
+
+$$
+L^1(\mu):=V_1/{\sim} = \{[f]\mid f\in V_1\}
+$$
 
 測度論では, 零集合上の違いを無視することが自然に組み込まれる.
 
@@ -343,21 +312,37 @@ layout: default
 $1\le p<\infty$ に対して
 
 $$
-L^p(\mu):=
+V_p
+:=
 \left\{
-f:\int_X |f|^p\,d\mu<\infty
+f:X\to\mathbb{R}
+\mid
+f\text{ は可測},\ \int_X|f|^p\,d\mu<\infty
 \right\}
 $$
-
-を考える.
-
-$L^1$ は積分可能性, $L^2$ は内積構造と結びつく.
 
 $$
 \|f\|_p
 :=
 \left(\int_X |f|^p\,d\mu\right)^{1/p}
 $$
+
+を考える. a.e. に一致する函数を同一視するため
+
+$$
+f\sim_p g \quad\Longleftrightarrow\quad \|f-g\|_p=0,
+\qquad
+L^p(\mu):=
+V_p/{\sim_p} = \{[f]_p\mid f\in V_p\},
+\qquad
+\|[f]_p\|_p:=\|f\|_p
+$$
+
+と定める.
+
+$L^1$ は絶対可積分性, $L^2$ は内積
+$\langle f,g\rangle=\int_X fg\,d\mu$
+と結びつく.
 
 ---
 layout: end

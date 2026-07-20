@@ -28,8 +28,12 @@ FRAME_DURATION_MS = 950
 LOOP = 0
 
 GRAPH_COVER_BOX = (35, 85, 525, 475)
-COVER_ONLY_BOX = (60, 85, 660, 475)
+COVER_ONLY_BOX = (45, 70, 675, 455)
 GRAPH_BOX = (585, 105, 940, 430)
+GRAPH_COVER_VIEW = (0.08, 0.12, 0.92, 0.80)
+GRAPH_COVER_TITLE_Y = 58
+COVER_ONLY_VIEW = (0.08, 0.12, 0.92, 0.84)
+COVER_ONLY_CROP_BOX = (58, 8, 662, 468)
 
 # Interior tiles remain fairly coarse, while boundary tiles are refined.
 INTERIOR_DEPTH = 3
@@ -334,25 +338,37 @@ def map_point(
     x: float,
     y: float,
     box: Tuple[int, int, int, int],
+    view: Tuple[float, float, float, float] = (0.0, 0.0, 1.0, 1.0),
 ) -> Tuple[int, int]:
     x0, y0, x1, y1 = box
+    vx0, vy0, vx1, vy1 = view
+    x_ratio = (x - vx0) / (vx1 - vx0)
+    y_ratio = (y - vy0) / (vy1 - vy0)
 
     return (
-        int(x0 + x * (x1 - x0)),
-        int(y1 - y * (y1 - y0)),
+        int(x0 + x_ratio * (x1 - x0)),
+        int(y1 - y_ratio * (y1 - y0)),
     )
 
 
 def map_rect(
     rect: Tuple[float, float, float, float],
     box: Tuple[int, int, int, int],
+    view: Tuple[float, float, float, float] = (0.0, 0.0, 1.0, 1.0),
 ) -> Tuple[int, int, int, int]:
     x0, y0, x1, y1 = rect
 
-    p0 = map_point(x0, y1, box)
-    p1 = map_point(x1, y0, box)
+    p0 = map_point(x0, y1, box, view)
+    p1 = map_point(x1, y0, box, view)
 
-    return p0[0], p0[1], p1[0], p1[1]
+    bx0, by0, bx1, by1 = box
+
+    return (
+        max(bx0, min(bx1, p0[0])),
+        max(by0, min(by1, p0[1])),
+        max(bx0, min(bx1, p1[0])),
+        max(by0, min(by1, p1[1])),
+    )
 
 
 def centered_text(
@@ -435,16 +451,18 @@ def draw_cover_scene(
     rectangles: List[Tuple[float, float, float, float]],
     stage: int,
     canvas_w: int,
+    view: Tuple[float, float, float, float] = (0.0, 0.0, 1.0, 1.0),
+    title_y: int = 35,
 ) -> Image.Image:
     draw = ImageDraw.Draw(image)
     a_pixels = [
-        map_point(float(x), float(y), box)
+        map_point(float(x), float(y), box, view)
         for x, y in A_POINTS
     ]
 
     centered_text(
         draw,
-        ((box[0] + box[2]) // 2, 35),
+        ((box[0] + box[2]) // 2, title_y),
         (
             f"段階 {stage + 1}: 境界深さ {STAGE_BOUNDARY_DEPTHS[stage]}, "
             f"被覆長方形 {len(rectangles)} 個"
@@ -478,7 +496,7 @@ def draw_cover_scene(
         )
         rect_draw = ImageDraw.Draw(rect_layer)
         rect_draw.rectangle(
-            map_rect(rect, box),
+            map_rect(rect, box, view),
             fill=(31, 119, 180, 56),
             outline=(15, 70, 125, 150),
             width=1,
@@ -589,6 +607,7 @@ def draw_graph(
 # ============================================================
 graph_frames: List[Image.Image] = []
 cover_frames: List[Image.Image] = []
+cover_rgba_frames: List[Image.Image] = []
 
 for stage, rectangles in enumerate(COVERS):
     graph_image = Image.new(
@@ -602,6 +621,8 @@ for stage, rectangles in enumerate(COVERS):
         rectangles,
         stage,
         GRAPH_CANVAS_W,
+        view=GRAPH_COVER_VIEW,
+        title_y=GRAPH_COVER_TITLE_Y,
     )
     graph_draw = ImageDraw.Draw(graph_image)
     draw_graph(graph_draw, stage)
@@ -645,13 +666,18 @@ for stage, rectangles in enumerate(COVERS):
         rectangles,
         stage,
         COVER_CANVAS_W,
+        view=COVER_ONLY_VIEW,
     )
-    cover_frames.append(
-        cover_image.convert(
-            "P",
-            palette=Image.ADAPTIVE,
-        )
+    cover_rgba_frames.append(cover_image)
+
+cover_frames = [
+    image.crop(COVER_ONLY_CROP_BOX).convert(
+        "P",
+        palette=Image.ADAPTIVE,
     )
+    for image in cover_rgba_frames
+]
+cover_frames = [cover_frames[-1].copy(), *cover_frames]
 
 
 GRAPH_GIF.parent.mkdir(parents=True, exist_ok=True)
