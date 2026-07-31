@@ -143,21 +143,21 @@ $$
 この記号を用いて, Euclid 空間 $\mathbb{R}^N$ 上の**有界集合全体**を
 
 $$
-2^{\mathbb{R}^N}_{<\infty}
+2_{<\infty}^{\mathbb{R}^N}
 :=
 \left\{A\in 2^{\mathbb{R}^N}\mathrel{\middle|}
 \exists R>0, \forall x\in A,\ \lVert x\rVert\le R
 \right\}
 $$
 
-と書く. つまり, $2^{\mathbb{R}^N}_{<\infty}$ は冪集合 $2^{\mathbb{R}^N}$ のうち, 有界な部分集合だけを集めた集合族である.
+と書く. つまり, $2_{<\infty}^{\mathbb{R}^N}$ は冪集合 $2^{\mathbb{R}^N}$ のうち, 有界な部分集合だけを集めた集合族である.
 
-Jordan 内測度 $J_*$ および Jordan 外測度 $J^*$ は, $2^{\mathbb{R}^N}_{<\infty} \subset 2^{\mathbb{R}^N}$ 上で定義される集合函数である. すなわち,
+Jordan 内測度 $J_*$ および Jordan 外測度 $J^*$ は, $2_{<\infty}^{\mathbb{R}^N} \subset 2^{\mathbb{R}^N}$ 上で定義される集合函数である. すなわち,
 
 $$
 J_*, J^*
 :
-2^{\mathbb{R}^N}_{<\infty}
+2_{<\infty}^{\mathbb{R}^N}
 \to
 [0,\infty)
 $$
@@ -168,7 +168,7 @@ $$
 
 ### 定義
 
-有界集合 $A\in 2^{\mathbb{R}^N}_{<\infty}$ が
+有界集合 $A\in 2_{<\infty}^{\mathbb{R}^N}$ が
 
 $$
 J_*(A)=J^*(A)
@@ -187,7 +187,7 @@ $$
 $$
 \mathcal{J}_N
 :=
-\{A\in 2^{\mathbb{R}^N}_{<\infty} \mid J_*(A)=J^*(A)\}
+\{A\in 2_{<\infty}^{\mathbb{R}^N} \mid J_*(A)=J^*(A)\}
 $$
 
 と書く.
@@ -208,7 +208,7 @@ $$
 
 この条件は, 有限個の区間からなる内側近似と外側近似の差を任意に小さくできることを意味する.
 
-Jordan 測度 $J$ は, Jordan 可測集合全体 $\mathcal{J}_N \subset 2^{\mathbb{R}^N}_{<\infty} \subset 2^{\mathbb{R}^N}$ 上で定義される集合函数
+Jordan 測度 $J$ は, Jordan 可測集合全体 $\mathcal{J}_N \subset 2_{<\infty}^{\mathbb{R}^N} \subset 2^{\mathbb{R}^N}$ 上で定義される集合函数
 
 $$
 J: \mathcal{J}_N \to [0, \infty)
@@ -231,8 +231,8 @@ $$
 | --- | --- | --- |
 | 区間の体積 $m$ | 半開区間全体 $\mathfrak{I}_N$ | $[0,\infty)$ |
 | 区間塊の体積 $m$ | 区間塊全体 $\mathfrak{F}_N$ | $[0,\infty)$ |
-| Jordan 内測度 $J_*$ | 有界部分集合全体 $2^{\mathbb{R}^N}_{<\infty}$ | $[0,\infty)$ |
-| Jordan 外測度 $J^*$ | 有界部分集合全体 $2^{\mathbb{R}^N}_{<\infty}$ | $[0,\infty)$ |
+| Jordan 内測度 $J_*$ | 有界部分集合全体 $2_{<\infty}^{\mathbb{R}^N}$ | $[0,\infty)$ |
+| Jordan 外測度 $J^*$ | 有界部分集合全体 $2_{<\infty}^{\mathbb{R}^N}$ | $[0,\infty)$ |
 | Jordan 測度 $J$ | Jordan 可測集合全体 $\mathcal{J}_N$ | $[0,\infty)$ |
 
 つまり, $m$ は基本図形である区間と区間塊に対する体積であり, $J_*$ と $J^*$ は有界集合全体に対する内外近似である. そのうち $J_*(A)=J^*(A)$ が成り立つ集合だけを集めたものが $\mathcal{J}_N$ であり, その上で Jordan 測度 $J$ が定義される.
@@ -268,7 +268,7 @@ Jordan 測度でも本質は同じであり, 各段階では有限和で表さ�
 
 以下は, Jordan 可測性の直観を補うための補足説明である.
 
-有界集合 $A\in 2^{\mathbb{R}^N}_{<\infty}$ について, Jordan 可測性は境界 $\partial A$ の Jordan 外測度が $0$ であることと深く関係する.
+有界集合 $A\in 2_{<\infty}^{\mathbb{R}^N}$ について, Jordan 可測性は境界 $\partial A$ の Jordan 外測度が $0$ であることと深く関係する.
 
 直観的には, 内側近似と外側近似の差は境界付近に集中する.したがって, 境界の体積が $0$ と見なせるならば, 内側近似と外側近似の差は消える.
 

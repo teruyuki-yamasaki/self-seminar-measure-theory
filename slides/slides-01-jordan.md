@@ -164,14 +164,14 @@ layout: default
 | --- | --- | --- |
 | 区間の体積 $m$ | 半開区間全体 $\mathfrak{I}_N$ | $[0,\infty)$ |
 | 区間塊の体積 $m$ | 区間塊全体 $\mathfrak{F}_N$ | $[0,\infty)$ |
-| Jordan 内測度 $J_*$ | 有界部分集合全体 $2^{\mathbb{R}^N}_{<\infty}$ | $[0,\infty)$ |
-| Jordan 外測度 $J^*$ | 有界部分集合全体 $2^{\mathbb{R}^N}_{<\infty}$ | $[0,\infty)$ |
+| Jordan 内測度 $J_*$ | 有界部分集合全体 $2_{<\infty}^{\mathbb{R}^N}$ | $[0,\infty)$ |
+| Jordan 外測度 $J^*$ | 有界部分集合全体 $2_{<\infty}^{\mathbb{R}^N}$ | $[0,\infty)$ |
 | Jordan 測度 $J$ | Jordan 可測集合全体 $\mathcal{J}_N$ | $[0,\infty)$ |
 
 $m$ は区間と区間塊に対する体積である. $J_*$ と $J^*$ は有界集合全体に対する内外近似であり, $J$ は $J_*(A)=J^*(A)$ が成り立つ集合だけに定義される.
 
 $$
-\mathfrak{I}_N\subset\mathfrak{F}_N\subset \mathcal{J}_N \subset 2^{\mathbb{R}^N}_{<\infty} \subset 2^{\mathbb{R}^N}
+\mathfrak{I}_N\subset\mathfrak{F}_N\subset \mathcal{J}_N \subset 2_{<\infty}^{\mathbb{R}^N} \subset 2^{\mathbb{R}^N}
 $$
 
 ---

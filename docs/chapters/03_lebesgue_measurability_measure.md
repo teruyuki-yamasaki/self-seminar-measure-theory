@@ -10,7 +10,7 @@ Lebesgue 外測度は $\mathbb{R}^N$ の任意の部分集合に対して定義�
 
 ## Lebesgue 内測度
 
-有界集合 $A \in 2^{\mathbb{R}^N}_{<\infty}$ をとり, $A\subset I$ を満たす有界区間 $I\in\mathfrak{I}_N$ を一つ固定する.
+有界集合 $A \in 2_{<\infty}^{\mathbb{R}^N}$ をとり, $A\subset I$ を満たす有界区間 $I\in\mathfrak{I}_N$ を一つ固定する.
 
 外側からは区間による可算被覆を考えればよい. しかし, 内側から一般の集合を区間で埋め尽くすことは難しい. そのため, 内側の大きさは補集合の外測度を用いて間接に定める.
 
@@ -259,8 +259,8 @@ $$
 | --- | --- | --- | --- |
 | 体積 $m$ | $\mathfrak{I}_N$ | $[0,\infty)$ | $N$ 次元区間の体積 |
 | 体積 $m$ | $\mathfrak{F}_N$ | $[0,\infty)$ | 区間塊の体積 |
-| Jordan 内測度 $J_*$ | $2^{\mathbb{R}^N}_{<\infty}$ | $[0,\infty)$ | 有界集合を内側から近似して定める集合函数 |
-| Jordan 外測度 $J^*$ | $2^{\mathbb{R}^N}_{<\infty}$ | $[0,\infty)$ | 有界集合を外側から近似して定める集合函数 |
+| Jordan 内測度 $J_*$ | $2_{<\infty}^{\mathbb{R}^N}$ | $[0,\infty)$ | 有界集合を内側から近似して定める集合函数 |
+| Jordan 外測度 $J^*$ | $2_{<\infty}^{\mathbb{R}^N}$ | $[0,\infty)$ | 有界集合を外側から近似して定める集合函数 |
 | Jordan 測度 $J$ | $\mathcal{J}_N$ | $[0,\infty)$ | $J_*=J^*$ が成り立つ Jordan 可測集合上の測度 |
 | Lebesgue 外測度 $\mu^*$ | $2^{\mathbb{R}^N}$ | $[0,\infty]$ | 任意集合に対して定義される外測度 |
 | Lebesgue 内測度 $\mu_*(\cdot;I)$ | $2^{\mathbb{R}^N}$ | $[0,\infty)$ | 固定した区間 $I$ の中で補集合の外測度を用いて定める内側の量 |
