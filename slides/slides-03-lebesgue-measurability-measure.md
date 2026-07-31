@@ -100,6 +100,35 @@ $$
 layout: default
 ---
 
+# 非可測集合
+
+外測度の劣加法性から, 任意の集合 $B, E\in 2^{\mathbb{R}^N}$ に対して
+
+$$
+\mu^*(B)\le\mu^*(B\cap E)+\mu^*(B\cap E^c)
+$$
+
+である. したがって, Lebesgue 可測集合は, 冪集合 $2^{\mathbb{R}^N}$ の中で, 外測度が切断に対して加法的に振る舞わない集合族
+
+$$
+\mathcal{N}_{\mu^*}
+:=
+\{E\in 2^{\mathbb{R}^N}\mid \exists B\in 2^{\mathbb{R}^N} \text{ s.t. }\mu^*(B)<\mu^*(B\cap E)+\mu^*(B\cap E^c)\}
+$$
+
+を除いた集合族である.
+
+$$
+\mathfrak{M}_{\mu^*}
+=
+2^{\mathbb{R}^N} - \mathcal{N}_{\mu^*}
+$$
+
+
+---
+layout: default
+---
+
 # Lebesgue 可測集合全体は可算加法族
 
 Lebesgue 可測集合全体 $\mathfrak{M}_{\mu^*}$ は**可算加法族**になる.
