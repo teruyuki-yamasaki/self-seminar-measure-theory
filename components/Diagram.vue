@@ -1,24 +1,24 @@
 <template>
-  <section class="measure-diagram">
+  <section class="seminar-diagram">
     <slot />
   </section>
 </template>
 
 <style scoped>
-.measure-diagram {
+.seminar-diagram {
   display: flex;
   min-height: 7rem;
   align-items: center;
   justify-content: center;
   gap: 1.2rem;
   margin: 1.5rem 0;
-  border: 1px solid var(--measure-border);
+  border: 1px solid var(--seminar-border);
   border-radius: 0.65rem;
-  background: var(--measure-panel);
-  color: var(--measure-text);
+  background: var(--seminar-panel);
+  color: var(--seminar-text);
   padding: 0.9rem;
   font-size: 1.3rem;
-  box-shadow: var(--measure-shadow-soft);
+  box-shadow: var(--seminar-shadow-soft);
 }
 
 :deep(p) {

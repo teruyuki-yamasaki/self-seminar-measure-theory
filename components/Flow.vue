@@ -1,11 +1,11 @@
 <template>
-  <nav class="measure-flow">
+  <nav class="seminar-flow">
     <slot />
   </nav>
 </template>
 
 <style scoped>
-.measure-flow {
+.seminar-flow {
   margin: 1.8rem 0;
 }
 
@@ -21,12 +21,12 @@
 }
 
 :deep(li) {
-  border: 1px solid var(--measure-border);
+  border: 1px solid var(--seminar-border);
   border-radius: 999px;
-  background: var(--measure-panel);
-  color: var(--measure-text);
+  background: var(--seminar-panel);
+  color: var(--seminar-text);
   padding: 0.45rem 0.75rem;
-  box-shadow: var(--measure-shadow-soft);
+  box-shadow: var(--seminar-shadow-soft);
 }
 
 :deep(li:not(:last-child)::after) {

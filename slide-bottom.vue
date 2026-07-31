@@ -1,16 +1,16 @@
 <template>
-  <div class="measure-page-number" aria-label="page number">
+  <div class="seminar-page-number" aria-label="page number">
     {{ $slidev.nav.currentPage }} / {{ $slidev.nav.total }}
   </div>
 </template>
 
 <style scoped>
-.measure-page-number {
+.seminar-page-number {
   position: absolute;
   right: 1.35rem;
   bottom: 1rem;
   z-index: 20;
-  color: var(--measure-muted);
+  color: var(--seminar-muted);
   font-size: 0.72rem;
   font-variant-numeric: tabular-nums;
   letter-spacing: 0;

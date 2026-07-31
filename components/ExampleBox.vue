@@ -16,19 +16,19 @@ defineProps<{
 <style scoped>
 .example-box {
   margin: 0.9rem 0;
-  border: 1px solid var(--measure-border);
+  border: 1px solid var(--seminar-border);
   border-radius: 0.6rem;
-  background: var(--measure-panel);
-  color: var(--measure-text);
+  background: var(--seminar-panel);
+  color: var(--seminar-text);
   padding: 0.8rem 1rem;
   font-size: 0.82rem;
   line-height: 1.5;
-  box-shadow: var(--measure-shadow-soft);
+  box-shadow: var(--seminar-shadow-soft);
 }
 
 .example-box-title {
   margin: 0 0 0.45rem;
-  color: var(--measure-accent);
+  color: var(--seminar-accent);
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.04em;

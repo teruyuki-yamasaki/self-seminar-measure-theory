@@ -1,121 +1,50 @@
+@import "./template/slidev/base.css";
+
 :root {
-  --slidev-theme-primary: #176b87;
-  --measure-bg: #f7faf8;
-  --measure-surface: #fffdf7;
-  --measure-panel: #fbfdfb;
-  --measure-text: #15343a;
-  --measure-muted: #5f7372;
-  --measure-heading: #0f3138;
-  --measure-accent: #176b87;
-  --measure-accent-strong: #0b5b70;
-  --measure-border: #cfdfdb;
-  --measure-note-bg: #edf6f5;
-  --measure-formula-bg: #fffdf8;
-  --measure-shadow-soft: 0 14px 34px rgb(18 52 59 / 0.08);
-  --measure-shadow-figure: 0 18px 42px rgb(18 52 59 / 0.1);
+  --seminar-bg: #f7faf8;
+  --seminar-surface: #fffdf7;
+  --seminar-panel: #fbfdfb;
+  --seminar-text: #15343a;
+  --seminar-muted: #5f7372;
+  --seminar-heading: #0f3138;
+  --seminar-accent: #176b87;
+  --seminar-accent-strong: #0b5b70;
+  --seminar-border: #cfdfdb;
+  --seminar-note-bg: #edf6f5;
+  --seminar-formula-bg: #fffdf8;
+  --seminar-shadow-soft: 0 14px 34px rgb(18 52 59 / 0.08);
+  --seminar-shadow-figure: 0 18px 42px rgb(18 52 59 / 0.1);
+
+  --measure-bg: var(--seminar-bg);
+  --measure-surface: var(--seminar-surface);
+  --measure-panel: var(--seminar-panel);
+  --measure-text: var(--seminar-text);
+  --measure-muted: var(--seminar-muted);
+  --measure-heading: var(--seminar-heading);
+  --measure-accent: var(--seminar-accent);
+  --measure-accent-strong: var(--seminar-accent-strong);
+  --measure-border: var(--seminar-border);
+  --measure-note-bg: var(--seminar-note-bg);
+  --measure-formula-bg: var(--seminar-formula-bg);
+  --measure-shadow-soft: var(--seminar-shadow-soft);
+  --measure-shadow-figure: var(--seminar-shadow-figure);
 }
 
 html.dark,
 .dark {
-  --slidev-theme-primary: #8fd7e6;
-  --measure-bg: #0e1719;
-  --measure-surface: #111e21;
-  --measure-panel: #142427;
-  --measure-text: #e8f1ef;
-  --measure-muted: #a8bfbd;
-  --measure-heading: #f3fbf9;
-  --measure-accent: #8fd7e6;
-  --measure-accent-strong: #b8edf4;
-  --measure-border: #315257;
-  --measure-note-bg: #122c32;
-  --measure-formula-bg: #0f2024;
-  --measure-shadow-soft: 0 14px 34px rgb(0 0 0 / 0.28);
-  --measure-shadow-figure: 0 20px 46px rgb(0 0 0 / 0.35);
-}
-
-.slidev-layout {
-  background:
-    radial-gradient(
-      circle at 10% 0%,
-      color-mix(in srgb, var(--measure-accent) 12%, transparent),
-      transparent 30%
-    ),
-    linear-gradient(180deg, var(--measure-bg), var(--measure-surface));
-  color: var(--measure-text);
-  font-size: 1rem;
-  line-height: 1.58;
-  padding: 3rem 3.6rem;
-}
-
-.slidev-layout h1,
-.slidev-layout h2,
-.slidev-layout h3 {
-  color: var(--measure-heading);
-  letter-spacing: 0;
-}
-
-.slidev-layout h1 {
-  margin-bottom: 1.25rem;
-  font-size: 2.15rem;
-  line-height: 1.18;
-}
-
-.slidev-layout h2 {
-  margin-top: 1.1rem;
-  font-size: 1.35rem;
-}
-
-.slidev-layout p,
-.slidev-layout li {
-  color: var(--measure-text);
-}
-
-.slidev-layout ul,
-.slidev-layout ol {
-  padding-left: 1.25rem;
-}
-
-.slidev-layout li {
-  margin: 0.2rem 0;
-  line-height: 1.48;
-}
-
-.slidev-layout strong {
-  color: var(--measure-heading);
-}
-
-.slidev-layout a {
-  color: var(--measure-accent-strong);
-}
-
-.slidev-layout code {
-  border: 1px solid var(--measure-border);
-  border-radius: 0.35rem;
-  background: var(--measure-panel);
-  color: var(--measure-heading);
-  padding: 0.05rem 0.28rem;
-  font-size: 0.88em;
-}
-
-.slidev-layout .katex {
-  color: var(--measure-heading);
-}
-
-.slidev-layout .katex-display {
-  overflow-x: auto;
-  margin: 0.8rem 0;
-  border: 1px solid var(--measure-border);
-  border-radius: 0.65rem;
-  background: var(--measure-formula-bg);
-  padding: 0.55rem 0.75rem;
-}
-
-.slidev-layout table {
-  font-size: 0.92rem;
-}
-
-.slidev-layout th {
-  color: var(--measure-heading);
+  --seminar-bg: #0e1719;
+  --seminar-surface: #111e21;
+  --seminar-panel: #142427;
+  --seminar-text: #e8f1ef;
+  --seminar-muted: #a8bfbd;
+  --seminar-heading: #f3fbf9;
+  --seminar-accent: #8fd7e6;
+  --seminar-accent-strong: #b8edf4;
+  --seminar-border: #315257;
+  --seminar-note-bg: #122c32;
+  --seminar-formula-bg: #0f2024;
+  --seminar-shadow-soft: 0 14px 34px rgb(0 0 0 / 0.28);
+  --seminar-shadow-figure: 0 20px 46px rgb(0 0 0 / 0.35);
 }
 
 .slidev-layout table:has(img[src*="outer_measure_axioms"]) {
@@ -140,177 +69,18 @@ html.dark,
   padding-bottom: 0.45rem;
 }
 
-.slidev-layout table:has(img[src*="outer_measure_axioms"]) img {
+.slidev-layout
+  table:has(img[src*="outer_measure_axioms"])
+  img[src*="outer_measure_axioms"]:not([alt$="QR コード"]):not([alt$="QR Code"]) {
   display: block;
   width: 100%;
   max-height: 9.2rem;
   object-fit: contain;
-  border: 1px solid var(--measure-border);
+  border: 1px solid var(--seminar-border);
   border-radius: 0.45rem;
-  background: var(--measure-panel);
+  background: var(--seminar-panel);
   padding: 0.12rem;
-}
-
-.slidev-layout.cover,
-.slidev-layout.section,
-.slidev-layout.end {
-  display: grid;
-  align-content: center;
-  background:
-    linear-gradient(
-      135deg,
-      color-mix(in srgb, var(--measure-accent) 16%, transparent),
-      transparent 36%
-    ),
-    linear-gradient(180deg, var(--measure-bg), var(--measure-surface));
-}
-
-.slidev-layout.cover h1 {
-  max-width: none;
-  width: 100%;
-  font-size: 3.25rem;
-  line-height: 1.08;
-  white-space: nowrap;
-}
-
-.slidev-layout.cover p {
-  max-width: 38rem;
-  color: var(--measure-muted);
-  font-size: 1.35rem;
-}
-
-.deck-meta {
-  display: inline-block;
-  margin-top: 2.6rem;
-  border: 1px solid var(--measure-border);
-  border-radius: 999px;
-  background: var(--measure-panel);
-  color: var(--measure-muted);
-  padding: 0.35rem 0.8rem;
-  font-size: 0.88rem;
-}
-
-.slidev-layout table:has(img[alt$="QR コード"]) {
-  width: 100%;
-  table-layout: fixed;
-  margin-top: 1.7rem;
-  font-size: 0.62rem;
-}
-
-.slidev-layout table:has(img[alt$="QR コード"]) th,
-.slidev-layout table:has(img[alt$="QR コード"]) td {
-  border: 1px solid var(--measure-border);
-  background: var(--measure-panel);
-  text-align: center;
-  vertical-align: middle;
-  overflow-wrap: anywhere;
-}
-
-.slidev-layout table:has(img[alt$="QR コード"]) th {
-  font-size: 1.1rem;
-}
-
-.slidev-layout table:has(img[alt$="QR コード"]) img {
-  width: min(100%, 11.5rem);
-  aspect-ratio: 1;
-  margin: 0 auto;
-  border: 1px solid var(--measure-border);
-  border-radius: 0.35rem;
-  background: #fff;
-  padding: 0.45rem;
-}
-
-.slidev-layout.section h1,
-.slidev-layout.end h1 {
-  max-width: none;
-  width: 100%;
-  font-size: 2.55rem;
-  line-height: 1.1;
-  white-space: nowrap;
-}
-
-.slidev-layout.section p {
-  color: var(--measure-muted);
-  font-size: 1.25rem;
-}
-
-.slidev-layout.end ul {
-  max-width: 50rem;
-  font-size: 1.08rem;
-}
-
-.slidev-layout.end {
-  justify-items: start;
-  text-align: left;
-}
-
-.slidev-layout.end h1,
-.slidev-layout.end ul {
-  justify-self: start;
-  text-align: left;
-}
-
-.slidev-layout p:has(> img:only-child) {
-  margin: 0;
-  line-height: 0;
-}
-
-.slidev-layout p:has(> img:only-child) + p:has(> img:only-child) {
-  margin-top: 0.7rem;
-}
-
-.slidev-layout.two-columns {
-  grid-template-rows: minmax(0, 1fr);
-}
-
-.slidev-layout.two-columns > div {
-  min-width: 0;
-  min-height: 0;
-}
-
-.slidev-layout.two-columns .col-right {
-  display: flex;
-  overflow: hidden;
-  min-height: 0;
-  flex-direction: column;
-}
-
-.slidev-layout.two-columns .col-right p:has(> img:only-child) {
-  display: flex;
-  width: 100%;
-  height: 0;
-  min-height: 0;
-  flex: 1 1 0;
-  align-items: center;
-  justify-content: flex-end;
-}
-
-.slidev-layout.two-columns .col-right img {
-  width: auto;
-  max-width: 100%;
-  max-height: 100%;
-  margin-left: auto;
-}
-
-.slidev-layout.two-columns .col-right:has(> p + p) img {
-  width: 100%;
-  height: 100%;
-  max-height: none;
-  object-fit: contain;
-}
-
-.slidev-layout img:not([alt$="QR コード"]):not([src*="outer_measure_axioms"]) {
-  display: block;
-  width: auto;
-  max-width: 100%;
-  max-height: 54vh;
-  object-fit: contain;
-  border: 1px solid var(--measure-border);
-  border-radius: 0.75rem;
-  background: var(--measure-panel);
-  padding: 0.45rem;
-  box-shadow: var(--measure-shadow-figure);
-  box-sizing: border-box;
+  box-shadow: none;
 }
 
 .slidev-layout.two-columns .col-right p:has(> img[src*="rational_points_outer_approx"]:only-child) {
@@ -330,56 +100,6 @@ html.dark,
   max-height: 22vh;
   margin: 0.2rem auto 0;
   padding: 0.25rem;
-  box-sizing: border-box;
-}
-
-.slidev-layout.two-rows {
-  display: grid;
-  grid-template-rows: auto minmax(0, 1fr);
-  gap: 0.95rem;
-  height: 100%;
-  overflow: hidden;
-  padding-bottom: 3.1rem;
-}
-
-.slidev-layout.two-rows h1:first-child {
-  margin-bottom: 0.85rem;
-  white-space: nowrap;
-}
-
-.slidev-layout.two-rows .two-rows-main {
-  overflow: visible;
-  min-height: 0;
-}
-
-.slidev-layout.two-rows .two-rows-main p {
-  margin: 0.4rem 0;
-}
-
-.slidev-layout.two-rows .two-rows-figure {
-  display: flex;
-  min-height: 0;
-  overflow: hidden;
-  align-items: center;
-  justify-content: center;
-}
-
-.slidev-layout.two-rows .two-rows-figure p:has(> img:only-child) {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  min-height: 0;
-  max-width: 100%;
-  max-height: 100%;
-  align-items: center;
-  justify-content: center;
-}
-
-.slidev-layout.two-rows .two-rows-figure img {
-  width: auto;
-  max-width: min(100%, 52rem);
-  max-height: 100%;
-  margin: 0 auto;
   box-sizing: border-box;
 }
 
@@ -410,43 +130,4 @@ html.dark,
   .two-rows-figure
   p:has(> img:only-child) {
   align-items: flex-start;
-}
-
-.slidev-layout blockquote {
-  margin: 1rem 0;
-  border-left: 4px solid var(--measure-accent);
-  background: var(--measure-note-bg);
-  color: var(--measure-text);
-  padding: 0.75rem 1rem;
-}
-
-@media print {
-  .slidev-layout {
-    background: var(--measure-surface);
-    font-size: 0.95rem;
-    padding: 2.4rem 3rem;
-  }
-
-  .slidev-layout h1 {
-    font-size: 1.9rem;
-  }
-
-  .slidev-layout.cover h1,
-  .slidev-layout.section h1,
-  .slidev-layout.end h1 {
-    font-size: 2.5rem;
-  }
-
-  .slidev-layout img:not([alt$="QR コード"]):not([src*="outer_measure_axioms"]) {
-    max-height: 54vh;
-    box-shadow: none;
-  }
-
-  .slidev-layout.two-rows .two-rows-figure img {
-    max-height: 40vh;
-  }
-
-  .slidev-layout .katex-display {
-    break-inside: avoid;
-  }
 }
