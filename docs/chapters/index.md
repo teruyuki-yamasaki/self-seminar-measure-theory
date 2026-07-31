@@ -14,4 +14,7 @@
 6. [第5章 可測函数と単函数](./05_measurable_simple_functions.md)
 7. [第6章 Lebesgue 積分](./06_lebesgue_integral.md)
 8. [第7章 極限と積分の交換](./07_limits_and_integrals.md)
-9. [Appendix Radon-Nikodym の定理](./appendix_radon_nikodym.md)
+9. [第8章 積分を集合の函数として見る](./08_integral_as_set_function.md)
+10. [第9章 加法的集合函数の一般論](./09_additive_set_functions.md)
+11. [第10章 Radon-Nikodym 型の表現](./10_radon_nikodym_representation.md)
+12. [Appendix Radon-Nikodym の定理](./appendix_radon_nikodym.md)

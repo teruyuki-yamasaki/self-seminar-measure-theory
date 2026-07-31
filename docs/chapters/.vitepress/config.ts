@@ -36,6 +36,18 @@ const chapters = [
     link: "/07_limits_and_integrals",
   },
   {
+    text: "第8章 積分を集合の函数として見る",
+    link: "/08_integral_as_set_function",
+  },
+  {
+    text: "第9章 加法的集合函数の一般論",
+    link: "/09_additive_set_functions",
+  },
+  {
+    text: "第10章 Radon-Nikodym 型の表現",
+    link: "/10_radon_nikodym_representation",
+  },
+  {
     text: "Appendix Radon-Nikodym の定理",
     link: "/appendix_radon_nikodym",
   },

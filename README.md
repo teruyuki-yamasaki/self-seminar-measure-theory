@@ -95,6 +95,9 @@ pnpm check
 ### [第5章 可測函数と単函数](./docs/chapters/05_measurable_simple_functions.md)
 ### [第6章 Lebesgue 積分](./docs/chapters/06_lebesgue_integral.md)
 ### [第7章 極限と積分の交換](./docs/chapters/07_limits_and_integrals.md)
+### [第8章 積分を集合の函数として見る](./docs/chapters/08_integral_as_set_function.md)
+### [第9章 加法的集合函数の一般論](./docs/chapters/09_additive_set_functions.md)
+### [第10章 Radon-Nikodym 型の表現](./docs/chapters/10_radon_nikodym_representation.md)
 ### [Appendix Radon-Nikodym の定理](./docs/chapters/appendix_radon_nikodym.md)
 
 ## 構成メモ
