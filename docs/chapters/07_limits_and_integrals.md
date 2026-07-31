@@ -7,9 +7,9 @@
 問題は, $f_n\to f$ から次が従うかどうかである.
 
 $$
-\int_X f_n\,d\mu
+\int_X f_n(x)\,d\mu(x)
 \longrightarrow
-\int_X f\,d\mu
+\int_X f(x)\,d\mu(x)
 $$
 
 答えは一般には否であり, 収束に加えて積分量を制御する条件が必要になる.
@@ -67,7 +67,7 @@ $$
 である. したがって a.e. 収束もしている. しかし,
 
 $$
-\int_0^1 f_n\,d\mu=1
+\int_0^1 f_n(x)\,d\mu(x)=1
 $$
 
 であり, 積分値は $0$ に収束しない.
@@ -149,9 +149,9 @@ $$
 を満たすなら, すなわちある零集合 $Z$ を除いた $X - Z$ 上で下から単調に $f$ へ収束するなら,
 
 $$
-\int_X f_n\,d\mu
+\int_X f_n(x)\,d\mu(x)
 \nearrow
-\int_X f\,d\mu
+\int_X f(x)\,d\mu(x)
 $$
 
 が成り立つ.
@@ -165,9 +165,9 @@ $$
 非負可測函数列 $f_n$ に対して,
 
 $$
-\int_X \liminf_{n\to\infty} f_n\,d\mu
+\int_X \liminf_{n\to\infty} f_n(x)\,d\mu(x)
 \le
-\liminf_{n\to\infty}\int_X f_n\,d\mu
+\liminf_{n\to\infty}\int_X f_n(x)\,d\mu(x)
 $$
 
 が成り立つ.
@@ -185,7 +185,7 @@ $$
 $$
 f_n\to0,
 \qquad
-\int_0^1 f_n\,d\mu=1
+\int_0^1 f_n(x)\,d\mu(x)=1
 $$
 
 であるから, 極限函数 $0$ は可積分だが, 積分値は $0$ に収束しない.
@@ -217,7 +217,7 @@ $$
 優収束定理は, 積分値の収束だけでなく **$L^1$ 収束** も与える.
 
 $$
-\int_X |f_n-f|\,d\mu\to0
+\int_X |f_n(x)-f(x)|\,d\mu(x)\to0
 $$
 
 これを次のように書く.
@@ -231,10 +231,10 @@ $L^1$ 収束すれば,
 $$
 \begin{aligned}
 \left|
-\int_X f_n\,d\mu-\int_X f\,d\mu
+\int_X f_n(x)\,d\mu(x)-\int_X f(x)\,d\mu(x)
 \right|
 &\le
-\int_X |f_n-f|\,d\mu \\
+\int_X |f_n(x)-f(x)|\,d\mu(x) \\
 &=
 \|f_n-f\|_1
 \longrightarrow0.

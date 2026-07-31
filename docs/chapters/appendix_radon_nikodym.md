@@ -51,13 +51,13 @@ $$
 例えば, $\mathbb{R}$ 上で
 
 $$
-\nu(A)=\int_A f\, d\mu
+\nu(A)=\int_A f(x)\,d\mu(x)
 $$
 
 と定義される測度 $\nu$ を考える.ここで $f$ は非負可測函数である.このとき, $\mu(A)=0$ ならば
 
 $$
-\nu(A)=\int_A f\, d\mu=0
+\nu(A)=\int_A f(x)\,d\mu(x)=0
 $$
 
 である.したがって
@@ -110,7 +110,7 @@ $$
 このとき, 非負可測函数 $f$ が存在して, 任意の $A\in\mathfrak{B}$ に対して
 
 $$
-\nu(A)=\int_A f\, d\mu
+\nu(A)=\int_A f(x)\,d\mu(x)
 $$
 
 が成り立つ.
@@ -128,7 +128,7 @@ $$
 $$
 \nu(A)
 =
-\int_A \frac{d\nu}{d\mu}\, d\mu
+\int_A \frac{d\nu}{d\mu}(x)\,d\mu(x)
 $$
 
 と書ける.
@@ -148,7 +148,7 @@ $$
 $$
 \nu(A)
 =
-\int_A \frac{d\nu}{d\mu}\, d\mu
+\int_A \frac{d\nu}{d\mu}(x)\,d\mu(x)
 $$
 
 は, 測度 $\nu$ が測度 $\mu$ に密度函数 $d\nu/d\mu$ を掛けたものとして表されることを意味する.
@@ -156,7 +156,7 @@ $$
 Lebesgue 測度 $\mu$ に対して
 
 $$
-\nu(A)=\int_A f(x)\, d\mu(x)
+\nu(A)=\int_A f(x)\,d\mu(x)
 $$
 
 と書けるとき, $f$ は Lebesgue 測度に関する $\nu$ の密度である.
@@ -186,9 +186,9 @@ $$
 $$
 \mathbb{E}_Q[h]
 =
-\int h\, dQ
+\int_X h(x)\,dQ(x)
 =
-\int h\frac{dQ}{dP}\, dP
+\int_X h(x)\frac{dQ}{dP}(x)\,dP(x)
 =
 \mathbb{E}_P\left[h\frac{dQ}{dP}\right]
 $$
@@ -206,13 +206,13 @@ Radon-Nikodym の定理は, 別の測度 $\nu$ に関する積分を, 基準測�
 つまり
 
 $$
-\int h\, d\nu
+\int_X h(x)\,d\nu(x)
 $$
 
 を
 
 $$
-\int h\frac{d\nu}{d\mu}\, d\mu
+\int_X h(x)\frac{d\nu}{d\mu}(x)\,d\mu(x)
 $$
 
 として扱える.

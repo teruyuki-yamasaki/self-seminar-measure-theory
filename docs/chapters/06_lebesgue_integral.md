@@ -31,7 +31,7 @@ $$
 このとき, $\varphi$ の積分を
 
 $$
-\int_X \varphi(x)\, d\mu(x)
+\int_X \varphi(x)\,d\mu(x)
 :=
 \sum_{k=1}^{n}a_k\mu(E_k)
 = a_1 \mu(E_1) + \cdots + a_n \mu(E_n)
@@ -52,17 +52,17 @@ $$
 ### 線形性
 
 $$
-\int_X(\varphi+\psi)\, d\mu
+\int_X(\varphi(x)+\psi(x))\,d\mu(x)
 =
-\int_X\varphi\, d\mu+\int_X\psi\, d\mu
+\int_X \varphi(x)\,d\mu(x)+\int_X \psi(x)\,d\mu(x)
 $$
 
 および
 
 $$
-\int_X c\varphi\, d\mu
+\int_X c\varphi(x)\,d\mu(x)
 =
-c\int_X\varphi\, d\mu
+c\int_X \varphi(x)\,d\mu(x)
 $$
 
 が成り立つ.
@@ -76,9 +76,9 @@ $$
 ならば
 
 $$
-\int_X\varphi\, d\mu
+\int_X \varphi(x)\,d\mu(x)
 \leq
-\int_X\psi\, d\mu
+\int_X \psi(x)\,d\mu(x)
 $$
 
 である.
@@ -96,10 +96,10 @@ $$
 に対して, Lebesgue 積分を
 
 $$
-\int_X f(x)\, d\mu(x)
+\int_X f(x)\,d\mu(x)
 :=
 \sup\left\{
-\int_X \varphi(x)\, d\mu(x)
+\int_X \varphi(x)\,d\mu(x)
 \ \middle|\
 0\leq\varphi\leq f, \ \varphi\text{ は非負単函数}
 \right\}
@@ -128,7 +128,7 @@ $$
 Lebesgue 積分
 
 $$
-\int_X f\, d\mu
+\int_X f(x)\,d\mu(x)
 $$
 
 は, そのような下側近似の積分の上限である.
@@ -166,8 +166,8 @@ $$
 可測函数の安定性より, $f^+$ と $f^-$ は非負可測函数である. したがって, それぞれの積分
 
 $$
-\int_X f^+\, d\mu, \qquad
-\int_X f^-\, d\mu
+\int_X f^+(x)\,d\mu(x), \qquad
+\int_X f^-(x)\,d\mu(x)
 $$
 
 は定義される.
@@ -175,9 +175,9 @@ $$
 少なくとも一方が有限であるとき,
 
 $$
-\int_X f\, d\mu
+\int_X f(x)\,d\mu(x)
 =
-\int_X f^+\, d\mu-\int_X f^-\, d\mu
+\int_X f^+(x)\,d\mu(x)-\int_X f^-(x)\,d\mu(x)
 $$
 
 と定める.
@@ -185,7 +185,7 @@ $$
 特に
 
 $$
-\int_X |f|\, d\mu<\infty
+\int_X |f(x)|\,d\mu(x)<\infty
 $$
 
 であるとき, $f$ は可積分であるという.
@@ -193,9 +193,9 @@ $$
 この場合,
 
 $$
-\int_X f^+\, d\mu<\infty,
+\int_X f^+(x)\,d\mu(x)<\infty,
 \qquad
-\int_X f^-\, d\mu<\infty
+\int_X f^-(x)\,d\mu(x)<\infty
 $$
 
 であり, 積分値は有限の実数である.
@@ -207,9 +207,9 @@ $$
 **線形性**
 
 $$
-\int_X(af+bg)\, d\mu
+\int_X(af(x)+bg(x))\,d\mu(x)
 =
-a\int_Xf\, d\mu+b\int_Xg\, d\mu
+a\int_X f(x)\,d\mu(x)+b\int_X g(x)\,d\mu(x)
 $$
 
 が成り立つ.
@@ -225,9 +225,9 @@ $$
 ならば
 
 $$
-\int_X f\, d\mu
+\int_X f(x)\,d\mu(x)
 \leq
-\int_X g\, d\mu
+\int_X g(x)\,d\mu(x)
 $$
 
 である.
@@ -237,9 +237,9 @@ $$
 **絶対値評価**
 
 $$
-\left|\int_X f\, d\mu\right|
+\left|\int_X f(x)\,d\mu(x)\right|
 \leq
-\int_X |f|\, d\mu
+\int_X |f(x)|\,d\mu(x)
 $$
 
 が成り立つ.
@@ -251,7 +251,7 @@ Lebesgue 積分は Riemann 積分を置き換えて別の値を与えるもの�
 $$
 \int_a^b f(x)\, dx
 =
-\int_{[a, b]} f\, d\mu
+\int_{[a, b]} f(x)\,d\mu(x)
 $$
 
 が成り立つ. ここで右辺の $\mu$ は $[a, b]$ 上の Lebesgue 測度である.
@@ -279,11 +279,11 @@ $$
 であり,
 
 $$
-\int s_\Delta\, d\mu
+\int s_\Delta(x)\,d\mu(x)
 =
 \underline{\mathcal{S}}(f,\Delta),
 \qquad
-\int t_\Delta\, d\mu
+\int t_\Delta(x)\,d\mu(x)
 =
 \overline{\mathcal{S}}(f,\Delta)
 $$
@@ -306,7 +306,7 @@ V_1
 \left\{
 f:X\to\mathbb{R}
 \;\middle|\;
-f\text{ は可測},\ \int_X|f|\,d\mu<\infty
+f\text{ は可測},\ \int_X |f(x)|\,d\mu(x)<\infty
 \right\}
 $$
 
@@ -322,7 +322,7 @@ $V_1$ の各函数 $f$ に対して
 $$
 \|f\|_1
 :=
-\int_X |f|\, d\mu
+\int_X |f(x)|\,d\mu(x)
 $$
 
 とおく. これは $V_1$ 上の半ノルムである.
@@ -342,7 +342,7 @@ $$
 $$
 \|f-g\|_1
 =
-\int_X |f-g|\, d\mu
+\int_X |f(x)-g(x)|\,d\mu(x)
 =
 0
 $$
@@ -383,15 +383,15 @@ $$
 $$
 \|[f]\|_1
 :=
-\int_X |f|\, d\mu
+\int_X |f(x)|\,d\mu(x)
 $$
 
 と定める. これは代表元の取り方によらない. 実際, $f=g$ が $\mu$-a.e. で成り立てば $|f|=|g|$ も $\mu$-a.e. であるから
 
 $$
-\int_X |f|\, d\mu
+\int_X |f(x)|\,d\mu(x)
 =
-\int_X |g|\, d\mu
+\int_X |g(x)|\,d\mu(x)
 $$
 
 である.
@@ -400,7 +400,7 @@ $$
 
 $$
 f\in L^1(\mu),\qquad
-\|f\|_1=\int_X |f|\, d\mu
+\|f\|_1=\int_X |f(x)|\,d\mu(x)
 $$
 
 と書く.
@@ -414,7 +414,7 @@ $$
 可測函数 $f$ に対して
 
 $$
-\int_X |f|^p\, d\mu<\infty
+\int_X |f(x)|^p\,d\mu(x)<\infty
 $$
 
 であるとき, $f$ は $p$ 乗可積分であるという. このような函数全体を
@@ -425,7 +425,7 @@ V_p
 \left\{
 f:X\to\mathbb{R}
 \;\middle|\;
-f\text{ は可測},\ \int_X |f|^p\,d\mu<\infty
+f\text{ は可測},\ \int_X |f(x)|^p\,d\mu(x)<\infty
 \right\}
 $$
 
@@ -434,7 +434,7 @@ $$
 $$
 \|f\|_p
 :=
-\left(\int_X |f|^p\, d\mu\right)^{1/p}
+\left(\int_X |f(x)|^p\,d\mu(x)\right)^{1/p}
 $$
 
 を考える. さらに, $\|f-g\|_p=0$, すなわち $\mu$-a.e. に等しい函数を同一視する. つまり
@@ -467,4 +467,4 @@ $$
 
 ## この章の中心メッセージ
 
-Lebesgue 積分は, 非負単函数の積分を出発点とし, 非負可測函数を下から単函数で近似することで定義される. 一般の函数は正部分と負部分に分けて積分する. 可積分性は $\int |f|\, d\mu<\infty$ によって定義される. また, Riemann 積分可能な函数に対しては Lebesgue 積分は同じ値を与える.
+Lebesgue 積分は, 非負単函数の積分を出発点とし, 非負可測函数を下から単函数で近似することで定義される. 一般の函数は正部分と負部分に分けて積分する. 可積分性は $\int_X |f(x)|\,d\mu(x)<\infty$ によって定義される. また, Riemann 積分可能な函数に対しては Lebesgue 積分は同じ値を与える.

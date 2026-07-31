@@ -262,9 +262,9 @@ $$
 各 $f_n$ が積分可能なとき, 極限函数 $f$ も積分可能であり, さらに
 
 $$
-\int f\,d\mu
+\int_X f(x)\,d\mu(x)
 \overset{?}{=}
-\lim_{n\to\infty}\int f_n\,d\mu
+\lim_{n\to\infty}\int_X f_n(x)\,d\mu(x)
 $$
 
 といえるだろうか.

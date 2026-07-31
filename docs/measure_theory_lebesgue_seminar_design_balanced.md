@@ -116,7 +116,7 @@ f_n\to f \quad \text{a.e.}
 と支配されるならば,
 
 \[
-\int f_n\, d\mu\to \int f\, d\mu
+\int_X f_n(x)\,d\mu(x)\to \int_X f(x)\,d\mu(x)
 \]
 
 が成り立つ.
@@ -138,7 +138,7 @@ f_n\to f \quad \text{a.e.}
 \[
 \nu(A)
 =
-\int_A \frac{d\nu}{d\mu}\, d\mu
+\int_A \frac{d\nu}{d\mu}(x)\,d\mu(x)
 \]
 
 と書けることを確認し, 測度の変換を積分の重み付けとして理解する.
@@ -608,7 +608,7 @@ Lebesgue 積分では, 関数値とその値を取る集合の測度に着目す
 に対して,
 
 \[
-\int \varphi\, d\mu
+\int_X \varphi(x)\,d\mu(x)
 =
 \sum_{k=1}^n a_k\mu(E_k)
 \]
@@ -656,7 +656,7 @@ U(f, P)=1, \qquad L(f, P)=0
 したがって,
 
 \[
-\int_0^1 \mathbf 1_{\mathbb Q\cap[0, 1]}\, dm=0
+\int_0^1 \mathbf 1_{\mathbb Q\cap[0, 1]}(x)\,dm(x)=0
 \]
 
 となる.
@@ -672,7 +672,7 @@ f_n(x)=n\mathbf 1_{(0, 1/n)}(x)
 各 \(f_n\) は積分可能であり,
 
 \[
-\int_0^1 f_n\, dm=1
+\int_0^1 f_n(x)\,dm(x)=1
 \]
 
 である.
@@ -688,13 +688,13 @@ f_n(x)\to0
 しかし,
 
 \[
-\lim_{n\to\infty}\int f_n\, dm
+\lim_{n\to\infty}\int_0^1 f_n(x)\,dm(x)
 =
 1
 \neq
 0
 =
-\int \lim_{n\to\infty}f_n\, dm
+\int_0^1 \lim_{n\to\infty}f_n(x)\,dm(x)
 \]
 
 である.
@@ -785,7 +785,7 @@ L^1(μ)
 に対して,
 
 \[
-\int \varphi\, d\mu
+\int_X \varphi(x)\,d\mu(x)
 =
 \sum_{k=1}^n a_k\mu(E_k)
 \]
@@ -797,11 +797,11 @@ L^1(μ)
 非負可測関数 \(f\) に対して,
 
 \[
-\int f\, d\mu
+\int_X f(x)\,d\mu(x)
 =
 \sup
 \left\{
-\int \varphi\, d\mu:
+\int_X \varphi(x)\,d\mu(x):
 0\leq \varphi\leq f, \ \varphi\text{ は単関数}
 \right\}
 \]
@@ -831,15 +831,15 @@ f=f^+-f^-,
 である.
 
 \[
-\int |f|\, d\mu<\infty
+\int_X |f(x)|\,d\mu(x)<\infty
 \]
 
 であるとき, \(f\) は可積分であるといい,
 
 \[
-\int f\, d\mu
+\int_X f(x)\,d\mu(x)
 =
-\int f^+\, d\mu-\int f^-\, d\mu
+\int_X f^+(x)\,d\mu(x)-\int_X f^-(x)\,d\mu(x)
 \]
 
 と定める.
@@ -883,15 +883,15 @@ f_n\to f
 を満たすならば,
 
 \[
-\int f_n\, d\mu\to\int f\, d\mu.
+\int_X f_n(x)\,d\mu(x)\to\int_X f(x)\,d\mu(x).
 \]
 
 同値に,
 
 \[
-\int \lim_{n\to\infty}f_n\, d\mu
+\int_X \lim_{n\to\infty} f_n(x)\,d\mu(x)
 =
-\lim_{n\to\infty}\int f_n\, d\mu.
+\lim_{n\to\infty}\int_X f_n(x)\,d\mu(x).
 \]
 
 ### Fatou の補題
@@ -899,9 +899,9 @@ f_n\to f
 非負可測関数列 \(f_n\) に対して,
 
 \[
-\int \liminf_{n\to\infty}f_n\, d\mu
+\int_X \liminf_{n\to\infty} f_n(x)\,d\mu(x)
 \leq
-\liminf_{n\to\infty}\int f_n\, d\mu.
+\liminf_{n\to\infty}\int_X f_n(x)\,d\mu(x).
 \]
 
 ### 優収束定理
@@ -921,13 +921,13 @@ f_n\to f\quad\text{a.e.}
 をすべての \(n\) について満たすならば,
 
 \[
-\int f_n\, d\mu\to \int f\, d\mu.
+\int_X f_n(x)\,d\mu(x)\to \int_X f(x)\,d\mu(x).
 \]
 
 さらに,
 
 \[
-\int |f_n-f|\, d\mu\to0
+\int_X |f_n(x)-f(x)|\,d\mu(x)\to0
 \]
 
 も成り立つ.
@@ -978,7 +978,7 @@ Lebesgue 積分では, 単調性, 非負性, 支配関数といった条件の�
 適切な \(\sigma\)-有限性の仮定の下で, \(\nu\ll\mu\) ならば, ある非負可測関数 \(f\) が存在して, 任意の \(A\in\mathcal F\) に対して
 
 \[
-\nu(A)=\int_A f\, d\mu
+\nu(A)=\int_A f(x)\,d\mu(x)
 \]
 
 が成り立つ.
@@ -996,7 +996,7 @@ Lebesgue 積分では, 単調性, 非負性, 支配関数といった条件の�
 \[
 \nu(A)
 =
-\int_A \frac{d\nu}{d\mu}\, d\mu
+\int_A \frac{d\nu}{d\mu}(x)\,d\mu(x)
 \]
 
 と表される.
@@ -1016,9 +1016,9 @@ Lebesgue 積分では, 単調性, 非負性, 支配関数といった条件の�
 \[
 \mathbb E_Q[h]
 =
-\int h\, dQ
+\int_X h(x)\,dQ(x)
 =
-\int h\frac{dQ}{dP}\, dP
+\int_X h(x)\frac{dQ}{dP}(x)\,dP(x)
 =
 \mathbb E_P\left[h\frac{dQ}{dP}\right]
 \]

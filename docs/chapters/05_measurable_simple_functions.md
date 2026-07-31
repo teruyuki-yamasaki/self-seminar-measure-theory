@@ -174,7 +174,7 @@ $$
 非負単函数の積分は, 次章で
 
 $$
-\int_X \varphi (x)\, d\mu(x)
+\int_X \varphi(x)\,d\mu(x)
 :=
 \sum_{k=1}^{n}a_k\mu(E_k)
 $$
