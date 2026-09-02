@@ -24,6 +24,8 @@ layout: two-cols
 
 # 非負単函数の積分
 
+以下では, 可測集合 $E\in\mathfrak{B}$ を固定し, 積分は $E$ 上で考える.
+
 非負単函数
 
 $$
@@ -33,9 +35,9 @@ $$
 の積分を次で定める:
 
 $$
-\int_X\varphi(x)\,d\mu(x)
+\int_E\varphi(x)\,d\mu(x)
 :=
-\sum_{i=1}^n a_i\mu(A_i)
+\sum_{i=1}^n a_i\mu(E\cap A_i)
 $$
 
 ::right::
@@ -53,11 +55,11 @@ layout: default
 **線形性**
 
 $$
-\int_X(a\varphi+b\psi)\,d\mu
+\int_E(a\varphi+b\psi)\,d\mu
 =
-a\int_X\varphi\,d\mu
+a\int_E\varphi\,d\mu
 +
-b\int_X\psi\,d\mu
+b\int_E\psi\,d\mu
 $$
 
 **単調性**
@@ -65,9 +67,9 @@ $$
 $$
 0\le\varphi\le\psi
 \quad\Longrightarrow\quad
-\int_X\varphi\,d\mu
+\int_E\varphi\,d\mu
 \le
-\int_X\psi\,d\mu
+\int_E\psi\,d\mu
 $$
 
 ---
@@ -79,9 +81,9 @@ layout: two-rows
 非負可測函数 $f$ に対して, 下から抑える非負単函数 $\varphi$ 全体を考え, その積分値の上限を $f$ の積分値と定める:
 
 $$
-\int_X f(x)\,d\mu(x)
+\int_E f(x)\,d\mu(x)
 :=
-\underset{0\le\varphi\le f,\ \varphi\text{ は単函数}}{\sup} \int_X\varphi(x)\,d\mu(x)
+\underset{0\le\varphi\le f,\ \varphi\text{ は単函数}}{\sup} \int_E\varphi(x)\,d\mu(x)
 $$
 
 ::right::
@@ -105,12 +107,18 @@ $$
 を満たすとき, 積分値も下から極限に近づくと見る.
 
 $$
-\int_X\varphi_n(x)\,d\mu(x)
+\int_E\varphi_n(x)\,d\mu(x)
 \nearrow
-\int_X f(x)\,d\mu(x)
+\int_E f(x)\,d\mu(x)
 $$
 
 可測集合 $E$ 上に制限しても, 同じ下からの近似で積分値が極限へ近づく.
+
+$$
+\int_E\varphi_n(x)\,d\mu(x)
+\nearrow
+\int_E f(x)\,d\mu(x)
+$$
 
 ::right::
 
@@ -139,9 +147,9 @@ $$
 少なくとも一方の積分が有限なら
 
 $$
-\int_X f\,d\mu
+\int_E f\,d\mu
 :=
-\int_X f^+\,d\mu-\int_X f^-\,d\mu
+\int_E f^+\,d\mu-\int_E f^-\,d\mu
 $$
 
 と定める.

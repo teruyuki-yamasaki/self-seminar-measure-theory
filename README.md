@@ -76,30 +76,6 @@ dist/measure-theory-seminar.pdf
 
 章別 HTML は `docs/chapters/` の Markdown を VitePress で変換します.数式は MathJax で描画されるため, GitHub 上の Markdown プレビューで崩れる式も HTML では安定して読めます.
 
-## Format / Check
-
-```bash
-pnpm format
-pnpm check
-```
-
-## 章別原稿
-
-`docs/chapters/` には, スライド化の前段階として各章の本文原稿を置いています.
-
-### [第0章 導入：Riemann 積分から Lebesgue 積分へ](./docs/chapters/00_introduction.md)
-### [第1章 古典的面積概念と Jordan 測度](./docs/chapters/01_classical_area_jordan_measure.md)
-### [第2章 可算操作への移行：Lebesgue 外測度](./docs/chapters/02_lebesgue_outer_measure.md)
-### [第3章 Lebesgue 可測性と Lebesgue 測度](./docs/chapters/03_lebesgue_measurability_measure.md)
-### [第4章 Carathéodory の定理と抽象的測度空間](./docs/chapters/04_caratheodory_measure_space.md)
-### [第5章 可測函数と単函数](./docs/chapters/05_measurable_simple_functions.md)
-### [第6章 Lebesgue 積分](./docs/chapters/06_lebesgue_integral.md)
-### [第7章 極限と積分の交換](./docs/chapters/07_limits_and_integrals.md)
-### [第8章 積分を集合の函数として見る](./docs/chapters/08_integral_as_set_function.md)
-### [第9章 加法的集合函数の一般論](./docs/chapters/09_additive_set_functions.md)
-### [第10章 Radon-Nikodym 型の表現](./docs/chapters/10_radon_nikodym_representation.md)
-### [Appendix Radon-Nikodym の定理](./docs/chapters/appendix_radon_nikodym.md)
-
 ## 構成メモ
 
 - `slides.md`: 本文

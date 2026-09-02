@@ -14,6 +14,8 @@ Lebesgue 積分は, 次の順に構成される.
 
 測度空間 $(X, \mathfrak{B}, \mu)$ を固定する.
 
+以下では, 可測集合 $E\in\mathfrak{B}$ を固定し, 積分は $E$ 上で考える.
+
 非負単函数
 
 $$
@@ -31,10 +33,10 @@ $$
 このとき, $\varphi$ の積分を
 
 $$
-\int_X \varphi(x)\,d\mu(x)
+\int_E \varphi(x)\,d\mu(x)
 :=
-\sum_{k=1}^{n}a_k\mu(E_k)
-= a_1 \mu(E_1) + \cdots + a_n \mu(E_n)
+\sum_{k=1}^{n}a_k\mu(E\cap E_k)
+= a_1 \mu(E\cap E_1) + \cdots + a_n \mu(E\cap E_n)
 $$
 
 と定める.
@@ -52,17 +54,17 @@ $$
 ### 線形性
 
 $$
-\int_X(\varphi(x)+\psi(x))\,d\mu(x)
+\int_E(\varphi(x)+\psi(x))\,d\mu(x)
 =
-\int_X \varphi(x)\,d\mu(x)+\int_X \psi(x)\,d\mu(x)
+\int_E \varphi(x)\,d\mu(x)+\int_E \psi(x)\,d\mu(x)
 $$
 
 および
 
 $$
-\int_X c\varphi(x)\,d\mu(x)
+\int_E c\varphi(x)\,d\mu(x)
 =
-c\int_X \varphi(x)\,d\mu(x)
+c\int_E \varphi(x)\,d\mu(x)
 $$
 
 が成り立つ.
@@ -76,9 +78,9 @@ $$
 ならば
 
 $$
-\int_X \varphi(x)\,d\mu(x)
+\int_E \varphi(x)\,d\mu(x)
 \leq
-\int_X \psi(x)\,d\mu(x)
+\int_E \psi(x)\,d\mu(x)
 $$
 
 である.
@@ -96,10 +98,10 @@ $$
 に対して, Lebesgue 積分を
 
 $$
-\int_X f(x)\,d\mu(x)
+\int_E f(x)\,d\mu(x)
 :=
 \sup\left\{
-\int_X \varphi(x)\,d\mu(x)
+\int_E \varphi(x)\,d\mu(x)
 \ \middle|\
 0\leq\varphi\leq f, \ \varphi\text{ は非負単函数}
 \right\}
@@ -128,7 +130,7 @@ $$
 Lebesgue 積分
 
 $$
-\int_X f(x)\,d\mu(x)
+\int_E f(x)\,d\mu(x)
 $$
 
 は, そのような下側近似の積分の上限である.
@@ -137,7 +139,15 @@ $$
 
 ![可測集合上で単函数近似の積分値が下から収束する様子](../../figures/measure/animations/integral_on_subset_monotone_limit_2d/gif/integral_on_subset_monotone_limit_2d.gif)
 
-可測集合 $E$ 上に制限しても, $\mathbf{1}_E\varphi_n\uparrow\mathbf{1}_E f$ であり, 単函数近似の積分値は下から極限の積分に近づいていく.
+したがって, $\mathbf{1}_E\varphi_n\uparrow\mathbf{1}_E f$ ならば,
+
+$$
+\int_E \varphi_n(x)\,d\mu(x)
+\uparrow
+\int_E f(x)\,d\mu(x)
+$$
+
+である.
 
 ## 一般の可測函数の積分
 
@@ -166,8 +176,8 @@ $$
 可測函数の安定性より, $f^+$ と $f^-$ は非負可測函数である. したがって, それぞれの積分
 
 $$
-\int_X f^+(x)\,d\mu(x), \qquad
-\int_X f^-(x)\,d\mu(x)
+\int_E f^+(x)\,d\mu(x), \qquad
+\int_E f^-(x)\,d\mu(x)
 $$
 
 は定義される.
@@ -175,9 +185,9 @@ $$
 少なくとも一方が有限であるとき,
 
 $$
-\int_X f(x)\,d\mu(x)
+\int_E f(x)\,d\mu(x)
 =
-\int_X f^+(x)\,d\mu(x)-\int_X f^-(x)\,d\mu(x)
+\int_E f^+(x)\,d\mu(x)-\int_E f^-(x)\,d\mu(x)
 $$
 
 と定める.
@@ -185,7 +195,7 @@ $$
 特に
 
 $$
-\int_X |f(x)|\,d\mu(x)<\infty
+\int_E |f(x)|\,d\mu(x)<\infty
 $$
 
 であるとき, $f$ は可積分であるという.
@@ -193,9 +203,9 @@ $$
 この場合,
 
 $$
-\int_X f^+(x)\,d\mu(x)<\infty,
+\int_E f^+(x)\,d\mu(x)<\infty,
 \qquad
-\int_X f^-(x)\,d\mu(x)<\infty
+\int_E f^-(x)\,d\mu(x)<\infty
 $$
 
 であり, 積分値は有限の実数である.
@@ -207,9 +217,9 @@ $$
 **線形性**
 
 $$
-\int_X(af(x)+bg(x))\,d\mu(x)
+\int_E(af(x)+bg(x))\,d\mu(x)
 =
-a\int_X f(x)\,d\mu(x)+b\int_X g(x)\,d\mu(x)
+a\int_E f(x)\,d\mu(x)+b\int_E g(x)\,d\mu(x)
 $$
 
 が成り立つ.
@@ -225,9 +235,9 @@ $$
 ならば
 
 $$
-\int_X f(x)\,d\mu(x)
+\int_E f(x)\,d\mu(x)
 \leq
-\int_X g(x)\,d\mu(x)
+\int_E g(x)\,d\mu(x)
 $$
 
 である.
@@ -237,9 +247,9 @@ $$
 **絶対値評価**
 
 $$
-\left|\int_X f(x)\,d\mu(x)\right|
+\left|\int_E f(x)\,d\mu(x)\right|
 \leq
-\int_X |f(x)|\,d\mu(x)
+\int_E |f(x)|\,d\mu(x)
 $$
 
 が成り立つ.
@@ -279,11 +289,11 @@ $$
 であり,
 
 $$
-\int s_\Delta(x)\,d\mu(x)
+\int_{[a,b]} s_\Delta(x)\,d\mu(x)
 =
 \underline{\mathcal{S}}(f,\Delta),
 \qquad
-\int t_\Delta(x)\,d\mu(x)
+\int_{[a,b]} t_\Delta(x)\,d\mu(x)
 =
 \overline{\mathcal{S}}(f,\Delta)
 $$

@@ -49,3 +49,6 @@ work
 
 # generated animation intermediates
 figures/measure/animations/**/frames/*.png
+
+# Slidev build check output
+.slidev-build-check/
